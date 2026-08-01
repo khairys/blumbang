@@ -23,43 +23,74 @@
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <!-- Filter Kategori -->
-        <div class="flex flex-wrap gap-2 mb-8">
-            @php $kats = ['Semua', 'Makanan Bayi', 'Minuman', 'Camilan', 'Makanan Utama']; @endphp
-            @foreach ($kats as $k)
-            <button class="px-4 py-1.5 text-sm font-medium rounded-full {{ $k === 'Semua' ? 'bg-amber-500 text-white' : 'bg-amber-50 text-amber-700 hover:bg-amber-100' }} transition-colors">{{ $k }}</button>
-            @endforeach
+        <!-- Pencarian -->
+        <div class="flex justify-end mb-8">
+            <form action="{{ route('publik.potensi-jagung.index') }}" method="GET" class="relative w-full md:w-64">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari konten..." class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                <svg class="w-4 h-4 text-gray-400 absolute left-3.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </form>
         </div>
 
+        @if(isset($produks) && $produks->isNotEmpty())
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach ($produks as $p)
+            <article class="bg-white rounded-2xl overflow-hidden border border-amber-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200 flex flex-col">
+                <a href="{{ route('publik.potensi-jagung.show', $p->slug) }}" class="block relative aspect-video">
+                    @if ($p->thumbnail)
+                    <img src="{{ Storage::url($p->thumbnail) }}" alt="{{ $p->title }}" class="w-full h-full object-cover">
+                    @else
+                    <div class="w-full h-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center">
+                        <span class="text-6xl drop-shadow-md">🌽</span>
+                    </div>
+                    @endif
+                    <div class="absolute top-3 right-3">
+                        <span class="text-xs font-bold bg-white/95 text-amber-700 px-3 py-1 rounded-full shadow-sm">{{ $p->category }}</span>
+                    </div>
+                </a>
+                <div class="p-5 flex-1 flex flex-col">
+                    <p class="text-xs text-gray-400 mb-2">{{ $p->created_at->format('d M Y') }}</p>
+                    <h3 class="font-bold text-gray-900 mb-2 leading-snug"><a href="{{ route('publik.potensi-jagung.show', $p->slug) }}" class="hover:text-amber-600 transition-colors">{{ $p->title }}</a></h3>
+                    <p class="text-sm text-gray-500 leading-relaxed line-clamp-3 mb-4">{{ $p->summary }}</p>
+                    <div class="mt-auto pt-4 border-t border-gray-50">
+                        <a href="{{ route('publik.potensi-jagung.show', $p->slug) }}" class="inline-flex items-center gap-1.5 text-amber-600 hover:text-amber-700 text-sm font-semibold transition-colors">
+                            Baca Edukasi
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            @endforeach
+        </div>
+        @if ($produks->hasPages())
+        <div class="mt-8">{{ $produks->links() }}</div>
+        @endif
+        @else
+        <!-- Dummy data (ketika belum ada di DB) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @php $prods = [
-                ['emoji'=>'🥣','title'=>'Bubur Jagung Instan Fortifikasi','kat'=>'Makanan Bayi','desc'=>'Bubur jagung instan yang diperkaya zat besi, vitamin A, dan zinc khusus untuk balita 6-24 bulan. Praktis dan bergizi tinggi.','gizi'=>['Protein: 8g','Zat Besi: 5mg','Vitamin A: 200 IU'],'bg'=>'from-amber-400 to-yellow-300'],
-                ['emoji'=>'🥤','title'=>'Susu Jagung Manis','kat'=>'Minuman','desc'=>'Minuman berbasis ekstrak jagung manis dengan kandungan protein nabati tinggi. Alternatif bergizi pengganti susu formula.','gizi'=>['Protein: 4g','Kalsium: 120mg','Vitamin B6: 0.3mg'],'bg'=>'from-yellow-400 to-amber-300'],
-                ['emoji'=>'🍞','title'=>'Roti Jagung Kukus','kat'=>'Makanan Utama','desc'=>'Roti berbahan tepung jagung yang dikukus, bebas gluten dan kaya serat. Cocok untuk anak-anak dengan alergi gandum.','gizi'=>['Protein: 6g','Serat: 3g','Vitamin B1: 0.2mg'],'bg'=>'from-orange-400 to-amber-400'],
-                ['emoji'=>'🍪','title'=>'Biskuit Jagung Bayam','kat'=>'Camilan','desc'=>'Camilan sehat dari perpaduan tepung jagung dan bayam, kaya zat besi dan vitamin C untuk mencegah anemia pada balita.','gizi'=>['Zat Besi: 3mg','Vitamin C: 15mg','Protein: 3g'],'bg'=>'from-green-400 to-emerald-300'],
-                ['emoji'=>'🧃','title'=>'Jus Jagung Wortel','kat'=>'Minuman','desc'=>'Minuman kombinasi jagung dan wortel yang kaya beta-karoten. Baik untuk kesehatan mata dan kekebalan tubuh anak.','gizi'=>['Vitamin A: 400 IU','Beta-karoten: 2mg','Serat: 2g'],'bg'=>'from-orange-500 to-red-400'],
-                ['emoji'=>'🍲','title'=>'Sup Krim Jagung','kat'=>'Makanan Utama','desc'=>'Sup krim jagung yang lembut dan bergizi, diperkaya dengan ayam dan sayuran. Sangat mudah dicerna oleh balita.','gizi'=>['Protein: 10g','Zat Besi: 2mg','Vitamin B12: 0.5mcg'],'bg'=>'from-amber-500 to-yellow-400'],
+                ['emoji'=>'🥣','title'=>'Bubur Jagung Instan Fortifikasi','kat'=>'Makanan Bayi','desc'=>'Bubur jagung instan yang diperkaya zat besi, vitamin A, dan zinc khusus untuk balita 6-24 bulan. Praktis dan bergizi tinggi.','bg'=>'from-amber-400 to-yellow-300'],
+                ['emoji'=>'🥤','title'=>'Susu Jagung Manis','kat'=>'Minuman','desc'=>'Minuman berbasis ekstrak jagung manis dengan kandungan protein nabati tinggi. Alternatif bergizi pengganti susu formula.','bg'=>'from-yellow-400 to-amber-300'],
+                ['emoji'=>'🍞','title'=>'Roti Jagung Kukus','kat'=>'Makanan Utama','desc'=>'Roti berbahan tepung jagung yang dikukus, bebas gluten dan kaya serat. Cocok untuk anak-anak dengan alergi gandum.','bg'=>'from-orange-400 to-amber-400'],
             ]; @endphp
             @foreach ($prods as $p)
             <div class="bg-white rounded-2xl overflow-hidden border border-amber-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
-                <div class="h-44 bg-gradient-to-br {{ $p['bg'] }} flex items-center justify-center">
+                <div class="h-44 bg-gradient-to-br {{ $p['bg'] }} flex items-center justify-center relative">
                     <span class="text-6xl">{{ $p['emoji'] }}</span>
+                    <div class="absolute top-3 right-3"><span class="text-xs font-bold bg-white/95 text-amber-700 px-3 py-1 rounded-full shadow-sm">{{ $p['kat'] }}</span></div>
                 </div>
                 <div class="p-5">
-                    <span class="text-xs font-semibold bg-amber-100 text-amber-700 px-2.5 py-1 rounded-full">{{ $p['kat'] }}</span>
-                    <h3 class="font-bold text-gray-900 mt-3 mb-2">{{ $p['title'] }}</h3>
+                    <h3 class="font-bold text-gray-900 mb-2">{{ $p['title'] }}</h3>
                     <p class="text-sm text-gray-500 leading-relaxed mb-4">{{ $p['desc'] }}</p>
-                    <div class="bg-amber-50 rounded-xl p-3">
-                        <p class="text-xs font-semibold text-amber-800 mb-1.5">🌿 Kandungan Gizi</p>
-                        <div class="flex flex-wrap gap-1.5">
-                            @foreach ($p['gizi'] as $g)
-                            <span class="text-xs bg-white border border-amber-200 text-amber-700 px-2 py-0.5 rounded-full">{{ $g }}</span>
-                            @endforeach
-                        </div>
-                    </div>
+                    <span class="inline-block text-xs text-gray-400 italic mt-2">Data akan diisi oleh Admin Desa</span>
                 </div>
             </div>
             @endforeach
         </div>
+        
+        <div class="mt-8 bg-amber-50 border border-amber-200 rounded-xl p-4 text-center text-sm text-amber-700">
+            ℹ️ Belum ada konten edukasi jagung yang dipublikasikan. Admin dapat menambahkannya melalui
+            @auth <a href="{{ route('admin.potensi-jagung.create') }}" class="font-semibold underline">Panel Admin</a>. @else Panel Admin. @endauth
+        </div>
+        @endif
     </div>
 </x-publik-layout>

@@ -6,11 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Models\Layanan;
 use App\Http\Requests\SimpanLayananRequest;
 
+use Illuminate\Http\Request;
+
 class LayananController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $layanans = Layanan::latest()->paginate(10);
+        $query = Layanan::latest();
+        
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $query->where('title', 'like', "%{$search}%");
+        }
+        
+        $layanans = $query->paginate(10)->withQueryString();
         return view('admin.layanan.index', compact('layanans'));
     }
 

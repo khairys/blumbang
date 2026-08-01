@@ -16,16 +16,57 @@
                 <p class="text-sm text-green-700">Senin – Kamis: 08.00 – 15.00 WIB &nbsp;|&nbsp; Jumat: 08.00 – 11.00 WIB &nbsp;|&nbsp; Sabtu – Minggu: Tutup</p>
             </div>
         </div>
+        <!-- Pencarian -->
+        <div class="flex justify-end mb-6">
+            <form action="{{ route('publik.layanan.index') }}" method="GET" class="relative w-full md:w-64">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari layanan..." class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <svg class="w-4 h-4 text-gray-400 absolute left-3.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </form>
+        </div>
+        
+        @if(isset($layanans) && $layanans->isNotEmpty())
+        <!-- Real Data -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            @php $layanans = [
+            @foreach ($layanans as $l)
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 hover:shadow-md transition-shadow">
+                <div class="flex flex-col sm:flex-row items-start gap-4">
+                    <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl">📄</div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-900 text-base mb-1">{{ $l->title }}</h3>
+                        <p class="text-sm text-gray-500 mb-4">{{ $l->description }}</p>
+                        @if($l->requirements)
+                        <div class="mb-4">
+                            <p class="text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2">Persyaratan:</p>
+                            <div class="prose prose-sm prose-purple max-w-none text-gray-600">
+                                {!! $l->requirements !!}
+                            </div>
+                        </div>
+                        @endif
+                        <div class="flex flex-wrap gap-4 text-xs">
+                            @if($l->processing_time)
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">⏱ {{ $l->processing_time }}</span>
+                            @endif
+                            <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full font-medium">💰 Gratis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        @if ($layanans->hasPages())
+        <div class="mt-8">{{ $layanans->links() }}</div>
+        @endif
+
+        @else
+        <!-- Dummy Data -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            @php $dummies = [
                 ['icon'=>'📄','title'=>'Surat Keterangan Domisili','desc'=>'Keterangan tempat tinggal resmi di wilayah Desa Blumbang','syarat'=>['KTP asli & fotokopi','Kartu Keluarga','Surat pengantar RT/RW'],'waktu'=>'1 hari kerja','biaya'=>'Gratis'],
                 ['icon'=>'👶','title'=>'Surat Pengantar Kelahiran','desc'=>'Pengantar untuk pengurusan akta kelahiran ke Disdukcapil','syarat'=>['Surat keterangan lahir dari bidan/RS','KTP kedua orang tua','Kartu Keluarga','Buku nikah'],'waktu'=>'1 hari kerja','biaya'=>'Gratis'],
                 ['icon'=>'💒','title'=>'Surat Keterangan Belum Menikah','desc'=>'Untuk keperluan administrasi pernikahan dan lainnya','syarat'=>['KTP asli & fotokopi','Kartu Keluarga','Pas foto 3x4 (2 lembar)','Surat pengantar RT/RW'],'waktu'=>'1 hari kerja','biaya'=>'Gratis'],
                 ['icon'=>'🤝','title'=>'Surat Pengantar SKCK','desc'=>'Pengantar untuk pengurusan SKCK ke Polres Boyolali','syarat'=>['KTP asli & fotokopi','Kartu Keluarga','Pas foto 4x6 (4 lembar)','Surat pengantar RT/RW'],'waktu'=>'1 hari kerja','biaya'=>'Gratis'],
-                ['icon'=>'🏠','title'=>'Surat Keterangan Tidak Mampu (SKTM)','desc'=>'Untuk keperluan beasiswa, pengobatan, dan bantuan sosial','syarat'=>['KTP asli & fotokopi','Kartu Keluarga','Surat pengantar RT/RW','Dokumen pendukung'],'waktu'=>'2 hari kerja','biaya'=>'Gratis'],
-                ['icon'=>'🌾','title'=>'Surat Keterangan Kepemilikan Tanah','desc'=>'Keterangan kepemilikan tanah/lahan pertanian di desa','syarat'=>['KTP asli & fotokopi','Kartu Keluarga','Bukti kepemilikan (sertifikat/SPPT)','Surat pengantar RT/RW'],'waktu'=>'3 hari kerja','biaya'=>'Gratis'],
             ]; @endphp
-            @foreach ($layanans as $l)
+            @foreach ($dummies as $l)
             <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 hover:shadow-md transition-shadow">
                 <div class="flex items-start gap-4">
                     <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl">{{ $l['icon'] }}</div>
@@ -43,14 +84,21 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="flex gap-4 text-xs">
+                        <div class="flex gap-4 text-xs mb-2">
                             <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">⏱ {{ $l['waktu'] }}</span>
                             <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full font-medium">💰 {{ $l['biaya'] }}</span>
                         </div>
+                        <span class="inline-block text-xs text-gray-400 italic">Data akan diisi oleh Admin Desa</span>
                     </div>
                 </div>
             </div>
             @endforeach
         </div>
+        
+        <div class="mt-8 bg-purple-50 border border-purple-200 rounded-xl p-4 text-center text-sm text-purple-700">
+            ℹ️ Belum ada layanan publik. Admin dapat menambahkannya melalui
+            @auth <a href="{{ route('admin.layanan.create') }}" class="font-semibold underline">Panel Admin</a>. @else Panel Admin. @endauth
+        </div>
+        @endif
     </div>
 </x-publik-layout>

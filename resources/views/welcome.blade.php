@@ -176,37 +176,43 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @php
-                $beritas = [
-                    ['kat' => 'Pertanian', 'warna' => 'green', 'judul' => 'Hasil Panen Jagung Meningkat 23% Berkat Program Bibit Unggul', 'ringkas' => 'Program bantuan bibit unggul dari Dinas Pertanian Boyolali berhasil meningkatkan produktivitas jagung di Desa Blumbang secara signifikan...', 'tgl' => '28 Jul 2025', 'bg' => 'from-green-800 to-emerald-600'],
-                    ['kat' => 'Kesehatan', 'warna' => 'blue', 'judul' => 'Posyandu Blumbang Raih Penghargaan Terbaik Tingkat Kecamatan', 'ringkas' => 'Kader posyandu Desa Blumbang mendapat penghargaan atas konsistensi dalam program pemantauan tumbuh kembang balita selama 3 tahun berturut-turut...', 'tgl' => '25 Jul 2025', 'bg' => 'from-blue-800 to-blue-600'],
-                    ['kat' => 'Infrastruktur', 'warna' => 'amber', 'judul' => 'Jalan Desa Sepanjang 2 Km Telah Selesai Diperbaiki', 'ringkas' => 'Perbaikan jalan dusun yang menghubungkan RT 03 ke jalan provinsi telah rampung dikerjakan. Pengerjaan menggunakan anggaran Dana Desa 2025...', 'tgl' => '20 Jul 2025', 'bg' => 'from-amber-700 to-yellow-600'],
-                ];
-                @endphp
-
-                @foreach ($beritas as $i => $b)
-                <article class="card-hover bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
-                    <!-- Thumbnail dummy -->
-                    <div class="h-48 bg-gradient-to-br {{ $b['bg'] }} relative overflow-hidden">
-                        <div class="absolute inset-0 flex items-center justify-center opacity-20">
-                            <svg class="w-32 h-32 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                @if(isset($beritas) && $beritas->isNotEmpty())
+                    @foreach ($beritas as $b)
+                    <article class="card-hover bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                        <!-- Thumbnail -->
+                        <div class="h-48 bg-gradient-to-br from-green-800 to-emerald-600 relative overflow-hidden">
+                            @if ($b->thumbnail)
+                            <img src="{{ Storage::url($b->thumbnail) }}" alt="{{ $b->title }}" class="w-full h-full object-cover">
+                            @else
+                            <div class="absolute inset-0 flex items-center justify-center opacity-20">
+                                <svg class="w-32 h-32 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                            </div>
+                            @endif
+                            @if ($b->category)
+                            <div class="absolute top-3 left-3">
+                                <span class="bg-white/90 text-green-700 text-xs font-bold px-2.5 py-1 rounded-full">{{ $b->category->name }}</span>
+                            </div>
+                            @endif
                         </div>
-                        <div class="absolute top-3 left-3">
-                            <span class="bg-white/90 text-{{ $b['warna'] }}-700 text-xs font-bold px-2.5 py-1 rounded-full">{{ $b['kat'] }}</span>
-                        </div>
-                    </div>
 
-                    <div class="p-5">
-                        <p class="text-xs text-gray-400 mb-2">{{ $b['tgl'] }}</p>
-                        <h3 class="font-bold text-gray-900 mb-2 leading-snug line-clamp-2">{{ $b['judul'] }}</h3>
-                        <p class="text-sm text-gray-500 leading-relaxed line-clamp-3">{{ $b['ringkas'] }}</p>
-                        <a href="{{ route('publik.berita.index') }}" class="inline-flex items-center gap-1 text-green-600 hover:text-green-700 text-sm font-medium mt-4 transition-colors">
-                            Baca Selengkapnya
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                        </a>
-                    </div>
-                </article>
-                @endforeach
+                        <div class="p-5 flex flex-col h-full">
+                            <p class="text-xs text-gray-400 mb-2">{{ $b->created_at->format('d M Y') }}</p>
+                            <h3 class="font-bold text-gray-900 mb-2 leading-snug line-clamp-2"><a href="{{ route('publik.berita.show', $b->slug) }}" class="hover:text-green-600">{{ $b->title }}</a></h3>
+                            <p class="text-sm text-gray-500 leading-relaxed line-clamp-3 mb-4">{{ $b->summary }}</p>
+                            <div class="mt-auto pt-2">
+                                <a href="{{ route('publik.berita.show', $b->slug) }}" class="inline-flex items-center gap-1 text-green-600 hover:text-green-700 text-sm font-medium transition-colors">
+                                    Baca Selengkapnya
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    @endforeach
+                @else
+                <div class="col-span-full py-8 text-center bg-gray-50 rounded-2xl border border-gray-100">
+                    <p class="text-gray-500">Belum ada berita terbaru.</p>
+                </div>
+                @endif
             </div>
         </div>
     </section>
@@ -240,21 +246,38 @@
 
                 <!-- Product Cards Grid -->
                 <div class="grid grid-cols-2 gap-4">
-                    @php
-                    $prods = [
-                        ['emoji'=>'🥣','name'=>'Bubur Jagung','desc'=>'Kaya karbohidrat & serat, cocok untuk balita','color'=>'amber'],
-                        ['emoji'=>'🍞','name'=>'Roti Jagung','desc'=>'Fortifikasi zat besi & vitamin A','color'=>'yellow'],
-                        ['emoji'=>'🥤','name'=>'Susu Jagung','desc'=>'Protein tinggi, pengganti susu sapi','color'=>'orange'],
-                        ['emoji'=>'🍪','name'=>'Snack Jagung','desc'=>'Camilan sehat rendah gula','color'=>'amber'],
-                    ];
-                    @endphp
-                    @foreach ($prods as $p)
-                    <div class="card-hover bg-white rounded-2xl p-5 border border-amber-100 shadow-sm text-center">
-                        <div class="text-4xl mb-3">{{ $p['emoji'] }}</div>
-                        <h4 class="font-bold text-gray-900 text-sm mb-1">{{ $p['name'] }}</h4>
-                        <p class="text-xs text-gray-500">{{ $p['desc'] }}</p>
-                    </div>
-                    @endforeach
+                    @if(isset($potensi_jagung) && $potensi_jagung->isNotEmpty())
+                        @foreach ($potensi_jagung as $p)
+                        <div class="card-hover bg-white rounded-2xl p-5 border border-amber-100 shadow-sm text-center">
+                            @if($p->thumbnail)
+                            <div class="w-16 h-16 mx-auto mb-3 rounded-xl overflow-hidden">
+                                <img src="{{ Storage::url($p->thumbnail) }}" alt="{{ $p->title }}" class="w-full h-full object-cover">
+                            </div>
+                            @else
+                            <div class="text-4xl mb-3 border border-amber-50 rounded-xl bg-amber-50 w-16 h-16 flex items-center justify-center mx-auto">🌽</div>
+                            @endif
+                            <h4 class="font-bold text-gray-900 text-sm mb-1 line-clamp-1"><a href="{{ route('publik.potensi-jagung.show', $p->slug) }}" class="hover:text-amber-600">{{ $p->title }}</a></h4>
+                            <p class="text-xs text-gray-500 line-clamp-2">{{ $p->summary }}</p>
+                        </div>
+                        @endforeach
+                    @else
+                        <!-- Dummy -->
+                        @php
+                        $prods = [
+                            ['emoji'=>'🥣','name'=>'Bubur Jagung','desc'=>'Kaya karbohidrat & serat, cocok untuk balita','color'=>'amber'],
+                            ['emoji'=>'🍞','name'=>'Roti Jagung','desc'=>'Fortifikasi zat besi & vitamin A','color'=>'yellow'],
+                            ['emoji'=>'🥤','name'=>'Susu Jagung','desc'=>'Protein tinggi, pengganti susu sapi','color'=>'orange'],
+                            ['emoji'=>'🍪','name'=>'Snack Jagung','desc'=>'Camilan sehat rendah gula','color'=>'amber'],
+                        ];
+                        @endphp
+                        @foreach ($prods as $p)
+                        <div class="card-hover bg-white rounded-2xl p-5 border border-amber-100 shadow-sm text-center">
+                            <div class="text-4xl mb-3">{{ $p['emoji'] }}</div>
+                            <h4 class="font-bold text-gray-900 text-sm mb-1">{{ $p['name'] }}</h4>
+                            <p class="text-xs text-gray-500">{{ $p['desc'] }}</p>
+                        </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -341,26 +364,28 @@
                         <a href="{{ route('publik.pengumuman.index') }}" class="text-green-600 hover:text-green-700 text-sm font-medium">Lihat Semua →</a>
                     </div>
                     <div class="space-y-3">
-                        @php
-                        $pngs = [
-                            ['icon'=>'📅','title'=>'Jadwal Pembagian BLT Dana Desa Triwulan III','tgl'=>'28 Jul 2025','status'=>'Aktif','sc'=>'green'],
-                            ['icon'=>'🏥','title'=>'Posyandu Balita — Selasa, 15 Agustus 2025','tgl'=>'25 Jul 2025','status'=>'Mendatang','sc'=>'blue'],
-                            ['icon'=>'🌾','title'=>'Musyawarah Rencana Pembangunan Desa 2026','tgl'=>'20 Jul 2025','status'=>'Aktif','sc'=>'green'],
-                            ['icon'=>'💧','title'=>'Gotong Royong Bersih Sungai & Saluran Air','tgl'=>'15 Jul 2025','status'=>'Selesai','sc'=>'gray'],
-                        ];
-                        @endphp
-                        @foreach ($pngs as $p)
-                        <a href="{{ route('publik.pengumuman.index') }}" class="flex items-start gap-4 p-4 rounded-xl border border-gray-100 hover:border-green-200 hover:bg-green-50 transition-all duration-200 group">
-                            <div class="w-10 h-10 bg-gray-100 group-hover:bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors text-xl">
-                                {{ $p['icon'] }}
+                        @if(isset($pengumumans) && $pengumumans->isNotEmpty())
+                            @foreach ($pengumumans as $p)
+                            <a href="{{ route('publik.pengumuman.show', $p->slug) }}" class="flex items-start gap-4 p-4 rounded-xl border border-gray-100 hover:border-green-200 hover:bg-green-50 transition-all duration-200 group">
+                                <div class="w-10 h-10 bg-gray-100 group-hover:bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors text-xl">
+                                    📢
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-semibold text-gray-900 text-sm leading-snug mb-1 truncate">{{ $p->title }}</p>
+                                    <p class="text-xs text-gray-400">{{ $p->created_at->format('d M Y') }}</p>
+                                </div>
+                                @if($p->expired_at && \Carbon\Carbon::parse($p->expired_at)->isPast())
+                                    <span class="flex-shrink-0 text-xs font-medium px-2.5 py-1 rounded-full bg-red-100 text-red-700">Kedaluwarsa</span>
+                                @else
+                                    <span class="flex-shrink-0 text-xs font-medium px-2.5 py-1 rounded-full bg-green-100 text-green-700">Aktif</span>
+                                @endif
+                            </a>
+                            @endforeach
+                        @else
+                            <div class="py-8 text-center bg-gray-50 rounded-2xl border border-gray-100">
+                                <p class="text-gray-500 text-sm">Belum ada pengumuman terbaru.</p>
                             </div>
-                            <div class="flex-1 min-w-0">
-                                <p class="font-semibold text-gray-900 text-sm leading-snug mb-1">{{ $p['title'] }}</p>
-                                <p class="text-xs text-gray-400">{{ $p['tgl'] }}</p>
-                            </div>
-                            <span class="flex-shrink-0 text-xs font-medium px-2.5 py-1 rounded-full bg-{{ $p['sc'] }}-100 text-{{ $p['sc'] }}-700">{{ $p['status'] }}</span>
-                        </a>
-                        @endforeach
+                        @endif
                     </div>
                 </div>
 

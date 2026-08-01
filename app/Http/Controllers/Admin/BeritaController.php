@@ -9,11 +9,20 @@ use App\Http\Requests\SimpanBeritaRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Http\Request;
+
 class BeritaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $beritas = Berita::with('category')->latest()->paginate(10);
+        $query = Berita::with('category')->latest();
+        
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $query->where('title', 'like', "%{$search}%");
+        }
+        
+        $beritas = $query->paginate(10)->withQueryString();
         return view('admin.berita.index', compact('beritas'));
     }
 

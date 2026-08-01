@@ -5,14 +5,22 @@ namespace App\Http\Controllers\Publik;
 use App\Http\Controllers\Controller;
 use App\Models\Berita;
 
+use Illuminate\Http\Request;
+
 class BeritaPublikController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $beritas = Berita::with('category')
+        $query = Berita::with('category')
             ->where('status', 'published')
-            ->latest('published_at')
-            ->paginate(9);
+            ->latest('published_at');
+            
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $query->where('title', 'like', "%{$search}%");
+        }
+
+        $beritas = $query->paginate(9)->withQueryString();
 
         $kategoris = \App\Models\KategoriBerita::all();
 

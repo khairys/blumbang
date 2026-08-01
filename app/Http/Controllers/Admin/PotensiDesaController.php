@@ -9,11 +9,20 @@ use App\Http\Requests\SimpanPotensiDesaRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Http\Request;
+
 class PotensiDesaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $potensis = PotensiDesa::with('kategori')->latest()->paginate(10);
+        $query = PotensiDesa::with('kategori')->latest();
+        
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $query->where('title', 'like', "%{$search}%");
+        }
+        
+        $potensis = $query->paginate(10)->withQueryString();
         return view('admin.potensi_desa.index', compact('potensis'));
     }
 

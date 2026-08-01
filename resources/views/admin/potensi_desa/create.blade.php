@@ -1,76 +1,100 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Tambah Potensi Desa</h2>
-        </div>
+        <h1 class="text-lg font-bold text-gray-900">Tambah Potensi Desa</h1>
     </x-slot>
-    <div class="py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            @if(session('success'))
-                <div class="mb-4 bg-green-50 border border-green-300 text-green-800 px-4 py-3 rounded-xl flex items-center gap-2">
-                    <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-                    {{ session('success') }}
-                </div>
-            @endif
-            <form method="POST" action="{{ route('admin.potensi-desa.store') }}" enctype="multipart/form-data">
-                @csrf
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div class="lg:col-span-2">
-                        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-4">
-                            <h3 class="font-bold text-gray-900 pb-2 border-b">Detail Potensi</h3>
-                <div>
-                    <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Judul Potensi <span class=\"text-red-500\">*</span></label>
-                    <input type="text" id="title" name="title" value="{{ old('title') }}" required
-                        class="w-full rounded-xl border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 text-sm">
-                    @error('title') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
-                <div>
-                    <label for="summary" class="block text-sm font-medium text-gray-700 mb-1">Ringkasan </label>
-                    <textarea id="summary" name="summary" rows="5" 
-                        class="w-full rounded-xl border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 text-sm">{{ old('summary') }}</textarea>
-                    @error('summary') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
-                <div>
-                    <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Deskripsi Lengkap </label>
-                    <textarea id="description" name="description" rows="5" 
-                        class="w-full rounded-xl border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 text-sm">{{ old('description') }}</textarea>
-                    @error('description') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>        </div>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 space-y-4">
-                            <h3 class="font-bold text-gray-900 pb-2 border-b">Pengaturan</h3>
-                <div>
-                    <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Status <span class="text-red-500">*</span></label>
-                    <select id="status" name="status" required class="w-full rounded-xl border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 text-sm">
-                        <option value="draft" {{ old('status') == 'draft' ? 'selected' : '' }}>Draft</option>
-<option value="published" {{ old('status') == 'published' ? 'selected' : '' }}>Dipublikasikan</option>
+    <div class="p-6 space-y-5">
+        @if(session('success'))
+        <div class="flex items-center gap-3 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-xl text-sm">
+            <svg class="w-5 h-5 flex-shrink-0 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            {{ session('success') }}
+        </div>
+        @endif
+        @if($errors->any())
+        <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+            <ul class="list-disc list-inside space-y-1">
+                @foreach ($errors->all() as $err)<li>{{ $err }}</li>@endforeach
+            </ul>
+        </div>
+        @endif
+        <form method="POST"
+              action="{{ isset($potensi) ? route('admin.potensi-desa.update', $potensi) : route('admin.potensi-desa.store') }}"
+              enctype="multipart/form-data">
+            @csrf
+            @isset($potensi) @method('PUT') @endisset
 
-                    </select>
-                    @error('status') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
-                                <select name="kategori_id" class="w-full rounded-xl border-gray-300 text-sm">
-                                    <option value="">-- Pilih Kategori --</option>
-                                    @foreach ($kategoris as $k)
-                                    <option value="{{ $k->id }}">{{ $k->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Foto/Gambar</label>
-                    <input type="file" name="thumbnail" accept="image/*"
-                        class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-green-50 file:text-green-700 hover:file:bg-green-100">
-                    @error('thumbnail') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                </div>        </div>
-                        <div class="flex gap-3">
-                            <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl text-sm">Simpan</button>
-                            <a href="{{ route('admin.potensi-desa.index') }}" class="flex-1 text-center bg-gray-100 text-gray-700 font-medium py-2.5 rounded-xl text-sm">Batal</a>
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-5">
+                <div class="xl:col-span-2 space-y-4">
+                    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 space-y-4">
+                        <h3 class="font-semibold text-gray-800 pb-2 border-b border-gray-100">Detail Potensi</h3>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Judul <span class="text-red-500">*</span></label>
+                            <input type="text" name="title" value="{{ old('title', $potensi->title ?? '') }}" required
+                                   placeholder="Nama potensi desa..."
+                                   class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all">
+                            @error('title')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Ringkasan</label>
+                            <textarea name="summary" rows="3" placeholder="Ringkasan singkat..."
+                                      class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all resize-none">{{ old('summary', $potensi->summary ?? '') }}</textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Deskripsi Lengkap</label>
+                            <input id="description" type="hidden" name="description" value="{{ old('description', $potensi->description ?? '') }}">
+                            <trix-editor input="description" class="trix-content prose max-w-none w-full border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400" placeholder="Ceritakan potensi ini secara lengkap..."></trix-editor>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+
+                <div class="space-y-4">
+                    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 space-y-4">
+                        <h3 class="font-semibold text-gray-800 pb-2 border-b border-gray-100">Pengaturan</h3>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Status</label>
+                            <select name="status" class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 bg-white">
+                                <option value="draft" {{ old('status', $potensi->status ?? 'draft') === 'draft' ? 'selected' : '' }}>○ Draft</option>
+                                <option value="published" {{ old('status', $potensi->status ?? '') === 'published' ? 'selected' : '' }}>✓ Publikasikan</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Kategori</label>
+                            <select name="kategori_id" class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 bg-white">
+                                <option value="">— Pilih Kategori —</option>
+                                @foreach ($kategoris as $k)
+                                <option value="{{ $k->id }}" {{ old('kategori_id', $potensi->kategori_id ?? '') == $k->id ? 'selected' : '' }}>{{ $k->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        @isset($potensi)
+                            @if($potensi->thumbnail)
+                            <div>
+                                <img src="{{ Storage::url($potensi->thumbnail) }}" alt="" class="w-full h-36 object-cover rounded-xl border border-gray-100">
+                                <p class="text-xs text-gray-400 mt-1">Foto saat ini</p>
+                            </div>
+                            @endif
+                        @endisset
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">{{ isset($potensi) && $potensi->thumbnail ? 'Ganti Foto' : 'Upload Foto' }}</label>
+                            <input type="file" name="thumbnail" accept="image/*"
+                                   class="w-full text-sm text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 cursor-pointer">
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3">
+                        <button type="submit" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 px-4 rounded-xl text-sm transition-colors">
+                            {{ isset($potensi) ? 'Simpan' : 'Tambah' }}
+                        </button>
+                        <a href="{{ route('admin.potensi-desa.index') }}" class="flex-1 text-center bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2.5 px-4 rounded-xl text-sm transition-colors">Batal</a>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </x-app-layout>

@@ -8,11 +8,20 @@ use App\Http\Requests\SimpanPengumumanRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Http\Request;
+
 class PengumumanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $pengumumans = Pengumuman::latest()->paginate(10);
+        $query = Pengumuman::latest();
+        
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $query->where('title', 'like', "%{$search}%");
+        }
+        
+        $pengumumans = $query->paginate(10)->withQueryString();
         return view('admin.pengumuman.index', compact('pengumumans'));
     }
 

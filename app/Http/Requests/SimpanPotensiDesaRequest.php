@@ -14,12 +14,12 @@ class SimpanPotensiDesaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'kategori_id' => 'nullable|exists:kategori_potensi,id',
-            'summary' => 'nullable|string|max:500',
+            'title'       => 'required|string|max:255',
+            'summary'     => 'nullable|string|max:500',
             'description' => 'nullable|string',
-            'status' => 'required|in:draft,published',
-            'thumbnail' => 'nullable|image|max:2048',
+            'thumbnail'   => 'nullable|image|max:2048',
+            'status'      => 'required|in:draft,published',
+            'kategori_id' => 'nullable|exists:kategori_potensi,id',
         ];
     }
 }

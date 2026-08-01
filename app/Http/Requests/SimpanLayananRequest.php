@@ -14,11 +14,11 @@ class SimpanLayananRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'requirements' => 'nullable|string',
-            'service_flow' => 'nullable|string',
-            'service_hours' => 'nullable|string|max:255',
+            'title'         => 'required|string|max:255',
+            'description'   => 'nullable|string',
+            'requirements'  => 'nullable|string',
+            'service_flow'  => 'nullable|string',
+            'service_hours' => 'nullable|string|max:100',
         ];
     }
 }

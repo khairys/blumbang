@@ -14,10 +14,10 @@ class SimpanProfilDesaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'history' => 'nullable|string',
-            'vision' => 'nullable|string',
-            'mission' => 'nullable|string',
-            'geography' => 'nullable|string',
+            'history'             => 'nullable|string',
+            'vision'              => 'nullable|string',
+            'mission'             => 'nullable|string',
+            'geography'           => 'nullable|string',
             'general_information' => 'nullable|string',
         ];
     }

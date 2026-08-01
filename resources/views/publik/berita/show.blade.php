@@ -40,7 +40,7 @@
                 @endif
 
                 <div class="prose prose-gray max-w-none text-gray-700 leading-relaxed space-y-4">
-                    {!! nl2br(e($berita->content)) !!}
+                    {!! $berita->content !!}
                 </div>
             </div>
 

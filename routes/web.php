@@ -10,9 +10,7 @@ use App\Http\Controllers\Admin\PotensiDesaController;
 use App\Http\Controllers\Admin\PotensiJagungController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('beranda');
+Route::get('/', [App\Http\Controllers\Publik\BerandaController::class, 'index'])->name('beranda');
 
 // Public Pages
 use App\Http\Controllers\Publik\BeritaPublikController;
@@ -23,9 +21,11 @@ Route::prefix('desa')->name('publik.')->group(function () {
     Route::get('/berita/{slug}', [BeritaPublikController::class, 'show'])->name('berita.show');
     Route::get('/pengumuman', [PengumumanPublikController::class, 'index'])->name('pengumuman.index');
     Route::get('/pengumuman/{slug}', [PengumumanPublikController::class, 'show'])->name('pengumuman.show');
-    Route::get('/layanan', fn() => view('publik.layanan.index'))->name('layanan.index');
-    Route::get('/potensi-desa', fn() => view('publik.potensi_desa.index'))->name('potensi-desa.index');
-    Route::get('/potensi-jagung', fn() => view('publik.potensi_jagung.index'))->name('potensi-jagung.index');
+    Route::get('/layanan', [App\Http\Controllers\Publik\LayananPublikController::class, 'index'])->name('layanan.index');
+    Route::get('/potensi-desa', [App\Http\Controllers\Publik\PotensiDesaPublikController::class, 'index'])->name('potensi-desa.index');
+    Route::get('/potensi-desa/{slug}', [App\Http\Controllers\Publik\PotensiDesaPublikController::class, 'show'])->name('potensi-desa.show');
+    Route::get('/potensi-jagung', [App\Http\Controllers\Publik\PotensiJagungPublikController::class, 'index'])->name('potensi-jagung.index');
+    Route::get('/potensi-jagung/{slug}', [App\Http\Controllers\Publik\PotensiJagungPublikController::class, 'show'])->name('potensi-jagung.show');
     Route::get('/kontak', fn() => view('publik.kontak'))->name('kontak');
 });
 

@@ -21,16 +21,11 @@
             <!-- Stats Cards -->
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 @php
-                use App\Models\Berita;
-                use App\Models\Pengumuman;
-                use App\Models\Layanan;
-                use App\Models\PotensiDesa;
-
                 $stats = [
-                    ['label' => 'Total Berita', 'value' => Berita::count(), 'icon' => '📰', 'color' => 'blue', 'href' => route('admin.berita.index')],
-                    ['label' => 'Pengumuman Aktif', 'value' => Pengumuman::where('status', 'published')->count(), 'icon' => '📢', 'color' => 'amber', 'href' => route('admin.pengumuman.index')],
-                    ['label' => 'Data Layanan', 'value' => Layanan::count(), 'icon' => '📋', 'color' => 'purple', 'href' => route('admin.layanan.index')],
-                    ['label' => 'Potensi Desa', 'value' => PotensiDesa::count(), 'icon' => '🏡', 'color' => 'green', 'href' => route('admin.potensi-desa.index')],
+                    ['label' => 'Total Berita', 'value' => \App\Models\Berita::count(), 'icon' => '📰', 'color' => 'blue', 'href' => route('admin.berita.index')],
+                    ['label' => 'Pengumuman Aktif', 'value' => \App\Models\Pengumuman::where('status', 'published')->count(), 'icon' => '📢', 'color' => 'amber', 'href' => route('admin.pengumuman.index')],
+                    ['label' => 'Data Layanan', 'value' => \App\Models\Layanan::count(), 'icon' => '📋', 'color' => 'purple', 'href' => route('admin.layanan.index')],
+                    ['label' => 'Potensi Desa', 'value' => \App\Models\PotensiDesa::count(), 'icon' => '🏡', 'color' => 'green', 'href' => route('admin.potensi-desa.index')],
                 ];
                 $colorMap = ['blue' => 'bg-blue-50 border-blue-200 text-blue-700', 'amber' => 'bg-amber-50 border-amber-200 text-amber-700', 'purple' => 'bg-purple-50 border-purple-200 text-purple-700', 'green' => 'bg-green-50 border-green-200 text-green-700'];
                 @endphp

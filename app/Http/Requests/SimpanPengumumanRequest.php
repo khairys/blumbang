@@ -14,12 +14,19 @@ class SimpanPengumumanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'status' => 'required|in:draft,published',
+            'title'        => 'required|string|max:255',
+            'content'      => 'required|string',
+            'status'       => 'required|in:draft,published',
             'published_at' => 'nullable|date',
-            'expired_at' => 'nullable|date|after_or_equal:published_at',
-            'attachment' => 'nullable|file|max:5120',
+            'expired_at'   => 'nullable|date|after_or_equal:published_at',
+            'attachment'   => 'nullable|file|max:5120|mimes:pdf,jpg,jpeg,png,webp',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'expired_at.after_or_equal' => 'Tanggal berlaku hingga harus setelah tanggal publikasi.',
         ];
     }
 }

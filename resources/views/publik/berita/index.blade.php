@@ -8,17 +8,27 @@
         </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <!-- Filter Kategori -->
-        @if(isset($kategoris) && $kategoris->isNotEmpty())
-        <div class="flex flex-wrap gap-2 mb-8">
-            <a href="{{ route('publik.berita.index') }}"
-               class="px-4 py-1.5 text-sm font-medium rounded-full {{ !request('kategori') ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-green-50 hover:text-green-700' }} transition-colors">Semua</a>
-            @foreach ($kategoris as $k)
-            <a href="{{ route('publik.berita.index') }}?kategori={{ $k->slug }}"
-               class="px-4 py-1.5 text-sm font-medium rounded-full {{ request('kategori') === $k->slug ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-green-50 hover:text-green-700' }} transition-colors">{{ $k->name }}</a>
-            @endforeach
+        <!-- Filter Kategori & Pencarian -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            @if(isset($kategoris) && $kategoris->isNotEmpty())
+            <div class="flex flex-wrap gap-2">
+                <a href="{{ route('publik.berita.index') }}"
+                   class="px-4 py-1.5 text-sm font-medium rounded-full {{ !request('kategori') ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-green-50 hover:text-green-700' }} transition-colors">Semua</a>
+                @foreach ($kategoris as $k)
+                <a href="{{ route('publik.berita.index') }}?kategori={{ $k->slug }}"
+                   class="px-4 py-1.5 text-sm font-medium rounded-full {{ request('kategori') === $k->slug ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-600 hover:bg-green-50 hover:text-green-700' }} transition-colors">{{ $k->name }}</a>
+                @endforeach
+            </div>
+            @endif
+            
+            <form action="{{ route('publik.berita.index') }}" method="GET" class="relative w-full md:w-64 flex-shrink-0">
+                @if(request('kategori'))
+                    <input type="hidden" name="kategori" value="{{ request('kategori') }}">
+                @endif
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari berita..." class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-green-400">
+                <svg class="w-4 h-4 text-gray-400 absolute left-3.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </form>
         </div>
-        @endif
 
         @if(isset($beritas) && $beritas->isNotEmpty())
         <!-- Real Data -->

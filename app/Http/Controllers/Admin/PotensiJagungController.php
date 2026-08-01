@@ -8,11 +8,20 @@ use App\Http\Requests\SimpanPotensiJagungRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Http\Request;
+
 class PotensiJagungController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $produk = PotensiJagung::latest()->paginate(10);
+        $query = PotensiJagung::latest();
+        
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $query->where('title', 'like', "%{$search}%");
+        }
+        
+        $produk = $query->paginate(10)->withQueryString();
         return view('admin.potensi_jagung.index', compact('produk'));
     }
 

@@ -28,7 +28,7 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8">
             <div class="prose prose-gray max-w-none text-gray-700 leading-relaxed space-y-4">
-                {!! nl2br(e($pengumuman->content)) !!}
+                {!! $pengumuman->content !!}
             </div>
 
             @if ($pengumuman->attachment)
