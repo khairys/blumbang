@@ -261,22 +261,11 @@
                         </div>
                         @endforeach
                     @else
-                        <!-- Dummy -->
-                        @php
-                        $prods = [
-                            ['emoji'=>'🥣','name'=>'Bubur Jagung','desc'=>'Kaya karbohidrat & serat, cocok untuk balita','color'=>'amber'],
-                            ['emoji'=>'🍞','name'=>'Roti Jagung','desc'=>'Fortifikasi zat besi & vitamin A','color'=>'yellow'],
-                            ['emoji'=>'🥤','name'=>'Susu Jagung','desc'=>'Protein tinggi, pengganti susu sapi','color'=>'orange'],
-                            ['emoji'=>'🍪','name'=>'Snack Jagung','desc'=>'Camilan sehat rendah gula','color'=>'amber'],
-                        ];
-                        @endphp
-                        @foreach ($prods as $p)
-                        <div class="card-hover bg-white rounded-2xl p-5 border border-amber-100 shadow-sm text-center">
-                            <div class="text-4xl mb-3">{{ $p['emoji'] }}</div>
-                            <h4 class="font-bold text-gray-900 text-sm mb-1">{{ $p['name'] }}</h4>
-                            <p class="text-xs text-gray-500">{{ $p['desc'] }}</p>
+                        <!-- Empty State -->
+                        <div class="col-span-2 py-10 text-center bg-amber-50 rounded-2xl border border-amber-100">
+                            <div class="text-4xl mb-3 opacity-50">🌽</div>
+                            <p class="text-gray-500 font-medium">Belum ada produk olahan jagung.</p>
                         </div>
-                        @endforeach
                     @endif
                 </div>
             </div>
@@ -293,25 +282,24 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                @php
-                $layanans = [
-                    ['icon'=>'📄','title'=>'Surat Keterangan Domisili','desc'=>'Keterangan tempat tinggal resmi di desa','warna'=>'blue'],
-                    ['icon'=>'👶','title'=>'Surat Kelahiran','desc'=>'Pengantar akta kelahiran ke Disdukcapil','warna'=>'green'],
-                    ['icon'=>'💒','title'=>'Surat Keterangan Belum Menikah','desc'=>'Untuk keperluan administrasi pernikahan','warna'=>'purple'],
-                    ['icon'=>'🤝','title'=>'Surat Pengantar SKCK','desc'=>'Pengantar untuk pengurusan SKCK di Polres','warna'=>'amber'],
-                ];
-                @endphp
-                @foreach ($layanans as $l)
-                <div class="card-hover bg-gray-50 hover:bg-white rounded-2xl p-6 border border-gray-100 hover:border-green-200 hover:shadow-md transition-all duration-200">
-                    <div class="text-3xl mb-4">{{ $l['icon'] }}</div>
-                    <h3 class="font-bold text-gray-900 text-sm mb-2">{{ $l['title'] }}</h3>
-                    <p class="text-xs text-gray-500 mb-4">{{ $l['desc'] }}</p>
-                    <a href="{{ route('publik.layanan.index') }}" class="text-xs font-semibold text-green-600 hover:text-green-700 flex items-center gap-1 transition-colors">
-                        Lihat Syarat
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </a>
-                </div>
-                @endforeach
+                @if(isset($layanans) && $layanans->isNotEmpty())
+                    @foreach ($layanans as $l)
+                    <div class="card-hover bg-gray-50 hover:bg-white rounded-2xl p-6 border border-gray-100 hover:border-green-200 hover:shadow-md transition-all duration-200">
+                        <div class="text-3xl mb-4">📄</div>
+                        <h3 class="font-bold text-gray-900 text-sm mb-2 line-clamp-2">{{ $l->title }}</h3>
+                        <p class="text-xs text-gray-500 mb-4 line-clamp-3">{{ strip_tags($l->description) }}</p>
+                        <a href="{{ route('publik.layanan.index') }}" class="text-xs font-semibold text-green-600 hover:text-green-700 flex items-center gap-1 transition-colors">
+                            Lihat Syarat
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                    @endforeach
+                @else
+                    <div class="col-span-full py-10 text-center bg-gray-50 rounded-2xl border border-gray-100">
+                        <div class="text-4xl mb-3 opacity-50">📋</div>
+                        <p class="text-gray-500 font-medium">Belum ada layanan publik yang ditambahkan.</p>
+                    </div>
+                @endif
             </div>
         </div>
     </section>
@@ -331,24 +319,28 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                @php
-                $potensis = [
-                    ['emoji'=>'🌾','title'=>'Pertanian Jagung','desc'=>'Lahan pertanian jagung seluas ±120 Ha yang menjadi komoditas utama mata pencaharian warga Desa Blumbang.','bg'=>'from-green-700 to-emerald-600'],
-                    ['emoji'=>'🏞️','title'=>'Wisata Alam Perbukitan','desc'=>'Pemandangan perbukitan hijau dengan hamparan sawah terasering yang menjadi daya tarik wisata pedesaan.','bg'=>'from-emerald-700 to-teal-600'],
-                    ['emoji'=>'🎭','title'=>'Seni Budaya Lokal','desc'=>'Kesenian tradisional seperti jathilan dan seni batik pewarna alami yang masih lestari di Desa Blumbang.','bg'=>'from-teal-700 to-cyan-600'],
-                ];
-                @endphp
-                @foreach ($potensis as $pot)
-                <div class="card-hover rounded-2xl overflow-hidden border border-green-100 shadow-sm bg-white">
-                    <div class="h-36 bg-gradient-to-br {{ $pot['bg'] }} flex items-center justify-center">
-                        <span class="text-6xl opacity-70">{{ $pot['emoji'] }}</span>
+                @if(isset($potensi_desa) && $potensi_desa->isNotEmpty())
+                    @foreach ($potensi_desa as $pot)
+                    <div class="card-hover rounded-2xl overflow-hidden border border-green-100 shadow-sm bg-white">
+                        <div class="h-36 bg-gradient-to-br from-green-700 to-emerald-600 flex items-center justify-center relative">
+                            @if($pot->thumbnail)
+                            <img src="{{ Storage::url($pot->thumbnail) }}" alt="{{ $pot->title }}" class="w-full h-full object-cover">
+                            @else
+                            <span class="text-6xl opacity-70">🏞️</span>
+                            @endif
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-gray-900 mb-2 line-clamp-1"><a href="{{ route('publik.potensi-desa.show', $pot->slug) }}" class="hover:text-green-600">{{ $pot->title }}</a></h3>
+                            <p class="text-sm text-gray-500 leading-relaxed line-clamp-3">{{ $pot->summary }}</p>
+                        </div>
                     </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-gray-900 mb-2">{{ $pot['title'] }}</h3>
-                        <p class="text-sm text-gray-500 leading-relaxed">{{ $pot['desc'] }}</p>
+                    @endforeach
+                @else
+                    <div class="col-span-full py-10 text-center bg-white rounded-2xl border border-green-100 shadow-sm">
+                        <div class="text-4xl mb-3 opacity-50">🏞️</div>
+                        <p class="text-gray-500 font-medium">Belum ada potensi desa yang ditambahkan.</p>
                     </div>
-                </div>
-                @endforeach
+                @endif
             </div>
         </div>
     </section>
@@ -393,11 +385,17 @@
                 <div>
                     <h3 class="text-lg font-bold text-gray-900 mb-4">Lokasi Balai Desa</h3>
                     <div class="rounded-2xl overflow-hidden border border-gray-200 shadow-sm bg-gray-100 h-52 flex items-center justify-center mb-4">
-                        <div class="text-center text-gray-400 p-6">
-                            <svg class="w-12 h-12 mx-auto mb-2 text-green-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <p class="text-sm font-medium text-gray-500">Google Maps akan<br>ditampilkan di sini</p>
-                            <p class="text-xs text-gray-400 mt-1">Desa Blumbang, Klego<br>Boyolali, Jawa Tengah</p>
-                        </div>
+                        @if(isset($pengaturan) && $pengaturan->maps_embed)
+                            <div class="w-full h-full">
+                                {!! $pengaturan->maps_embed !!}
+                            </div>
+                        @else
+                            <div class="text-center text-gray-400 p-6">
+                                <svg class="w-12 h-12 mx-auto mb-2 text-green-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                <p class="text-sm font-medium text-gray-500">Peta belum dikonfigurasi</p>
+                                <p class="text-xs text-gray-400 mt-1">{{ $pengaturan->address ?? 'Alamat belum diatur' }}</p>
+                            </div>
+                        @endif
                     </div>
                     <div class="bg-green-50 rounded-xl p-4 border border-green-100">
                         <h4 class="text-sm font-bold text-green-800 mb-2">⏰ Jam Pelayanan</h4>

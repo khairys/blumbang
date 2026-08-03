@@ -43,8 +43,7 @@
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1.5">Isi / Konten Lengkap</label>
-                            <input id="content" type="hidden" name="content" value="{{ old('content', $produk->content ?? '') }}">
-                            <trix-editor input="content" class="trix-content prose max-w-none w-full border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-400" placeholder="Tulis konten lengkap di sini (informasi gizi, cara pengolahan, manfaat, dll)..."></trix-editor>
+                            <textarea name="content" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Tulis konten lengkap di sini (informasi gizi, cara pengolahan, manfaat, dll)...">{{ old('content', $produk->content ?? '') }}</textarea>
                         </div>
                     </div>
                 </div>

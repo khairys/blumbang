@@ -26,8 +26,7 @@
 
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
                     <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">📜 Sejarah Desa</h3>
-                    <input id="history" type="hidden" name="history" value="{{ old('history', $profil?->history) }}">
-                    <trix-editor input="history" class="trix-content prose max-w-none w-full border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400" placeholder="Tuliskan sejarah singkat Desa Blumbang, kapan desa ini berdiri, siapa tokoh-tokoh penting, dll..."></trix-editor>
+                    <textarea name="history" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Tuliskan sejarah singkat Desa Blumbang, kapan desa ini berdiri, siapa tokoh-tokoh penting, dll...">{{ old('history', $profil?->history) }}</textarea>
                 </div>
 
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
@@ -35,28 +34,24 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1.5">Visi Desa</label>
-                            <input id="vision" type="hidden" name="vision" value="{{ old('vision', $profil?->vision) }}">
-                            <trix-editor input="vision" class="trix-content prose max-w-none w-full border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400" placeholder="Tulis visi Desa Blumbang..."></trix-editor>
+                            <textarea name="vision" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Tulis visi Desa Blumbang...">{{ old('vision', $profil?->vision) }}</textarea>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1.5">Misi Desa</label>
-                            <input id="mission" type="hidden" name="mission" value="{{ old('mission', $profil?->mission) }}">
-                            <trix-editor input="mission" class="trix-content prose max-w-none w-full border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400" placeholder="1. Mewujudkan...&#10;2. Meningkatkan...&#10;3. Mengembangkan..."></trix-editor>
+                            <textarea name="mission" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="1. Mewujudkan...&#10;2. Meningkatkan...&#10;3. Mengembangkan...">{{ old('mission', $profil?->mission) }}</textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
                     <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">🗺️ Kondisi Geografis</h3>
-                    <input id="geography" type="hidden" name="geography" value="{{ old('geography', $profil?->geography) }}">
-                    <trix-editor input="geography" class="trix-content prose max-w-none w-full border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400" placeholder="Batas wilayah, topografi, luas wilayah, iklim, dll..."></trix-editor>
+                    <textarea name="geography" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Batas wilayah, topografi, luas wilayah, iklim, dll...">{{ old('geography', $profil?->geography) }}</textarea>
                 </div>
 
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
                     <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">📊 Data Umum Desa</h3>
                     <p class="text-xs text-gray-400 mb-3">Isi dengan data statistik desa seperti jumlah penduduk, KK, RT/RW, mata pencaharian, dll</p>
-                    <input id="general_information" type="hidden" name="general_information" value="{{ old('general_information', $profil?->general_information) }}">
-                    <trix-editor input="general_information" class="trix-content prose max-w-none w-full border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400" placeholder="Jumlah Penduduk: 2.847 jiwa&#10;Jumlah KK: 812 KK&#10;Jumlah RT: 24 RT&#10;Jumlah RW: 6 RW&#10;..."></trix-editor>
+                    <textarea name="general_information" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Jumlah Penduduk: 2.847 jiwa&#10;Jumlah KK: 812 KK&#10;Jumlah RT: 24 RT&#10;Jumlah RW: 6 RW&#10;...">{{ old('general_information', $profil?->general_information) }}</textarea>
                 </div>
 
                 <div class="flex gap-3">

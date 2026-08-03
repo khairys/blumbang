@@ -65,31 +65,11 @@
         <div class="mt-8">{{ $produks->links() }}</div>
         @endif
         @else
-        <!-- Dummy data (ketika belum ada di DB) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            @php $prods = [
-                ['emoji'=>'🥣','title'=>'Bubur Jagung Instan Fortifikasi','kat'=>'Makanan Bayi','desc'=>'Bubur jagung instan yang diperkaya zat besi, vitamin A, dan zinc khusus untuk balita 6-24 bulan. Praktis dan bergizi tinggi.','bg'=>'from-amber-400 to-yellow-300'],
-                ['emoji'=>'🥤','title'=>'Susu Jagung Manis','kat'=>'Minuman','desc'=>'Minuman berbasis ekstrak jagung manis dengan kandungan protein nabati tinggi. Alternatif bergizi pengganti susu formula.','bg'=>'from-yellow-400 to-amber-300'],
-                ['emoji'=>'🍞','title'=>'Roti Jagung Kukus','kat'=>'Makanan Utama','desc'=>'Roti berbahan tepung jagung yang dikukus, bebas gluten dan kaya serat. Cocok untuk anak-anak dengan alergi gandum.','bg'=>'from-orange-400 to-amber-400'],
-            ]; @endphp
-            @foreach ($prods as $p)
-            <div class="bg-white rounded-2xl overflow-hidden border border-amber-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
-                <div class="h-44 bg-gradient-to-br {{ $p['bg'] }} flex items-center justify-center relative">
-                    <span class="text-6xl">{{ $p['emoji'] }}</span>
-                    <div class="absolute top-3 right-3"><span class="text-xs font-bold bg-white/95 text-amber-700 px-3 py-1 rounded-full shadow-sm">{{ $p['kat'] }}</span></div>
-                </div>
-                <div class="p-5">
-                    <h3 class="font-bold text-gray-900 mb-2">{{ $p['title'] }}</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-4">{{ $p['desc'] }}</p>
-                    <span class="inline-block text-xs text-gray-400 italic mt-2">Data akan diisi oleh Admin Desa</span>
-                </div>
-            </div>
-            @endforeach
-        </div>
-        
-        <div class="mt-8 bg-amber-50 border border-amber-200 rounded-xl p-4 text-center text-sm text-amber-700">
-            ℹ️ Belum ada konten edukasi jagung yang dipublikasikan. Admin dapat menambahkannya melalui
-            @auth <a href="{{ route('admin.potensi-jagung.create') }}" class="font-semibold underline">Panel Admin</a>. @else Panel Admin. @endauth
+        <!-- Empty State -->
+        <div class="py-16 text-center bg-amber-50 rounded-2xl border border-amber-100">
+            <div class="text-6xl mb-4 opacity-50">🌽</div>
+            <h2 class="text-xl font-bold text-gray-700 mb-2">Belum Ada Olahan Jagung</h2>
+            <p class="text-gray-500 max-w-md mx-auto">Saat ini belum ada produk olahan jagung atau edukasi yang dipublikasikan. Silakan cek kembali nanti.</p>
         </div>
         @endif
     </div>

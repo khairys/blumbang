@@ -43,8 +43,7 @@
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1.5">Deskripsi Lengkap</label>
-                            <input id="description" type="hidden" name="description" value="{{ old('description', $potensi->description ?? '') }}">
-                            <trix-editor input="description" class="trix-content prose max-w-none w-full border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400" placeholder="Ceritakan potensi ini secara lengkap..."></trix-editor>
+                            <textarea name="description" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Ceritakan potensi ini secara lengkap...">{{ old('description', $potensi->description ?? '') }}</textarea>
                         </div>
                     </div>
                 </div>

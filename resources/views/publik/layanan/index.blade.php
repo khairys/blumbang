@@ -58,46 +58,11 @@
         @endif
 
         @else
-        <!-- Dummy Data -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            @php $dummies = [
-                ['icon'=>'📄','title'=>'Surat Keterangan Domisili','desc'=>'Keterangan tempat tinggal resmi di wilayah Desa Blumbang','syarat'=>['KTP asli & fotokopi','Kartu Keluarga','Surat pengantar RT/RW'],'waktu'=>'1 hari kerja','biaya'=>'Gratis'],
-                ['icon'=>'👶','title'=>'Surat Pengantar Kelahiran','desc'=>'Pengantar untuk pengurusan akta kelahiran ke Disdukcapil','syarat'=>['Surat keterangan lahir dari bidan/RS','KTP kedua orang tua','Kartu Keluarga','Buku nikah'],'waktu'=>'1 hari kerja','biaya'=>'Gratis'],
-                ['icon'=>'💒','title'=>'Surat Keterangan Belum Menikah','desc'=>'Untuk keperluan administrasi pernikahan dan lainnya','syarat'=>['KTP asli & fotokopi','Kartu Keluarga','Pas foto 3x4 (2 lembar)','Surat pengantar RT/RW'],'waktu'=>'1 hari kerja','biaya'=>'Gratis'],
-                ['icon'=>'🤝','title'=>'Surat Pengantar SKCK','desc'=>'Pengantar untuk pengurusan SKCK ke Polres Boyolali','syarat'=>['KTP asli & fotokopi','Kartu Keluarga','Pas foto 4x6 (4 lembar)','Surat pengantar RT/RW'],'waktu'=>'1 hari kerja','biaya'=>'Gratis'],
-            ]; @endphp
-            @foreach ($dummies as $l)
-            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 hover:shadow-md transition-shadow">
-                <div class="flex items-start gap-4">
-                    <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl">{{ $l['icon'] }}</div>
-                    <div class="flex-1">
-                        <h3 class="font-bold text-gray-900 text-base mb-1">{{ $l['title'] }}</h3>
-                        <p class="text-sm text-gray-500 mb-4">{{ $l['desc'] }}</p>
-                        <div class="mb-4">
-                            <p class="text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2">Persyaratan:</p>
-                            <ul class="space-y-1">
-                                @foreach ($l['syarat'] as $s)
-                                <li class="flex items-center gap-2 text-sm text-gray-600">
-                                    <svg class="w-3.5 h-3.5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                                    {{ $s }}
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="flex gap-4 text-xs mb-2">
-                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">⏱ {{ $l['waktu'] }}</span>
-                            <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full font-medium">💰 {{ $l['biaya'] }}</span>
-                        </div>
-                        <span class="inline-block text-xs text-gray-400 italic">Data akan diisi oleh Admin Desa</span>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-        
-        <div class="mt-8 bg-purple-50 border border-purple-200 rounded-xl p-4 text-center text-sm text-purple-700">
-            ℹ️ Belum ada layanan publik. Admin dapat menambahkannya melalui
-            @auth <a href="{{ route('admin.layanan.create') }}" class="font-semibold underline">Panel Admin</a>. @else Panel Admin. @endauth
+        <!-- Empty State -->
+        <div class="py-16 text-center bg-purple-50 rounded-2xl border border-purple-100">
+            <div class="text-6xl mb-4 opacity-50">📋</div>
+            <h2 class="text-xl font-bold text-gray-700 mb-2">Belum Ada Layanan</h2>
+            <p class="text-gray-500 max-w-md mx-auto">Saat ini belum ada informasi layanan publik yang ditambahkan. Silakan cek kembali nanti.</p>
         </div>
         @endif
     </div>

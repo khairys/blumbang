@@ -7,9 +7,7 @@
     <title>Admin Panel – {{ config('app.name', 'Desa Blumbang') }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
-    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
+    @vite(['resources/css/app.css', 'resources/css/ckeditor.css', 'resources/js/app.js', 'resources/js/ckeditor.js'])
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
@@ -23,7 +21,13 @@
 
         {{-- Logo --}}
         <div class="flex items-center gap-3 px-5 py-5 border-b border-white/10">
+            @if(isset($pengaturan) && $pengaturan->logo)
+            <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center overflow-hidden p-1 shadow">
+                <img src="{{ Storage::url($pengaturan->logo) }}" alt="Logo" class="w-full h-full object-contain">
+            </div>
+            @else
             <div class="w-9 h-9 bg-white/20 rounded-xl flex items-center justify-center text-xl">🏘️</div>
+            @endif
             <div>
                 <p class="text-white font-bold text-sm leading-tight">Desa Blumbang</p>
                 <p class="text-green-300 text-xs">Panel Administrator</p>
@@ -169,5 +173,7 @@
         </main>
     </div>
 </div>
+
+
 </body>
 </html>

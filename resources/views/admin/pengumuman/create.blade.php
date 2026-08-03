@@ -38,8 +38,7 @@
 
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1.5">Isi Pengumuman <span class="text-red-500">*</span></label>
-                            <input id="content" type="hidden" name="content" value="{{ old('content', $pengumuman->content ?? '') }}">
-                            <trix-editor input="content" class="trix-content prose max-w-none w-full border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-amber-400" placeholder="Tulis isi pengumuman lengkap di sini..."></trix-editor>
+                            <textarea name="content" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Tulis isi pengumuman lengkap di sini...">{{ old('content', $pengumuman->content ?? '') }}</textarea>
                             @error('content')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
                     </div>

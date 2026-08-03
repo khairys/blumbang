@@ -43,20 +43,17 @@
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1.5">Deskripsi Layanan</label>
-                        <input id="description" type="hidden" name="description" value="{{ old('description', $layanan->description ?? '') }}">
-                        <trix-editor input="description" class="trix-content prose max-w-none w-full border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-400" placeholder="Penjelasan singkat tentang layanan ini..."></trix-editor>
+                        <textarea name="description" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Penjelasan singkat tentang layanan ini...">{{ old('description', $layanan->description ?? '') }}</textarea>
                     </div>
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1.5">Persyaratan</label>
-                        <input id="requirements" type="hidden" name="requirements" value="{{ old('requirements', $layanan->requirements ?? '') }}">
-                        <trix-editor input="requirements" class="trix-content prose max-w-none w-full border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"></trix-editor>
+                        <textarea name="requirements" class="tinymce w-full border border-gray-200 rounded-xl">{{ old('requirements', $layanan->requirements ?? '') }}</textarea>
                     </div>
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1.5">Alur Pelayanan</label>
-                        <input id="service_flow" type="hidden" name="service_flow" value="{{ old('service_flow', $layanan->service_flow ?? '') }}">
-                        <trix-editor input="service_flow" class="trix-content prose max-w-none w-full border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-400"></trix-editor>
+                        <textarea name="service_flow" class="tinymce w-full border border-gray-200 rounded-xl">{{ old('service_flow', $layanan->service_flow ?? '') }}</textarea>
                     </div>
                 </div>
 

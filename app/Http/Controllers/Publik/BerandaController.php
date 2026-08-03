@@ -15,8 +15,10 @@ class BerandaController extends Controller
     {
         $beritas = Berita::with('category')->where('status', 'published')->latest()->take(3)->get();
         $pengumumans = Pengumuman::where('status', 'published')->latest()->take(3)->get();
-        $potensi_jagung = PotensiJagung::where('status', 'published')->latest()->take(3)->get();
+        $potensi_jagung = PotensiJagung::where('status', 'published')->latest()->take(4)->get();
+        $layanans = \App\Models\Layanan::latest()->take(4)->get();
+        $potensi_desa = \App\Models\PotensiDesa::with('kategori')->where('status', 'published')->latest()->take(3)->get();
         
-        return view('welcome', compact('beritas', 'pengumumans', 'potensi_jagung'));
+        return view('welcome', compact('beritas', 'pengumumans', 'potensi_jagung', 'layanans', 'potensi_desa'));
     }
 }

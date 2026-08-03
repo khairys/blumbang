@@ -68,36 +68,11 @@
         @endif
 
         @else
-        <!-- Dummy Data -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @php $dummies = [
-                ['emoji'=>'🌾','title'=>'Pertanian Jagung','kat'=>'Pertanian','desc'=>'Lahan pertanian jagung seluas ±120 Ha yang menjadi komoditas utama. Produksi rata-rata 8 ton/ha per musim dengan varietas unggul.','bg'=>'from-green-700 to-emerald-500'],
-                ['emoji'=>'🌾','title'=>'Pertanian Padi','kat'=>'Pertanian','desc'=>'Sawah irigasi teknis seluas ±45 Ha menghasilkan beras premium dengan sistem tanam padi organik yang mulai dikembangkan.','bg'=>'from-green-800 to-green-600'],
-                ['emoji'=>'🏞️','title'=>'Wisata Perbukitan','kat'=>'Wisata','desc'=>'Pemandangan perbukitan hijau dengan hamparan sawah terasering menjadi daya tarik wisata pedesaan yang mulai berkembang.','bg'=>'from-emerald-700 to-teal-500'],
-                ['emoji'=>'🎭','title'=>'Kesenian Jathilan','kat'=>'Budaya','desc'=>'Kesenian tradisional jathilan yang masih aktif dengan kelompok seni yang rutin tampil pada berbagai acara desa.','bg'=>'from-purple-700 to-purple-500'],
-                ['emoji'=>'🏺','title'=>'Kerajinan Anyaman','kat'=>'UMKM','desc'=>'Industri rumahan anyaman bambu dan rotan yang menghasilkan produk keranjang, tampah, dan perabot rumah tangga.','bg'=>'from-amber-700 to-yellow-500'],
-                ['emoji'=>'🌿','title'=>'Tanaman Herbal','kat'=>'Pertanian','desc'=>'Budidaya tanaman herbal seperti jahe, kunyit, dan temulawak yang diolah menjadi jamu dan minuman kesehatan.','bg'=>'from-teal-700 to-cyan-500'],
-            ]; @endphp
-            @foreach ($dummies as $p)
-            <div class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200">
-                <div class="h-44 bg-gradient-to-br {{ $p['bg'] }} flex items-center justify-center relative">
-                    <span class="text-6xl opacity-80">{{ $p['emoji'] }}</span>
-                    <div class="absolute top-3 left-3">
-                        <span class="bg-white/90 text-emerald-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm">{{ $p['kat'] }}</span>
-                    </div>
-                </div>
-                <div class="p-5">
-                    <h3 class="font-bold text-gray-900 mb-2">{{ $p['title'] }}</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">{{ $p['desc'] }}</p>
-                    <span class="inline-block text-xs text-gray-400 italic mt-4">Data akan diisi oleh Admin Desa</span>
-                </div>
-            </div>
-            @endforeach
-        </div>
-        
-        <div class="mt-8 bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center text-sm text-emerald-700">
-            ℹ️ Belum ada data potensi desa. Admin dapat menambahkannya melalui
-            @auth <a href="{{ route('admin.potensi-desa.create') }}" class="font-semibold underline">Panel Admin</a>. @else Panel Admin. @endauth
+        <!-- Empty State -->
+        <div class="py-16 text-center bg-emerald-50 rounded-2xl border border-emerald-100">
+            <div class="text-6xl mb-4 opacity-50">🏞️</div>
+            <h2 class="text-xl font-bold text-gray-700 mb-2">Belum Ada Potensi Desa</h2>
+            <p class="text-gray-500 max-w-md mx-auto">Saat ini belum ada data potensi desa yang dipublikasikan. Silakan cek kembali nanti.</p>
         </div>
         @endif
     </div>

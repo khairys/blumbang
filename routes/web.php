@@ -15,8 +15,9 @@ Route::get('/', [App\Http\Controllers\Publik\BerandaController::class, 'index'])
 // Public Pages
 use App\Http\Controllers\Publik\BeritaPublikController;
 use App\Http\Controllers\Publik\PengumumanPublikController;
+use App\Http\Controllers\Publik\ProfilDesaPublikController;
 Route::prefix('desa')->name('publik.')->group(function () {
-    Route::get('/profil', fn() => view('publik.profil'))->name('profil');
+    Route::get('/profil', [ProfilDesaPublikController::class, 'index'])->name('profil');
     Route::get('/berita', [BeritaPublikController::class, 'index'])->name('berita.index');
     Route::get('/berita/{slug}', [BeritaPublikController::class, 'show'])->name('berita.show');
     Route::get('/pengumuman', [PengumumanPublikController::class, 'index'])->name('pengumuman.index');

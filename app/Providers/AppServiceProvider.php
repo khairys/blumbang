@@ -19,6 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        view()->composer('*', function ($view) {
+            $pengaturan = \App\Models\PengaturanWebsite::first();
+            $view->with('pengaturan', $pengaturan);
+        });
     }
 }
