@@ -30,6 +30,14 @@
                                class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400 transition-all">
                     </div>
 
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Deskripsi Singkat Website</label>
+                        <textarea name="website_description" rows="2"
+                                  placeholder="Website resmi Desa Blumbang sebagai media digitalisasi informasi desa dan edukasi..."
+                                  class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400 transition-all resize-none">{{ old('website_description', $pengaturan?->website_description) }}</textarea>
+                        <p class="text-xs text-gray-400 mt-1">Teks ini akan muncul di pojok kiri atas (Navbar), Footer, dan di hasil pencarian Google.</p>
+                    </div>
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
@@ -109,6 +117,12 @@
                         <textarea name="maps_embed" rows="4"
                                   placeholder='<iframe src="https://www.google.com/maps/embed?..." ...></iframe>'
                                   class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm font-mono focus:outline-none focus:ring-2 focus:ring-green-400 transition-all resize-none">{{ old('maps_embed', $pengaturan?->maps_embed) }}</textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Jam Pelayanan Operasional</label>
+                        <p class="text-xs text-gray-400 mb-1.5">Jadwal operasional balai desa. Bisa berupa list atau tabel.</p>
+                        <textarea name="operating_hours" class="tinymce w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm">{{ old('operating_hours', $pengaturan?->operating_hours) }}</textarea>
                     </div>
                 </div>
 

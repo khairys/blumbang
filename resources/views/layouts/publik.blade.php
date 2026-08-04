@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ $description ?? 'Website resmi Desa Blumbang — Media Digitalisasi Informasi Desa dan Edukasi Produk Olahan Jagung dalam Upaya Pencegahan Stunting' }}">
+    <meta name="description" content="{{ $pengaturan?->website_description ?? 'Website resmi Desa Blumbang — Media Digitalisasi Informasi Desa dan Edukasi Produk Olahan Jagung dalam Upaya Pencegahan Stunting' }}">
     <title>{{ $title ?? 'Beranda' }} — Desa Blumbang</title>
 
     <!-- Fonts -->
@@ -125,7 +125,7 @@
                     @endif
                     <div class="hidden sm:block">
                         <p class="font-bold text-green-800 leading-tight text-sm">{{ $pengaturan->village_name ?? 'Desa Blumbang' }}</p>
-                        <p class="text-xs text-gray-500 leading-tight">Website Resmi Desa</p>
+                        <p class="text-xs text-gray-500 leading-tight">{{ $pengaturan?->website_description ?? 'Website Resmi Desa' }}</p>
                     </div>
                 </a>
 
@@ -217,10 +217,10 @@
                         @endif
                         <div>
                             <p class="font-bold text-lg">{{ $pengaturan->village_name ?? 'Desa Blumbang' }}</p>
-                            <p class="text-green-300 text-sm">Website Resmi Desa</p>
+                            <p class="text-green-300 text-sm font-semibold">Website Resmi Desa</p>
                         </div>
                     </div>
-                    <p class="text-green-200 text-sm leading-relaxed max-w-sm">Website resmi Desa Blumbang sebagai media digitalisasi informasi desa dan edukasi produk olahan jagung dalam upaya pencegahan stunting.</p>
+                    <p class="text-green-200 text-sm leading-relaxed max-w-sm">{{ $pengaturan?->website_description ?? 'Website resmi Desa Blumbang sebagai media digitalisasi informasi desa dan edukasi produk olahan jagung dalam upaya pencegahan stunting.' }}</p>
                     <div class="flex gap-3 mt-4">
                         @if(isset($pengaturan) && $pengaturan->facebook)
                         <a href="{{ $pengaturan->facebook }}" target="_blank" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition-colors">

@@ -14,11 +14,13 @@ class BerandaController extends Controller
     public function index()
     {
         $beritas = Berita::with('category')->where('status', 'published')->latest()->take(3)->get();
-        $pengumumans = Pengumuman::where('status', 'published')->latest()->take(3)->get();
+        $pengumumans = Pengumuman::where('status', 'published')->latest()->take(5)->get();
+        $popup_pengumuman = Pengumuman::where('status', 'published')->where('is_popup', true)->latest()->first();
         $potensi_jagung = PotensiJagung::where('status', 'published')->latest()->take(4)->get();
         $layanans = \App\Models\Layanan::latest()->take(4)->get();
         $potensi_desa = \App\Models\PotensiDesa::with('kategori')->where('status', 'published')->latest()->take(3)->get();
+        $profil = \App\Models\ProfilDesa::first();
         
-        return view('welcome', compact('beritas', 'pengumumans', 'potensi_jagung', 'layanans', 'potensi_desa'));
+        return view('welcome', compact('beritas', 'pengumumans', 'popup_pengumuman', 'potensi_jagung', 'layanans', 'potensi_desa', 'profil'));
     }
 }

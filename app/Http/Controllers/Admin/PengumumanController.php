@@ -36,6 +36,7 @@ class PengumumanController extends Controller
         $data['slug'] = Str::slug($data['title']) . '-' . now()->timestamp;
         $data['created_by'] = auth()->id();
         $data['updated_by'] = auth()->id();
+        $data['is_popup'] = $request->has('is_popup');
 
         if ($request->hasFile('attachment')) {
             $data['attachment'] = $request->file('attachment')->store('pengumuman', 'public');
@@ -56,6 +57,7 @@ class PengumumanController extends Controller
     {
         $data = $request->validated();
         $data['updated_by'] = auth()->id();
+        $data['is_popup'] = $request->has('is_popup');
 
         if ($request->hasFile('attachment')) {
             if ($pengumuman->attachment) Storage::disk('public')->delete($pengumuman->attachment);

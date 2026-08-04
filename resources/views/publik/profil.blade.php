@@ -20,7 +20,8 @@
             <button onclick="showTab('sejarah')" id="tab-sejarah" class="tab-btn active-tab px-5 py-2.5 text-sm font-semibold border-b-2 border-green-600 text-green-700 -mb-px transition-all">Sejarah</button>
             <button onclick="showTab('visi')" id="tab-visi" class="tab-btn px-5 py-2.5 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-green-700 -mb-px transition-all">Visi & Misi</button>
             <button onclick="showTab('geografi')" id="tab-geografi" class="tab-btn px-5 py-2.5 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-green-700 -mb-px transition-all">Geografi</button>
-            <button onclick="showTab('info')" id="tab-info" class="tab-btn px-5 py-2.5 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-green-700 -mb-px transition-all">Data Umum</button>
+            <button onclick="showTab('info')" id="tab-info" class="tab-btn px-5 py-2.5 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-green-700 -mb-px transition-all">Data & Statistik</button>
+            <button onclick="showTab('struktur')" id="tab-struktur" class="tab-btn px-5 py-2.5 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-green-700 -mb-px transition-all">Struktur Organisasi</button>
         </div>
 
         <!-- Tab Content -->
@@ -78,15 +79,61 @@
         </div>
 
         <div id="content-info" class="tab-content hidden">
-            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">Data Umum Desa</h2>
-                <div class="prose max-w-none text-gray-700">
-                    @if(isset($profil) && $profil->general_information)
-                        {!! $profil->general_information !!}
-                    @else
-                        <p>Belum ada data umum desa.</p>
-                    @endif
+            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm space-y-8">
+                <h2 class="text-2xl font-bold text-gray-900">Statistik Desa Blumbang</h2>
+                
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <div class="bg-green-50 rounded-2xl p-6 text-center border border-green-100">
+                        <div class="text-3xl mb-2">👥</div>
+                        <div class="text-sm font-medium text-gray-500 mb-1">Penduduk</div>
+                        <div class="text-lg font-bold text-green-800">{{ $profil?->stat_penduduk ?? '-' }}</div>
+                    </div>
+                    <div class="bg-blue-50 rounded-2xl p-6 text-center border border-blue-100">
+                        <div class="text-3xl mb-2">🏠</div>
+                        <div class="text-sm font-medium text-gray-500 mb-1">Keluarga</div>
+                        <div class="text-lg font-bold text-blue-800">{{ $profil?->stat_kk ?? '-' }}</div>
+                    </div>
+                    <div class="bg-purple-50 rounded-2xl p-6 text-center border border-purple-100">
+                        <div class="text-3xl mb-2">🏘️</div>
+                        <div class="text-sm font-medium text-gray-500 mb-1">Total RT</div>
+                        <div class="text-lg font-bold text-purple-800">{{ $profil?->stat_rt ?? '-' }}</div>
+                    </div>
+                    <div class="bg-indigo-50 rounded-2xl p-6 text-center border border-indigo-100">
+                        <div class="text-3xl mb-2">🏘️</div>
+                        <div class="text-sm font-medium text-gray-500 mb-1">Total RW</div>
+                        <div class="text-lg font-bold text-indigo-800">{{ $profil?->stat_rw ?? '-' }}</div>
+                    </div>
+                    <div class="bg-orange-50 rounded-2xl p-6 text-center border border-orange-100">
+                        <div class="text-3xl mb-2">🗺️</div>
+                        <div class="text-sm font-medium text-gray-500 mb-1">Luas Wilayah</div>
+                        <div class="text-lg font-bold text-orange-800">{{ $profil?->stat_luas_wilayah ?? '-' }}</div>
+                    </div>
                 </div>
+
+                @if(isset($profil) && $profil->general_information)
+                <div class="pt-6 border-t border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Informasi Tambahan</h3>
+                    <div class="prose max-w-none text-gray-700">
+                        {!! $profil->general_information !!}
+                    </div>
+                </div>
+                @endif
+            </div>
+        </div>
+
+        <div id="content-struktur" class="tab-content hidden">
+            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Struktur Organisasi Pemerintah Desa</h2>
+                @if(isset($profil) && $profil->organizational_structure)
+                    <div class="flex justify-center bg-gray-50 rounded-xl p-4 border border-gray-100">
+                        <img src="{{ Storage::url($profil->organizational_structure) }}" alt="Struktur Organisasi Desa Blumbang" class="max-w-full h-auto rounded-lg shadow-sm">
+                    </div>
+                @else
+                    <div class="py-12 text-center bg-gray-50 rounded-xl border border-gray-100">
+                        <div class="text-5xl mb-4 opacity-50">👥</div>
+                        <p class="text-gray-500">Belum ada bagan struktur organisasi yang diunggah.</p>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

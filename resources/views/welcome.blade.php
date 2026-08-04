@@ -11,29 +11,24 @@
         <div class="absolute bottom-20 left-10 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl"></div>
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green-700/5 rounded-full blur-3xl"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Left Content -->
-                <div>
-                    <!-- Badge -->
-                    <div class="inline-flex items-center gap-2 bg-green-500/20 backdrop-blur-sm border border-green-400/30 text-green-300 text-xs font-semibold px-4 py-2 rounded-full mb-6">
-                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                        Website Resmi Desa Blumbang
-                    </div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 text-center">
+            <div class="flex flex-col items-center">
+                <!-- Content -->
+                <div class="w-full">
 
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
                         Selamat Datang di<br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-green-200">Desa Blumbang</span>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-green-200">{{ $pengaturan?->village_name ?? 'Desa Blumbang' }}</span>
                     </h1>
 
-                    <p class="text-green-100 text-lg leading-relaxed mb-8 max-w-lg">
-                        Media digitalisasi informasi desa dan edukasi produk olahan jagung dalam upaya pencegahan stunting untuk masyarakat yang lebih sehat dan sejahtera.
+                    <p class="text-green-100 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+                        {{ $pengaturan?->website_description ?? 'Portal Informasi resmi Desa Blumbang sebagai media digitalisasi desa dan transparansi pelayanan publik.' }}
                     </p>
 
-                    <div class="flex flex-wrap gap-4">
-                        <a href="{{ route('publik.potensi-jagung.index') }}"
-                           class="inline-flex items-center gap-2.5 bg-amber-500 hover:bg-amber-400 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-amber-500/30 transition-all duration-200 hover:-translate-y-0.5">
-                            🌽 Produk Jagung
+                    <div class="flex flex-wrap gap-4 justify-center">
+                        <a href="{{ route('publik.layanan.index') }}"
+                           class="inline-flex items-center gap-2.5 bg-green-500 hover:bg-green-400 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-green-500/30 transition-all duration-200 hover:-translate-y-0.5">
+                            📄 Layanan Publik
                         </a>
                         <a href="{{ route('publik.profil') }}"
                            class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white font-medium px-6 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5">
@@ -43,66 +38,27 @@
                     </div>
 
                     <!-- Stats -->
-                    <div class="grid grid-cols-3 gap-4 mt-12 pt-10 border-t border-white/10">
+                    <!-- Stats -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-10 border-t border-white/10">
                         <div class="stat-item">
-                            <p class="text-3xl font-bold text-white">2.847</p>
+                            <p class="text-3xl font-bold text-white">{{ $profil?->stat_penduduk ? preg_replace('/[^0-9]/', '', $profil->stat_penduduk) : '2.847' }}</p>
                             <p class="text-green-300 text-sm mt-1">Jiwa Penduduk</p>
                         </div>
                         <div class="stat-item" style="animation-delay:.1s">
-                            <p class="text-3xl font-bold text-white">8</p>
-                            <p class="text-green-300 text-sm mt-1">RT/RW</p>
+                            <p class="text-3xl font-bold text-white">{{ $profil?->stat_rt ? preg_replace('/[^0-9]/', '', $profil->stat_rt) : '24' }}</p>
+                            <p class="text-green-300 text-sm mt-1">Total RT</p>
+                        </div>
+                        <div class="stat-item" style="animation-delay:.15s">
+                            <p class="text-3xl font-bold text-white">{{ $profil?->stat_rw ? preg_replace('/[^0-9]/', '', $profil->stat_rw) : '6' }}</p>
+                            <p class="text-green-300 text-sm mt-1">Total RW</p>
                         </div>
                         <div class="stat-item" style="animation-delay:.2s">
-                            <p class="text-3xl font-bold text-white">12+</p>
-                            <p class="text-green-300 text-sm mt-1">Produk Jagung</p>
+                            <p class="text-3xl font-bold text-white">{{ $profil?->stat_luas_wilayah ? preg_replace('/[^0-9]/', '', $profil->stat_luas_wilayah) : '154' }}</p>
+                            <p class="text-green-300 text-sm mt-1">Hektar Wilayah</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Floating Cards -->
-                <div class="hidden lg:block relative">
-                    <!-- Main card -->
-                    <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-2xl">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 bg-amber-400 rounded-xl flex items-center justify-center text-xl shadow">🌽</div>
-                            <div>
-                                <p class="font-semibold text-white text-sm">Program Unggulan</p>
-                                <p class="text-green-300 text-xs">Pencegahan Stunting</p>
-                            </div>
-                        </div>
-                        <p class="text-green-100 text-sm leading-relaxed">Desa Blumbang berkomitmen mengurangi angka stunting melalui edukasi gizi dan pengembangan produk olahan jagung bergizi tinggi.</p>
-                        <div class="mt-4 flex gap-2">
-                            <div class="flex-1 bg-green-500/20 rounded-lg p-3 text-center">
-                                <p class="text-white font-bold text-lg">85%</p>
-                                <p class="text-green-300 text-xs">Bebas Stunting</p>
-                            </div>
-                            <div class="flex-1 bg-amber-500/20 rounded-lg p-3 text-center">
-                                <p class="text-white font-bold text-lg">12</p>
-                                <p class="text-green-300 text-xs">Jenis Produk</p>
-                            </div>
-                            <div class="flex-1 bg-blue-500/20 rounded-lg p-3 text-center">
-                                <p class="text-white font-bold text-lg">3</p>
-                                <p class="text-green-300 text-xs">UMKM Aktif</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Floating badges -->
-                    <div class="absolute -top-4 -right-4 bg-white rounded-xl shadow-xl px-4 py-3 flex items-center gap-2">
-                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                            <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
-                        </div>
-                        <div>
-                            <p class="text-xs font-semibold text-gray-800">Terverifikasi</p>
-                            <p class="text-xs text-gray-500">Pem. Kab. Boyolali</p>
-                        </div>
-                    </div>
-
-                    <div class="absolute -bottom-4 -left-4 bg-amber-500 text-white rounded-xl shadow-xl px-4 py-3">
-                        <p class="text-sm font-bold">🌽 Panen Jagung</p>
-                        <p class="text-xs text-amber-100">Musim ini meningkat 23%</p>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -123,14 +79,21 @@
             </div>
             <div class="overflow-hidden flex-1 ml-4">
                 <div class="marquee-track flex whitespace-nowrap gap-12 text-sm text-amber-900 font-medium">
-                    <span>📢 Rapat rutin RT/RW dilaksanakan setiap Jumat pertama bulan ini di Balai Desa</span>
-                    <span>🏥 Posyandu balita dijadwalkan tanggal 15 setiap bulan — hadir tepat waktu!</span>
-                    <span>💧 Gotong royong saluran irigasi sawah — wajib hadir per kepala keluarga</span>
-                    <span>🌽 Penyuluhan pengolahan jagung oleh Dinas Pertanian — Sabtu, 10 Agustus 2025</span>
-                    <span>📢 Rapat rutin RT/RW dilaksanakan setiap Jumat pertama bulan ini di Balai Desa</span>
-                    <span>🏥 Posyandu balita dijadwalkan tanggal 15 setiap bulan — hadir tepat waktu!</span>
-                    <span>💧 Gotong royong saluran irigasi sawah — wajib hadir per kepala keluarga</span>
-                    <span>🌽 Penyuluhan pengolahan jagung oleh Dinas Pertanian — Sabtu, 10 Agustus 2025</span>
+                    @if(isset($pengumumans) && $pengumumans->isNotEmpty())
+                        @foreach($pengumumans as $p)
+                            <span>📢 {{ $p->title }} — <a href="{{ route('publik.pengumuman.show', $p->slug) }}" class="underline hover:text-amber-700">Baca detail</a></span>
+                        @endforeach
+                        <!-- Duplicate for seamless loop -->
+                        @foreach($pengumumans as $p)
+                            <span>📢 {{ $p->title }} — <a href="{{ route('publik.pengumuman.show', $p->slug) }}" class="underline hover:text-amber-700">Baca detail</a></span>
+                        @endforeach
+                    @else
+                        <span>📢 Selamat Datang di Website Resmi {{ $pengaturan?->village_name ?? 'Desa Blumbang' }}</span>
+                        <span>🌟 Website ini dikelola oleh Pemerintah Desa untuk mempermudah pelayanan masyarakat.</span>
+                        <!-- Duplicate for seamless loop -->
+                        <span>📢 Selamat Datang di Website Resmi {{ $pengaturan?->village_name ?? 'Desa Blumbang' }}</span>
+                        <span>🌟 Website ini dikelola oleh Pemerintah Desa untuk mempermudah pelayanan masyarakat.</span>
+                    @endif
                 </div>
             </div>
         </div>
@@ -217,61 +180,6 @@
         </div>
     </section>
 
-    <!-- ===== POTENSI JAGUNG HIGHLIGHT ===== -->
-    <section class="py-16 bg-gradient-to-br from-amber-50 to-yellow-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Text -->
-                <div>
-                    <div class="inline-flex items-center gap-2 bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
-                        🌽 Produk Unggulan Desa
-                    </div>
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Olahan Jagung<br><span class="text-amber-600">Bergizi untuk Keluarga</span></h2>
-                    <p class="text-gray-600 leading-relaxed mb-6">Desa Blumbang mengembangkan berbagai produk olahan jagung sebagai upaya nyata mencegah stunting. Produk kami kaya protein, vitamin, dan mineral penting untuk tumbuh kembang optimal anak-anak.</p>
-
-                    <div class="grid grid-cols-2 gap-3 mb-8">
-                        @foreach(['🥣 Bubur Jagung Instan','🍞 Roti Jagung Fortifikasi','🥤 Susu Jagung Manis','🍪 Camilan Jagung Bergizi'] as $p)
-                        <div class="flex items-center gap-2.5 bg-white rounded-xl p-3 border border-amber-100 shadow-sm">
-                            <span class="text-xl">{{ explode(' ', $p)[0] }}</span>
-                            <span class="text-sm font-medium text-gray-700">{{ implode(' ', array_slice(explode(' ', $p), 1)) }}</span>
-                        </div>
-                        @endforeach
-                    </div>
-
-                    <a href="{{ route('publik.potensi-jagung.index') }}" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-md hover:shadow-amber-300">
-                        Lihat Semua Produk
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                    </a>
-                </div>
-
-                <!-- Product Cards Grid -->
-                <div class="grid grid-cols-2 gap-4">
-                    @if(isset($potensi_jagung) && $potensi_jagung->isNotEmpty())
-                        @foreach ($potensi_jagung as $p)
-                        <div class="card-hover bg-white rounded-2xl p-5 border border-amber-100 shadow-sm text-center">
-                            @if($p->thumbnail)
-                            <div class="w-16 h-16 mx-auto mb-3 rounded-xl overflow-hidden">
-                                <img src="{{ Storage::url($p->thumbnail) }}" alt="{{ $p->title }}" class="w-full h-full object-cover">
-                            </div>
-                            @else
-                            <div class="text-4xl mb-3 border border-amber-50 rounded-xl bg-amber-50 w-16 h-16 flex items-center justify-center mx-auto">🌽</div>
-                            @endif
-                            <h4 class="font-bold text-gray-900 text-sm mb-1 line-clamp-1"><a href="{{ route('publik.potensi-jagung.show', $p->slug) }}" class="hover:text-amber-600">{{ $p->title }}</a></h4>
-                            <p class="text-xs text-gray-500 line-clamp-2">{{ $p->summary }}</p>
-                        </div>
-                        @endforeach
-                    @else
-                        <!-- Empty State -->
-                        <div class="col-span-2 py-10 text-center bg-amber-50 rounded-2xl border border-amber-100">
-                            <div class="text-4xl mb-3 opacity-50">🌽</div>
-                            <p class="text-gray-500 font-medium">Belum ada produk olahan jagung.</p>
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ===== LAYANAN PUBLIK ===== -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -345,6 +253,63 @@
         </div>
     </section>
 
+    <!-- ===== POTENSI JAGUNG HIGHLIGHT ===== -->
+    <section class="py-16 bg-gradient-to-br from-emerald-50/50 to-stone-50/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Text -->
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
+                        🌽 Inovasi Program KKN
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Olahan Jagung<br><span class="text-emerald-600">Bergizi untuk Keluarga</span></h2>
+                    <p class="text-gray-600 leading-relaxed mb-6">Desa Blumbang mengembangkan berbagai produk olahan jagung sebagai upaya nyata mencegah stunting. Produk kami kaya protein, vitamin, dan mineral penting untuk tumbuh kembang optimal anak-anak.</p>
+
+                    <div class="grid grid-cols-2 gap-3 mb-8">
+                        @foreach(['🥣 Bubur Jagung Instan','🍞 Roti Jagung Fortifikasi','🥤 Susu Jagung Manis','🍪 Camilan Jagung Bergizi'] as $p)
+                        <div class="flex items-center gap-2.5 bg-white rounded-xl p-3 border border-emerald-100 shadow-sm">
+                            <span class="text-xl">{{ explode(' ', $p)[0] }}</span>
+                            <span class="text-sm font-medium text-gray-700">{{ implode(' ', array_slice(explode(' ', $p), 1)) }}</span>
+                        </div>
+                        @endforeach
+                    </div>
+
+                    <a href="{{ route('publik.potensi-jagung.index') }}" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-md hover:shadow-emerald-300">
+                        Lihat Semua Produk
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                </div>
+
+                <!-- Product Cards Grid -->
+                <div class="grid grid-cols-2 gap-4">
+                    @if(isset($potensi_jagung) && $potensi_jagung->isNotEmpty())
+                        @foreach ($potensi_jagung as $p)
+                        <div class="card-hover bg-white rounded-2xl p-5 border border-emerald-100 shadow-sm text-center">
+                            @if($p->thumbnail)
+                            <div class="w-16 h-16 mx-auto mb-3 rounded-xl overflow-hidden">
+                                <img src="{{ Storage::url($p->thumbnail) }}" alt="{{ $p->title }}" class="w-full h-full object-cover">
+                            </div>
+                            @else
+                            <div class="text-4xl mb-3 border border-amber-50 rounded-xl bg-emerald-50 w-16 h-16 flex items-center justify-center mx-auto">🌽</div>
+                            @endif
+                            <h4 class="font-bold text-gray-900 text-sm mb-1 line-clamp-1"><a href="{{ route('publik.potensi-jagung.show', $p->slug) }}" class="hover:text-emerald-600">{{ $p->title }}</a></h4>
+                            <p class="text-xs text-gray-500 line-clamp-2">{{ $p->summary }}</p>
+                        </div>
+                        @endforeach
+                    @else
+                        <!-- Empty State -->
+                        <div class="col-span-2 py-10 text-center bg-emerald-50 rounded-2xl border border-emerald-100">
+                            <div class="text-4xl mb-3 opacity-50">🌽</div>
+                            <p class="text-gray-500 font-medium">Belum ada produk olahan jagung.</p>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
     <!-- ===== PENGUMUMAN RECENT ===== -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -399,10 +364,16 @@
                     </div>
                     <div class="bg-green-50 rounded-xl p-4 border border-green-100">
                         <h4 class="text-sm font-bold text-green-800 mb-2">⏰ Jam Pelayanan</h4>
-                        <div class="space-y-1.5 text-xs text-green-700">
-                            <div class="flex justify-between"><span>Senin – Kamis</span><span class="font-medium">08.00 – 15.00</span></div>
-                            <div class="flex justify-between"><span>Jumat</span><span class="font-medium">08.00 – 11.00</span></div>
-                            <div class="flex justify-between text-gray-400"><span>Sabtu – Minggu</span><span>Tutup</span></div>
+                        <div class="prose prose-sm prose-green">
+                            @if(isset($pengaturan) && $pengaturan->operating_hours)
+                                {!! $pengaturan->operating_hours !!}
+                            @else
+                                <div class="space-y-1.5 text-xs text-green-700">
+                                    <div class="flex justify-between"><span>Senin – Kamis</span><span class="font-medium">08.00 – 15.00</span></div>
+                                    <div class="flex justify-between"><span>Jumat</span><span class="font-medium">08.00 – 11.00</span></div>
+                                    <div class="flex justify-between text-gray-400"><span>Sabtu – Minggu</span><span>Tutup</span></div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -413,17 +384,89 @@
     <!-- ===== CALL TO ACTION ===== -->
     <section class="py-16 bg-gradient-to-br from-green-800 to-emerald-700">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="text-5xl mb-4">🌽</div>
-            <h2 class="text-3xl font-bold text-white mb-4">Bersama Wujudkan Desa Blumbang yang Sehat dan Sejahtera</h2>
-            <p class="text-green-200 mb-8 max-w-xl mx-auto">Bergabunglah dalam program pencegahan stunting melalui konsumsi produk olahan jagung bergizi tinggi dari Desa Blumbang.</p>
+            <div class="text-5xl mb-4">🤝</div>
+            <h2 class="text-3xl font-bold text-white mb-4">Mari Bersama Membangun Desa Blumbang</h2>
+            <p class="text-green-200 mb-8 max-w-xl mx-auto">Kami terus berinovasi memberikan pelayanan terbaik dan mengembangkan potensi lokal untuk kesejahteraan masyarakat Desa Blumbang.</p>
             <div class="flex flex-wrap gap-4 justify-center">
-                <a href="{{ route('publik.potensi-jagung.index') }}" class="bg-amber-500 hover:bg-amber-400 text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg transition-all duration-200 hover:-translate-y-0.5">
-                    Kenali Produk Kami
+                <a href="{{ route('publik.layanan.index') }}" class="bg-white text-green-800 hover:bg-gray-50 font-semibold px-8 py-3.5 rounded-xl shadow-lg transition-all duration-200 hover:-translate-y-0.5">
+                    Lihat Layanan Publik
                 </a>
                 <a href="{{ route('publik.profil') }}" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white font-medium px-8 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5">
-                    Tentang Desa Kami
+                    Jelajahi Profil Desa
                 </a>
             </div>
         </div>
     </section>
+
+    <!-- ===== POPUP PENGUMUMAN ===== -->
+    @if(isset($popup_pengumuman))
+    <div id="announcementPopup" class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full relative overflow-hidden transform scale-95 transition-transform duration-300 popup-content">
+            <!-- Close Button -->
+            <button onclick="closePopup({{ $popup_pengumuman->id }})" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors z-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+
+            <!-- Image/Poster -->
+            @if($popup_pengumuman->attachment)
+                <img src="{{ Storage::url($popup_pengumuman->attachment) }}" alt="{{ $popup_pengumuman->title }}" class="w-full max-h-[60vh] object-contain bg-gray-100">
+            @else
+                <div class="h-32 bg-amber-500 flex items-center justify-center">
+                    <span class="text-4xl">📢</span>
+                </div>
+            @endif
+
+            <!-- Content -->
+            <div class="p-6">
+                <div class="flex items-center gap-2 text-xs font-semibold text-amber-600 mb-2 uppercase tracking-wide">
+                    Pengumuman Penting
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $popup_pengumuman->title }}</h3>
+                <div class="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
+                    {!! strip_tags($popup_pengumuman->content) !!}
+                </div>
+                
+                <a href="{{ route('publik.pengumuman.show', $popup_pengumuman->slug) }}" class="block w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white text-center font-medium rounded-xl transition-colors">
+                    Baca Selengkapnya
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const popupId = 'popup_dismissed_' + {{ $popup_pengumuman->id }};
+            const popupEl = document.getElementById('announcementPopup');
+            const popupContent = popupEl.querySelector('.popup-content');
+            
+            // If not dismissed in this session, show it
+            if (!sessionStorage.getItem(popupId)) {
+                // Remove hidden class to display block, then fade in slightly after
+                popupEl.classList.remove('hidden');
+                setTimeout(() => {
+                    popupEl.classList.remove('opacity-0');
+                    popupContent.classList.remove('scale-95');
+                    popupContent.classList.add('scale-100');
+                }, 50);
+            }
+        });
+
+        function closePopup(id) {
+            const popupId = 'popup_dismissed_' + id;
+            sessionStorage.setItem(popupId, 'true');
+            
+            const popupEl = document.getElementById('announcementPopup');
+            const popupContent = popupEl.querySelector('.popup-content');
+            
+            // Fade out
+            popupEl.classList.add('opacity-0');
+            popupContent.classList.remove('scale-100');
+            popupContent.classList.add('scale-95');
+            
+            setTimeout(() => {
+                popupEl.classList.add('hidden');
+            }, 300);
+        }
+    </script>
+    @endif
 </x-publik-layout>

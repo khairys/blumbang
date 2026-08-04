@@ -20,6 +20,7 @@ class SimpanPengumumanRequest extends FormRequest
             'published_at' => 'nullable|date',
             'expired_at'   => 'nullable|date|after_or_equal:published_at',
             'attachment'   => 'nullable|file|max:5120|mimes:pdf,jpg,jpeg,png,webp',
+            'is_popup'     => 'nullable|boolean',
         ];
     }
 

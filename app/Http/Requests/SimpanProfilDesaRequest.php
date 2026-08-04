@@ -19,6 +19,12 @@ class SimpanProfilDesaRequest extends FormRequest
             'mission'             => 'nullable|string',
             'geography'           => 'nullable|string',
             'general_information' => 'nullable|string',
+            'organizational_structure' => 'nullable|image|max:5120',
+            'stat_penduduk'       => 'nullable|string|max:50',
+            'stat_kk'             => 'nullable|string|max:50',
+            'stat_rt'             => 'nullable|string|max:50',
+            'stat_rw'             => 'nullable|string|max:50',
+            'stat_luas_wilayah'   => 'nullable|string|max:50',
         ];
     }
 }

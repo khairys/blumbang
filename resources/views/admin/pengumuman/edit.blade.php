@@ -57,6 +57,14 @@
                         </div>
 
                         <div>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" name="is_popup" value="1" {{ old('is_popup', $pengumuman->is_popup ?? false) ? 'checked' : '' }} class="w-4 h-4 text-amber-500 border-gray-300 rounded focus:ring-amber-500">
+                                <span class="text-sm font-medium text-gray-700">Jadikan Popup di Beranda</span>
+                            </label>
+                            <p class="text-xs text-gray-400 mt-1 ml-6">Jika dicentang, pengumuman ini akan muncul sebagai modal box saat warga membuka website.</p>
+                        </div>
+
+                        <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1.5">Tanggal Publikasi</label>
                             <input type="date" name="published_at"
                                    value="{{ old('published_at', isset($pengumuman) && $pengumuman->published_at ? \Carbon\Carbon::parse($pengumuman->published_at)->format('Y-m-d') : '') }}"

@@ -15,6 +15,7 @@ class SimpanPengaturanWebsiteRequest extends FormRequest
     {
         return [
             'village_name' => 'required|string|max:255',
+            'website_description' => 'nullable|string|max:255',
             'email'        => 'nullable|email|max:255',
             'phone'        => 'nullable|string|max:50',
             'address'      => 'nullable|string',
@@ -22,6 +23,7 @@ class SimpanPengaturanWebsiteRequest extends FormRequest
             'instagram'    => 'nullable|string|max:255',
             'youtube'      => 'nullable|url|max:255',
             'maps_embed'   => 'nullable|string',
+            'operating_hours' => 'nullable|string',
             'logo'         => 'nullable|image|max:2048',
         ];
     }

@@ -16,7 +16,7 @@
             </ul>
         </div>
         @endif
-        <form method="POST" action="{{ route('admin.profil.store') }}">
+        <form method="POST" action="{{ route('admin.profil.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="max-w-4xl space-y-5">
                 <div class="bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 text-sm text-blue-700 flex items-start gap-2">
@@ -49,9 +49,50 @@
                 </div>
 
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-                    <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">📊 Data Umum Desa</h3>
-                    <p class="text-xs text-gray-400 mb-3">Isi dengan data statistik desa seperti jumlah penduduk, KK, RT/RW, mata pencaharian, dll</p>
-                    <textarea name="general_information" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Jumlah Penduduk: 2.847 jiwa&#10;Jumlah KK: 812 KK&#10;Jumlah RT: 24 RT&#10;Jumlah RW: 6 RW&#10;...">{{ old('general_information', $profil?->general_information) }}</textarea>
+                    <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">📊 Statistik Data & Informasi Umum</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Jumlah Penduduk</label>
+                            <input type="text" name="stat_penduduk" value="{{ old('stat_penduduk', $profil?->stat_penduduk) }}" placeholder="Misal: 2.847 Jiwa" class="w-full px-4 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Jumlah Kepala Keluarga (KK)</label>
+                            <input type="text" name="stat_kk" value="{{ old('stat_kk', $profil?->stat_kk) }}" placeholder="Misal: 812 KK" class="w-full px-4 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Jumlah RT</label>
+                            <input type="text" name="stat_rt" value="{{ old('stat_rt', $profil?->stat_rt) }}" placeholder="Misal: 24" class="w-full px-4 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Jumlah RW</label>
+                            <input type="text" name="stat_rw" value="{{ old('stat_rw', $profil?->stat_rw) }}" placeholder="Misal: 6" class="w-full px-4 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Luas Wilayah</label>
+                            <input type="text" name="stat_luas_wilayah" value="{{ old('stat_luas_wilayah', $profil?->stat_luas_wilayah) }}" placeholder="Misal: 154 Hektar" class="w-full px-4 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400">
+                        </div>
+                    </div>
+
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5">Penjelasan Tambahan (Opsional)</label>
+                    <textarea name="general_information" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Penjelasan demografi tambahan...">{{ old('general_information', $profil?->general_information) }}</textarea>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+                    <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">👥 Struktur Organisasi</h3>
+                    
+                    @if($profil?->organizational_structure)
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-600 mb-2">Bagan struktur organisasi saat ini:</p>
+                        <img src="{{ Storage::url($profil->organizational_structure) }}" alt="Struktur Organisasi" class="max-h-48 object-contain bg-gray-50 p-2 rounded-xl border border-gray-200">
+                    </div>
+                    @endif
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">{{ $profil?->organizational_structure ? 'Ganti Bagan Struktur' : 'Upload Bagan Struktur Organisasi' }}</label>
+                        <input type="file" name="organizational_structure" accept="image/*" class="w-full text-sm text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-green-50 file:text-green-700 hover:file:bg-green-100 cursor-pointer">
+                        <p class="text-xs text-gray-400 mt-1">Format gambar (JPG, PNG). Max 5MB.</p>
+                    </div>
                 </div>
 
                 <div class="flex gap-3">
