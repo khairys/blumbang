@@ -159,11 +159,11 @@
                         </button>
                         <div class="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                             <div class="p-1">
-                                <a href="{{ route('publik.potensi-desa.index') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg> Potensi Desa
+                                <a href="{{ route('publik.potensi-desa.index') }}" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">
+                                    Potensi Desa
                                 </a>
-                                <a href="{{ route('publik.potensi-jagung.index') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-700 rounded-lg">
-                                    <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg> Produk Olahan Jagung
+                                <a href="{{ route('publik.potensi-jagung.index') }}" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-amber-50 hover:text-amber-700 rounded-lg">
+                                    Produk Olahan Jagung
                                 </a>
                             </div>
                         </div>
@@ -180,7 +180,10 @@
                         Admin Panel
                     </a>
                     @else
-                    <a href="{{ route('login') }}" class="hidden lg:inline-flex text-sm font-medium text-gray-700 hover:text-green-700 transition-colors">Masuk</a>
+                    <a href="{{ route('login') }}" class="hidden lg:inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-green-600 hover:bg-green-700 rounded-xl px-5 py-2.5 transition-colors shadow-sm">
+                        Masuk Sistem
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+                    </a>
                     @endauth
 
                     <!-- Mobile hamburger -->
@@ -215,27 +218,27 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-green-900 text-white mt-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-                <!-- Brand -->
+    <footer class="bg-gradient-to-b from-gray-900 to-slate-950 text-white pt-16 pb-8 border-t-4 border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Branding -->
                 <div class="lg:col-span-2">
-                    <div class="flex items-center gap-3 mb-4">
+                    <div class="flex items-center gap-3 mb-6">
                         @if(isset($pengaturan) && $pengaturan->logo)
-                        <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center overflow-hidden p-1">
+                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-1 shadow-md">
                             <img src="{{ Storage::url($pengaturan->logo) }}" alt="Logo" class="w-full h-full object-contain">
                         </div>
                         @else
-                        <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
+                        <div class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center shadow-md">
                             <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                         </div>
                         @endif
                         <div>
                             <p class="font-bold text-lg">{{ $pengaturan->village_name ?? 'Desa Blumbang' }}</p>
-                            <p class="text-green-300 text-sm font-semibold">Website Resmi Desa</p>
+                            <p class="text-gray-400 text-sm font-semibold">Website Resmi Desa</p>
                         </div>
                     </div>
-                    <p class="text-green-200 text-sm leading-relaxed max-w-sm">{{ $pengaturan?->website_description ?? 'Website resmi Desa Blumbang sebagai media digitalisasi informasi desa dan edukasi produk olahan jagung dalam upaya pencegahan stunting.' }}</p>
+                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">{{ $pengaturan?->website_description ?? 'Website resmi Desa Blumbang sebagai media digitalisasi informasi desa dan edukasi produk olahan jagung dalam upaya pencegahan stunting.' }}</p>
                     <div class="flex gap-3 mt-4">
                         @if(isset($pengaturan) && $pengaturan->facebook)
                         <a href="{{ $pengaturan->facebook }}" target="_blank" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition-colors">
@@ -257,39 +260,39 @@
 
                 <!-- Links -->
                 <div>
-                    <h3 class="font-semibold text-sm uppercase tracking-wider text-green-300 mb-4">Navigasi</h3>
+                    <h3 class="font-semibold text-sm uppercase tracking-wider text-gray-300 mb-4">Navigasi</h3>
                     <ul class="space-y-2">
-                        <li><a href="{{ route('beranda') }}" class="text-sm text-green-200 hover:text-white transition-colors">Beranda</a></li>
-                        <li><a href="{{ route('publik.profil') }}" class="text-sm text-green-200 hover:text-white transition-colors">Profil Desa</a></li>
-                        <li><a href="{{ route('publik.berita.index') }}" class="text-sm text-green-200 hover:text-white transition-colors">Berita Desa</a></li>
-                        <li><a href="{{ route('publik.pengumuman.index') }}" class="text-sm text-green-200 hover:text-white transition-colors">Pengumuman</a></li>
-                        <li><a href="{{ route('publik.layanan.index') }}" class="text-sm text-green-200 hover:text-white transition-colors">Layanan Publik</a></li>
+                        <li><a href="{{ route('beranda') }}" class="text-sm text-gray-400 hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="{{ route('publik.profil') }}" class="text-sm text-gray-400 hover:text-white transition-colors">Profil Desa</a></li>
+                        <li><a href="{{ route('publik.berita.index') }}" class="text-sm text-gray-400 hover:text-white transition-colors">Berita Desa</a></li>
+                        <li><a href="{{ route('publik.pengumuman.index') }}" class="text-sm text-gray-400 hover:text-white transition-colors">Pengumuman</a></li>
+                        <li><a href="{{ route('publik.layanan.index') }}" class="text-sm text-gray-400 hover:text-white transition-colors">Layanan Publik</a></li>
                     </ul>
                 </div>
 
                 <!-- Contact -->
                 <div>
-                    <h3 class="font-semibold text-sm uppercase tracking-wider text-green-300 mb-4">Kontak</h3>
+                    <h3 class="font-semibold text-sm uppercase tracking-wider text-gray-300 mb-4">Kontak</h3>
                     <ul class="space-y-3">
                         <li class="flex items-start gap-2.5">
-                            <svg class="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <span class="text-sm text-green-200">{{ $pengaturan->address ?? 'Alamat belum diatur' }}</span>
+                            <svg class="w-4 h-4 text-gray-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            <span class="text-sm text-gray-400">{{ $pengaturan->address ?? 'Alamat belum diatur' }}</span>
                         </li>
                         <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                            <span class="text-sm text-green-200">{{ $pengaturan->phone ?? 'Telepon belum diatur' }}</span>
+                            <svg class="w-4 h-4 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            <span class="text-sm text-gray-400">{{ $pengaturan->phone ?? 'Telepon belum diatur' }}</span>
                         </li>
                         <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                            <span class="text-sm text-green-200">{{ $pengaturan->email ?? 'Email belum diatur' }}</span>
+                            <svg class="w-4 h-4 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <span class="text-sm text-gray-400">{{ $pengaturan->email ?? 'Email belum diatur' }}</span>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="border-t border-green-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-                <p class="text-sm text-green-400">© {{ date('Y') }} Pemerintah {{ $pengaturan->village_name ?? 'Desa Blumbang' }}. Semua hak dilindungi.</p>
-                <p class="text-xs text-green-600">Dibangun dengan ❤️ untuk masyarakat {{ $pengaturan->village_name ?? 'Desa Blumbang' }}</p>
+            <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+                <p class="text-sm text-gray-500">© {{ date('Y') }} Pemerintah {{ $pengaturan->village_name ?? 'Desa Blumbang' }}. Semua hak dilindungi.</p>
+                <p class="text-xs text-gray-600">Dibangun dengan ❤️ untuk masyarakat {{ $pengaturan->village_name ?? 'Desa Blumbang' }}</p>
             </div>
         </div>
     </footer>

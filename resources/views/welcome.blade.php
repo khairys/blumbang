@@ -27,35 +27,35 @@
 
                     <div class="flex flex-wrap gap-4 justify-center">
                         <a href="{{ route('publik.layanan.index') }}"
-                           class="inline-flex items-center gap-2.5 bg-green-500 hover:bg-green-400 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg hover:shadow-green-500/30 transition-all duration-200 hover:-translate-y-0.5">
+                           class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-8 py-3.5 rounded-full shadow-lg shadow-emerald-500/30 transition-all duration-300 hover:-translate-y-1">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                             Layanan Publik
                         </a>
                         <a href="{{ route('publik.profil') }}"
-                           class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white font-medium px-6 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5">
+                           class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold px-8 py-3.5 rounded-full transition-all duration-300 hover:-translate-y-1">
                             Profil Desa
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                         </a>
                     </div>
 
                     <!-- Stats -->
                     <!-- Stats -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-10 border-t border-white/10">
-                        <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
-                            <p class="text-3xl font-bold text-white">{{ $profil?->stat_penduduk ? preg_replace('/[^0-9]/', '', $profil->stat_penduduk) : '2.847' }}</p>
-                            <p class="text-green-300 text-sm mt-1">Jiwa Penduduk</p>
+                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+                            <p class="text-4xl font-extrabold text-white count-up" data-target="{{ $profil?->stat_penduduk ? preg_replace('/[^0-9]/', '', $profil->stat_penduduk) : '2847' }}">0</p>
+                            <p class="text-green-200 font-medium text-sm mt-1">Jiwa Penduduk</p>
                         </div>
-                        <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-                            <p class="text-3xl font-bold text-white">{{ $profil?->stat_rt ? preg_replace('/[^0-9]/', '', $profil->stat_rt) : '24' }}</p>
-                            <p class="text-green-300 text-sm mt-1">Total RT</p>
+                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+                            <p class="text-4xl font-extrabold text-white count-up" data-target="{{ $profil?->stat_rt ? preg_replace('/[^0-9]/', '', $profil->stat_rt) : '24' }}">0</p>
+                            <p class="text-green-200 font-medium text-sm mt-1">Total RT</p>
                         </div>
-                        <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
-                            <p class="text-3xl font-bold text-white">{{ $profil?->stat_rw ? preg_replace('/[^0-9]/', '', $profil->stat_rw) : '6' }}</p>
-                            <p class="text-green-300 text-sm mt-1">Total RW</p>
+                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                            <p class="text-4xl font-extrabold text-white count-up" data-target="{{ $profil?->stat_rw ? preg_replace('/[^0-9]/', '', $profil->stat_rw) : '6' }}">0</p>
+                            <p class="text-green-200 font-medium text-sm mt-1">Total RW</p>
                         </div>
-                        <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
-                            <p class="text-3xl font-bold text-white">{{ $profil?->stat_luas_wilayah ? preg_replace('/[^0-9]/', '', $profil->stat_luas_wilayah) : '154' }}</p>
-                            <p class="text-green-300 text-sm mt-1">Hektar Wilayah</p>
+                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="400">
+                            <p class="text-4xl font-extrabold text-white count-up" data-target="{{ $profil?->stat_luas_wilayah ? preg_replace('/[^0-9]/', '', $profil->stat_luas_wilayah) : '154' }}">0</p>
+                            <p class="text-green-200 font-medium text-sm mt-1">Hektar Wilayah</p>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
         </div>
 
         <!-- Wave -->
-        <div class="absolute bottom-0 left-0 right-0">
+        <div class="absolute bottom-0 left-0 right-0 translate-y-[1px]">
             <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 80L1440 80L1440 40C1200 80 960 0 720 20C480 40 240 80 0 40L0 80Z" fill="#f9fafb"/>
             </svg>
@@ -403,7 +403,7 @@
 
     <!-- ===== POPUP PENGUMUMAN ===== -->
     @if(isset($popup_pengumuman))
-    <div id="announcementPopup" class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+    <div id="announcementPopup" class="fixed inset-0 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300" style="z-index: 99999;">
         <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full relative overflow-hidden transform scale-95 transition-transform duration-300 popup-content">
             <!-- Close Button -->
             <button onclick="closePopup({{ $popup_pengumuman->id }})" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors z-10">
@@ -472,4 +472,45 @@
         }
     </script>
     @endif
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const counters = document.querySelectorAll('.count-up');
+            const speed = 100;
+
+            const animateCounters = () => {
+                counters.forEach(counter => {
+                    const updateCount = () => {
+                        const target = +counter.getAttribute('data-target');
+                        const count = +counter.innerText;
+                        const inc = target / speed;
+
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count + inc);
+                            setTimeout(updateCount, 15);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                });
+            }
+            
+            if(window.IntersectionObserver) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if(entry.isIntersecting) {
+                            animateCounters();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                const statsSection = document.querySelector('.grid.grid-cols-2.md\\:grid-cols-4');
+                if(statsSection) observer.observe(statsSection);
+            } else {
+                animateCounters();
+            }
+        });
+    </script>
 </x-publik-layout>
