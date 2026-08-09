@@ -39,6 +39,7 @@
                     <tr>
                         <th class="text-left px-4 py-3">Nama Layanan</th>
                         <th class="text-left px-4 py-3 hidden md:table-cell">Jam Layanan</th>
+                        <th class="text-left px-4 py-3">Status</th>
                         <th class="text-right px-4 py-3">Aksi</th>
                     </tr>
                 </thead>
@@ -47,9 +48,16 @@
                     <tr class="hover:bg-gray-50 transition-colors">
                         <td class="px-4 py-3">
                             <p class="font-medium text-gray-900">{{ $item->title }}</p>
-                            @if($item->description)<p class="text-xs text-gray-400 mt-0.5 line-clamp-1">{{ $item->description }}</p>@endif
+                            @if($item->description)<p class="text-xs text-gray-400 mt-0.5 line-clamp-1">{{ strip_tags($item->description) }}</p>@endif
                         </td>
                         <td class="px-4 py-3 text-gray-500 text-sm hidden md:table-cell">{{ $item->service_hours ?? '—' }}</td>
+                        <td class="px-4 py-3">
+                            @if($item->is_active)
+                            <span class="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-medium px-2.5 py-1 rounded-full">● Aktif</span>
+                            @else
+                            <span class="inline-flex items-center gap-1 bg-gray-100 text-gray-500 text-xs font-medium px-2.5 py-1 rounded-full">○ Non-aktif</span>
+                            @endif
+                        </td>
                         <td class="px-4 py-3 text-right">
                             <div class="inline-flex items-center gap-1">
                                 <a href="{{ route('admin.layanan.edit', $item) }}"

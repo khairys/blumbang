@@ -18,24 +18,24 @@
             <div class="lg:col-span-2 space-y-5">
                 <!-- Alamat -->
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-                    <h2 class="font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100">📍 Informasi Kantor</h2>
+                    <h2 class="font-bold text-gray-900 mb-4 pb-2 border-b border-gray-100 flex items-center gap-2"><span class="text-blue-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span> Informasi Kantor</h2>
                     <div class="space-y-4">
                         <div class="flex gap-3">
-                            <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0 text-xl">📍</div>
+                            <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0 text-green-700"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
                             <div>
                                 <p class="text-sm font-semibold text-gray-700 mb-1">Alamat</p>
                                 <p class="text-sm text-gray-600 leading-relaxed">{{ $pengaturan->address ?? 'Alamat belum diatur' }}</p>
                             </div>
                         </div>
                         <div class="flex gap-3">
-                            <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0 text-xl">📞</div>
+                            <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0 text-blue-700"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
                             <div>
                                 <p class="text-sm font-semibold text-gray-700 mb-1">Telepon</p>
                                 <a href="tel:{{ $pengaturan->phone ?? '#' }}" class="text-sm text-blue-600 hover:underline">{{ $pengaturan->phone ?? 'Belum diatur' }}</a>
                             </div>
                         </div>
                         <div class="flex gap-3">
-                            <div class="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0 text-xl">✉️</div>
+                            <div class="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0 text-amber-700"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
                             <div>
                                 <p class="text-sm font-semibold text-gray-700 mb-1">Email</p>
                                 <a href="mailto:{{ $pengaturan->email ?? '#' }}" class="text-sm text-blue-600 hover:underline">{{ $pengaturan->email ?? 'Belum diatur' }}</a>
@@ -46,8 +46,11 @@
 
                 <!-- Jam Layanan -->
                 <div class="bg-green-50 border border-green-100 rounded-2xl p-6">
-                    <h2 class="font-bold text-green-800 mb-4">⏰ Jam Pelayanan</h2>
+                    <h2 class="font-bold text-green-800 mb-4 flex items-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Jam Pelayanan</h2>
                     <div class="space-y-2.5">
+                        @if($pengaturan?->operating_hours)
+                        <div class="text-sm text-green-800 prose prose-sm max-w-none prose-green">{!! $pengaturan->operating_hours !!}</div>
+                        @else
                         @php
                         $jams = [['Senin', '08.00 – 15.00 WIB'],['Selasa', '08.00 – 15.00 WIB'],['Rabu', '08.00 – 15.00 WIB'],['Kamis', '08.00 – 15.00 WIB'],['Jumat', '08.00 – 11.00 WIB'],['Sabtu', 'Tutup'],['Minggu', 'Tutup']];
                         @endphp
@@ -57,12 +60,13 @@
                             <span class="font-medium">{{ $j[1] }}</span>
                         </div>
                         @endforeach
+                        @endif
                     </div>
                 </div>
 
                 <!-- Medsos -->
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-                    <h2 class="font-bold text-gray-900 mb-4">📱 Media Sosial</h2>
+                    <h2 class="font-bold text-gray-900 mb-4 flex items-center gap-2"><span class="text-pink-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></span> Media Sosial</h2>
                     <div class="flex flex-wrap gap-3">
                         @if(isset($pengaturan) && $pengaturan->facebook)
                         <a href="{{ $pengaturan->facebook }}" target="_blank" class="flex items-center gap-2.5 bg-blue-50 hover:bg-blue-100 text-blue-700 text-sm font-medium px-4 py-2.5 rounded-xl transition-colors">
@@ -107,7 +111,7 @@
 
                 <!-- Struktur Pemerintahan -->
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
-                    <h2 class="font-bold text-gray-900 mb-5 pb-2 border-b border-gray-100">👥 Struktur Pemerintahan Desa</h2>
+                    <h2 class="font-bold text-gray-900 mb-5 pb-2 border-b border-gray-100 flex items-center gap-2"><span class="text-green-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></span> Struktur Pemerintahan Desa</h2>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         @php
                         $perangkat = [
@@ -121,7 +125,7 @@
                         @endphp
                         @foreach ($perangkat as $p)
                         <div class="bg-gray-50 rounded-xl p-3 text-center">
-                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-xl mx-auto mb-2">👤</div>
+                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-700 mx-auto mb-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg></div>
                             <p class="text-xs font-bold text-gray-900">{{ $p['nama'] }}</p>
                             <p class="text-xs text-gray-500 mt-0.5">{{ $p['jabatan'] }}</p>
                         </div>

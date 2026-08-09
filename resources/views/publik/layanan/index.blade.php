@@ -10,10 +10,14 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Info Jam Layanan -->
         <div class="bg-green-50 border border-green-200 rounded-2xl p-5 mb-8 flex flex-wrap items-center gap-4">
-            <div class="text-3xl">⏰</div>
-            <div>
+            <div class="text-green-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+            <div class="flex-1">
                 <p class="font-bold text-green-800">Jam Pelayanan Kantor Desa</p>
+                @if($pengaturan?->operating_hours)
+                <div class="text-sm text-green-700 mt-1 prose prose-sm max-w-none prose-green">{!! $pengaturan->operating_hours !!}</div>
+                @else
                 <p class="text-sm text-green-700">Senin – Kamis: 08.00 – 15.00 WIB &nbsp;|&nbsp; Jumat: 08.00 – 11.00 WIB &nbsp;|&nbsp; Sabtu – Minggu: Tutup</p>
+                @endif
             </div>
         </div>
         <!-- Pencarian -->
@@ -30,10 +34,10 @@
             @foreach ($layanans as $l)
             <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 hover:shadow-md transition-shadow">
                 <div class="flex flex-col sm:flex-row items-start gap-4">
-                    <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl">📄</div>
+                    <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center flex-shrink-0 text-purple-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
                     <div class="flex-1">
                         <h3 class="font-bold text-gray-900 text-base mb-1">{{ $l->title }}</h3>
-                        <p class="text-sm text-gray-500 mb-4">{{ $l->description }}</p>
+                        <p class="text-sm text-gray-500 mb-4">{{ \Illuminate\Support\Str::limit(strip_tags($l->description), 150) }}</p>
                         @if($l->requirements)
                         <div class="mb-4">
                             <p class="text-xs font-semibold text-gray-700 uppercase tracking-wider mb-2">Persyaratan:</p>
@@ -44,10 +48,18 @@
                         @endif
                         <div class="flex flex-wrap gap-4 text-xs">
                             @if($l->processing_time)
-                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">⏱ {{ $l->processing_time }}</span>
+                            <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> {{ $l->processing_time }}</span>
                             @endif
-                            <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full font-medium">💰 Gratis</span>
+                            <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full font-medium flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Gratis</span>
                         </div>
+                        @if($l->slug)
+                        <div class="mt-4">
+                            <a href="{{ route('publik.layanan.show', $l) }}" class="inline-flex items-center gap-1.5 text-sm text-purple-600 hover:text-purple-700 font-medium">
+                                Lihat Detail Layanan
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -60,7 +72,7 @@
         @else
         <!-- Empty State -->
         <div class="py-16 text-center bg-purple-50 rounded-2xl border border-purple-100">
-            <div class="text-6xl mb-4 opacity-50">📋</div>
+            <div class="mb-4 flex justify-center text-purple-300"><svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
             <h2 class="text-xl font-bold text-gray-700 mb-2">Belum Ada Layanan</h2>
             <p class="text-gray-500 max-w-md mx-auto">Saat ini belum ada informasi layanan publik yang ditambahkan. Silakan cek kembali nanti.</p>
         </div>

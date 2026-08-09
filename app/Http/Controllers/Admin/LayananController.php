@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Layanan;
 use App\Http\Requests\SimpanLayananRequest;
+use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
 
@@ -31,6 +32,8 @@ class LayananController extends Controller
     public function store(SimpanLayananRequest $request)
     {
         $data = $request->validated();
+        $data['slug'] = Str::slug($data['title']) . '-' . now()->timestamp;
+        $data['is_active'] = $request->has('is_active');
         $data['created_by'] = auth()->id();
         $data['updated_by'] = auth()->id();
 
@@ -49,6 +52,7 @@ class LayananController extends Controller
     {
         $data = $request->validated();
         $data['updated_by'] = auth()->id();
+        $data['is_active'] = $request->has('is_active');
         $layanan->update($data);
 
         return redirect()->route('admin.layanan.index')

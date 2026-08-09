@@ -41,7 +41,7 @@
         <div id="content-visi" class="tab-content hidden">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="bg-green-700 text-white rounded-2xl p-8">
-                    <div class="text-4xl mb-4">🎯</div>
+                    <div class="mb-4 text-green-200"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
                     <h2 class="text-xl font-bold mb-4">Visi Desa Blumbang</h2>
                     <div class="prose prose-invert max-w-none text-green-100 text-lg font-serif italic">
                         @if(isset($profil) && $profil->vision)
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-                    <div class="text-4xl mb-4">📋</div>
+                    <div class="mb-4 text-green-600"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
                     <h2 class="text-xl font-bold text-gray-900 mb-4">Misi Desa Blumbang</h2>
                     <div class="prose max-w-none text-gray-700">
                         @if(isset($profil) && $profil->mission)
@@ -84,27 +84,27 @@
                 
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
                     <div class="bg-green-50 rounded-2xl p-6 text-center border border-green-100">
-                        <div class="text-3xl mb-2">👥</div>
+                        <div class="mb-2 flex justify-center text-green-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg></div>
                         <div class="text-sm font-medium text-gray-500 mb-1">Penduduk</div>
                         <div class="text-lg font-bold text-green-800">{{ $profil?->stat_penduduk ?? '-' }}</div>
                     </div>
                     <div class="bg-blue-50 rounded-2xl p-6 text-center border border-blue-100">
-                        <div class="text-3xl mb-2">🏠</div>
+                        <div class="mb-2 flex justify-center text-blue-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div>
                         <div class="text-sm font-medium text-gray-500 mb-1">Keluarga</div>
                         <div class="text-lg font-bold text-blue-800">{{ $profil?->stat_kk ?? '-' }}</div>
                     </div>
                     <div class="bg-purple-50 rounded-2xl p-6 text-center border border-purple-100">
-                        <div class="text-3xl mb-2">🏘️</div>
+                        <div class="mb-2 flex justify-center text-purple-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div>
                         <div class="text-sm font-medium text-gray-500 mb-1">Total RT</div>
                         <div class="text-lg font-bold text-purple-800">{{ $profil?->stat_rt ?? '-' }}</div>
                     </div>
                     <div class="bg-indigo-50 rounded-2xl p-6 text-center border border-indigo-100">
-                        <div class="text-3xl mb-2">🏘️</div>
+                        <div class="mb-2 flex justify-center text-indigo-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div>
                         <div class="text-sm font-medium text-gray-500 mb-1">Total RW</div>
                         <div class="text-lg font-bold text-indigo-800">{{ $profil?->stat_rw ?? '-' }}</div>
                     </div>
                     <div class="bg-orange-50 rounded-2xl p-6 text-center border border-orange-100">
-                        <div class="text-3xl mb-2">🗺️</div>
+                        <div class="mb-2 flex justify-center text-orange-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></div>
                         <div class="text-sm font-medium text-gray-500 mb-1">Luas Wilayah</div>
                         <div class="text-lg font-bold text-orange-800">{{ $profil?->stat_luas_wilayah ?? '-' }}</div>
                     </div>
@@ -130,7 +130,7 @@
                     </div>
                 @else
                     <div class="py-12 text-center bg-gray-50 rounded-xl border border-gray-100">
-                        <div class="text-5xl mb-4 opacity-50">👥</div>
+                        <div class="mb-4 flex justify-center text-gray-300"><svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
                         <p class="text-gray-500">Belum ada bagan struktur organisasi yang diunggah.</p>
                     </div>
                 @endif

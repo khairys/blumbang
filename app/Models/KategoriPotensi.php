@@ -13,4 +13,9 @@ class KategoriPotensi extends Model
     {
         return $this->hasMany(PotensiDesa::class, 'kategori_id');
     }
+
+    public function potensiDesa()
+    {
+        return $this->hasMany(PotensiDesa::class, 'kategori_id');
+    }
 }

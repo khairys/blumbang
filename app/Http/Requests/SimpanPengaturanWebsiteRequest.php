@@ -25,6 +25,7 @@ class SimpanPengaturanWebsiteRequest extends FormRequest
             'maps_embed'   => 'nullable|string',
             'operating_hours' => 'nullable|string',
             'logo'         => 'nullable|image|max:2048',
+            'favicon'      => 'nullable|image|max:512',
         ];
     }
 

@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ $pengaturan?->website_description ?? 'Website resmi Desa Blumbang — Media Digitalisasi Informasi Desa dan Edukasi Produk Olahan Jagung dalam Upaya Pencegahan Stunting' }}">
     <title>{{ $title ?? 'Beranda' }} — Desa Blumbang</title>
+    
+    <!-- Open Graph / Meta SEO -->
+    <meta property="og:title" content="{{ $title ?? 'Beranda' }} — Desa Blumbang">
+    <meta property="og:description" content="{{ $meta_description ?? $pengaturan?->website_description ?? 'Portal Informasi resmi Desa Blumbang sebagai media digitalisasi desa dan transparansi pelayanan publik.' }}">
+    <meta property="og:image" content="{{ isset($og_image) ? url($og_image) : (isset($pengaturan?->logo) ? url(Storage::url($pengaturan->logo)) : url('/favicon.ico')) }}">
+    <meta property="og:url" content="{{ request()->url() }}">
+    <meta property="og:type" content="website">
+    @if($pengaturan?->favicon)
+    <link rel="icon" type="image/png" href="{{ Storage::url($pengaturan->favicon) }}">
+    @else
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    @endif
+
+    <!-- AOS CSS for Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -145,10 +160,10 @@
                         <div class="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                             <div class="p-1">
                                 <a href="{{ route('publik.potensi-desa.index') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">
-                                    <span class="text-lg">🏡</span> Potensi Desa
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg> Potensi Desa
                                 </a>
                                 <a href="{{ route('publik.potensi-jagung.index') }}" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-700 rounded-lg">
-                                    <span class="text-lg">🌽</span> Produk Olahan Jagung
+                                    <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg> Produk Olahan Jagung
                                 </a>
                             </div>
                         </div>
@@ -184,7 +199,7 @@
                 <a href="{{ route('publik.berita.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">Berita</a>
                 <a href="{{ route('publik.pengumuman.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">Pengumuman</a>
                 <a href="{{ route('publik.potensi-desa.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">Potensi Desa</a>
-                <a href="{{ route('publik.potensi-jagung.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-amber-50 hover:text-amber-700 rounded-lg">🌽 Produk Jagung</a>
+                <a href="{{ route('publik.potensi-jagung.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-amber-50 hover:text-amber-700 rounded-lg">Produk Olahan Jagung</a>
                 <a href="{{ route('publik.layanan.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">Layanan Publik</a>
                 <a href="{{ route('publik.kontak') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">Kontak</a>
                 @auth
@@ -284,7 +299,15 @@
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
     </button>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+            easing: 'ease-out-cubic',
+        });
+        
         window.addEventListener('scroll', () => {
             const btn = document.getElementById('scrollTop');
             if (window.scrollY > 400) btn.classList.add('visible');

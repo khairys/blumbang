@@ -27,6 +27,13 @@ class PengaturanWebsiteController extends Controller
             $data['logo'] = $request->file('logo')->store('pengaturan', 'public');
         }
 
+        if ($request->hasFile('favicon')) {
+            if ($pengaturan && $pengaturan->favicon) {
+                Storage::disk('public')->delete($pengaturan->favicon);
+            }
+            $data['favicon'] = $request->file('favicon')->store('pengaturan', 'public');
+        }
+
         PengaturanWebsite::updateOrCreate(['id' => 1], $data);
 
         return redirect()->route('admin.pengaturan.index')

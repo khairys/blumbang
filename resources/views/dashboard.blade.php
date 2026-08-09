@@ -26,8 +26,10 @@
                     ['label' => 'Pengumuman Aktif', 'value' => \App\Models\Pengumuman::where('status', 'published')->count(), 'icon' => '📢', 'color' => 'amber', 'href' => route('admin.pengumuman.index')],
                     ['label' => 'Data Layanan', 'value' => \App\Models\Layanan::count(), 'icon' => '📋', 'color' => 'purple', 'href' => route('admin.layanan.index')],
                     ['label' => 'Potensi Desa', 'value' => \App\Models\PotensiDesa::count(), 'icon' => '🏡', 'color' => 'green', 'href' => route('admin.potensi-desa.index')],
+                    ['label' => 'Produk Jagung', 'value' => \App\Models\PotensiJagung::count(), 'icon' => '🌽', 'color' => 'yellow', 'href' => route('admin.potensi-jagung.index')],
+                    ['label' => 'Layanan Aktif', 'value' => \App\Models\Layanan::where('is_active', true)->count(), 'icon' => '✅', 'color' => 'teal', 'href' => route('admin.layanan.index')],
                 ];
-                $colorMap = ['blue' => 'bg-blue-50 border-blue-200 text-blue-700', 'amber' => 'bg-amber-50 border-amber-200 text-amber-700', 'purple' => 'bg-purple-50 border-purple-200 text-purple-700', 'green' => 'bg-green-50 border-green-200 text-green-700'];
+                $colorMap = ['blue' => 'bg-blue-50 border-blue-200 text-blue-700', 'amber' => 'bg-amber-50 border-amber-200 text-amber-700', 'purple' => 'bg-purple-50 border-purple-200 text-purple-700', 'green' => 'bg-green-50 border-green-200 text-green-700', 'yellow' => 'bg-yellow-50 border-yellow-200 text-yellow-700', 'teal' => 'bg-teal-50 border-teal-200 text-teal-700'];
                 @endphp
 
                 @foreach ($stats as $s)
@@ -50,9 +52,11 @@
                         ['icon' => '🏡', 'label' => 'Tambah Potensi', 'href' => route('admin.potensi-desa.create'), 'color' => 'emerald'],
                         ['icon' => '🌽', 'label' => 'Tambah Prod. Jagung', 'href' => route('admin.potensi-jagung.create'), 'color' => 'yellow'],
                         ['icon' => '📋', 'label' => 'Tambah Layanan', 'href' => route('admin.layanan.create'), 'color' => 'purple'],
+                        ['icon' => '🏷️', 'label' => 'Kategori Berita', 'href' => route('admin.kategori-berita.index'), 'color' => 'sky'],
+                        ['icon' => '🏷️', 'label' => 'Kategori Potensi', 'href' => route('admin.kategori-potensi.index'), 'color' => 'teal'],
                         ['icon' => '⚙️', 'label' => 'Pengaturan Web', 'href' => route('admin.pengaturan.index'), 'color' => 'gray'],
                     ];
-                    $qcColors = ['blue' => 'bg-blue-50 hover:bg-blue-100 text-blue-700', 'amber' => 'bg-amber-50 hover:bg-amber-100 text-amber-700', 'emerald' => 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700', 'yellow' => 'bg-yellow-50 hover:bg-yellow-100 text-yellow-700', 'purple' => 'bg-purple-50 hover:bg-purple-100 text-purple-700', 'gray' => 'bg-gray-50 hover:bg-gray-100 text-gray-700'];
+                    $qcColors = ['blue' => 'bg-blue-50 hover:bg-blue-100 text-blue-700', 'amber' => 'bg-amber-50 hover:bg-amber-100 text-amber-700', 'emerald' => 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700', 'yellow' => 'bg-yellow-50 hover:bg-yellow-100 text-yellow-700', 'purple' => 'bg-purple-50 hover:bg-purple-100 text-purple-700', 'gray' => 'bg-gray-50 hover:bg-gray-100 text-gray-700', 'sky' => 'bg-sky-50 hover:bg-sky-100 text-sky-700', 'teal' => 'bg-teal-50 hover:bg-teal-100 text-teal-700'];
                     @endphp
                     @foreach ($menus as $m)
                     <a href="{{ $m['href'] }}" class="{{ $qcColors[$m['color']] }} rounded-xl p-4 flex flex-col items-center gap-2 text-center transition-colors">

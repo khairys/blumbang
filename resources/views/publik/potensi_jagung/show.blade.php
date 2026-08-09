@@ -1,7 +1,11 @@
 <x-publik-layout>
     <x-slot name="title">{{ $produk->title }}</x-slot>
+    <x-slot name="meta_description">{{ $produk->summary }}</x-slot>
+    @if($produk->thumbnail)
+    <x-slot name="og_image">{{ Storage::url($produk->thumbnail) }}</x-slot>
+    @endif
     <div class="bg-gradient-to-br from-amber-600 to-orange-500 pt-20 pb-24 relative overflow-hidden">
-        <div class="absolute top-0 right-0 text-[200px] opacity-10 select-none leading-none mt-10 mr-10">🌽</div>
+        <div class="absolute top-0 right-0 opacity-10 mt-10 mr-10 text-white"><svg class="w-64 h-64" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg></div>
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <div class="inline-flex items-center gap-2 mb-6">
                 <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">{{ $produk->category }}</span>

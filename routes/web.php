@@ -23,6 +23,7 @@ Route::prefix('desa')->name('publik.')->group(function () {
     Route::get('/pengumuman', [PengumumanPublikController::class, 'index'])->name('pengumuman.index');
     Route::get('/pengumuman/{slug}', [PengumumanPublikController::class, 'show'])->name('pengumuman.show');
     Route::get('/layanan', [App\Http\Controllers\Publik\LayananPublikController::class, 'index'])->name('layanan.index');
+    Route::get('/layanan/{layanan}', [App\Http\Controllers\Publik\LayananPublikController::class, 'show'])->name('layanan.show');
     Route::get('/potensi-desa', [App\Http\Controllers\Publik\PotensiDesaPublikController::class, 'index'])->name('potensi-desa.index');
     Route::get('/potensi-desa/{slug}', [App\Http\Controllers\Publik\PotensiDesaPublikController::class, 'show'])->name('potensi-desa.show');
     Route::get('/potensi-jagung', [App\Http\Controllers\Publik\PotensiJagungPublikController::class, 'index'])->name('potensi-jagung.index');
@@ -48,6 +49,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('layanan', LayananController::class);
     Route::resource('potensi-desa', PotensiDesaController::class);
     Route::resource('potensi-jagung', PotensiJagungController::class);
+    Route::resource('kategori-berita', \App\Http\Controllers\Admin\KategoriBeritaController::class)->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('kategori-potensi', \App\Http\Controllers\Admin\KategoriPotensiController::class)->only(['index', 'store', 'update', 'destroy']);
 });
 
 require __DIR__.'/auth.php';

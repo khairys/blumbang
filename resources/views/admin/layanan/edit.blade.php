@@ -57,6 +57,19 @@
                     </div>
                 </div>
 
+                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+                    <h3 class="font-semibold text-gray-800 pb-2 border-b border-gray-100 mb-4">Status</h3>
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" name="is_active" value="1"
+                               {{ old('is_active', $layanan->is_active ?? true) ? 'checked' : '' }}
+                               class="w-4 h-4 text-purple-500 border-gray-300 rounded focus:ring-purple-500">
+                        <div>
+                            <span class="text-sm font-medium text-gray-700">Layanan Aktif</span>
+                            <p class="text-xs text-gray-400">Jika dicentang, layanan ini akan tampil di website publik.</p>
+                        </div>
+                    </label>
+                </div>
+
                 <div class="flex gap-3">
                     <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2.5 px-8 rounded-xl text-sm transition-colors">
                         {{ isset($layanan) ? 'Simpan Perubahan' : 'Tambah Layanan' }}

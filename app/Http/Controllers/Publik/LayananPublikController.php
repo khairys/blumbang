@@ -11,7 +11,7 @@ class LayananPublikController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Layanan::latest();
+        $query = Layanan::where('is_active', true)->latest();
         
         if ($request->has('search')) {
             $search = $request->get('search');
@@ -21,5 +21,13 @@ class LayananPublikController extends Controller
         $layanans = $query->paginate(10)->withQueryString();
         
         return view('publik.layanan.index', compact('layanans'));
+    }
+
+    public function show(Layanan $layanan)
+    {
+        if (!$layanan->is_active) {
+            abort(404);
+        }
+        return view('publik.layanan.show', compact('layanan'));
     }
 }
