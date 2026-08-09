@@ -79,60 +79,21 @@
                             <p class="text-xs text-gray-400 mt-1">Kosongkan jika tidak ada batas waktu</p>
                         </div>
 
-                        <div x-data="{ 
-                                photoPreview: '',
-                                hasFile: false,
-                                fileName: ''
-                            }">
+                        <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1.5">Lampiran (PDF/Gambar)</label>
-                            
-                            <div class="relative w-full h-48 rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 flex items-center justify-center overflow-hidden group hover:border-amber-400 transition-colors cursor-pointer"
-                                 x-on:click="$refs.photo.click()">
-                                
-                                <!-- Preview Image -->
-                                <template x-if="photoPreview">
-                                    <img :src="photoPreview" class="absolute inset-0 w-full h-full object-cover">
-                                </template>
-                                
-                                <!-- Preview Document -->
-                                <template x-if="hasFile && !photoPreview">
-                                    <div class="flex flex-col items-center">
-                                        <svg class="w-12 h-12 text-amber-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-                                        <span class="text-sm font-medium text-gray-700" x-text="fileName"></span>
-                                    </div>
-                                </template>
-
-                                <!-- Overlay -->
-                                <div x-show="hasFile" style="display: none;" class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <svg class="w-8 h-8 text-white mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
-                                    <span class="text-white text-sm font-medium">Klik untuk mengganti lampiran</span>
+                            @isset($pengumuman)
+                                @if($pengumuman->attachment)
+                                <div class="mb-2">
+                                    <a href="{{ Storage::url($pengumuman->attachment) }}" target="_blank"
+                                       class="text-xs text-amber-600 hover:underline flex items-center gap-1">
+                                        📎 Lampiran terlampir (klik untuk lihat)
+                                    </a>
                                 </div>
-
-                                <!-- Empty State -->
-                                <template x-if="!hasFile">
-                                    <div class="text-center">
-                                        <svg class="mx-auto h-10 w-10 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                        <span class="text-sm text-gray-500 block">Klik untuk memilih lampiran</span>
-                                    </div>
-                                </template>
-
-                                <input type="file" name="attachment" x-ref="photo" class="hidden"
-                                       x-on:change="
-                                            const file = $refs.photo.files[0];
-                                            if (file) {
-                                                hasFile = true;
-                                                fileName = file.name;
-                                                if (file.type.startsWith('image/')) {
-                                                    const reader = new FileReader();
-                                                    reader.onload = (e) => { photoPreview = e.target.result; };
-                                                    reader.readAsDataURL(file);
-                                                } else {
-                                                    photoPreview = '';
-                                                }
-                                            }
-                                       ">
-                            </div>
-                            <p class="text-xs text-gray-400 mt-2">Format: PDF, JPG, PNG. Max 5MB.</p>
+                                @endif
+                            @endisset
+                            <input type="file" name="attachment"
+                                   class="w-full text-sm text-gray-500 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100 cursor-pointer">
+                            <p class="text-xs text-gray-400 mt-1">Max 5MB. Format: PDF, JPG, PNG</p>
                         </div>
                     </div>
 

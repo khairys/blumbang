@@ -31,7 +31,7 @@
                         </div>
                         <div class="text-sm text-gray-600 leading-relaxed mb-3 prose prose-sm max-w-none">{!! $p->content !!}</div>
                         <div class="flex items-center gap-4 text-xs text-gray-400">
-                            <span class="flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> Diumumkan: {{ $p->published_at ? \Carbon\Carbon::parse($p->published_at)->format('d M Y') : $p->created_at->format('d M Y') }}</span>
+                            <span>📅 Diumumkan: {{ $p->published_at ? \Carbon\Carbon::parse($p->published_at)->format('d M Y') : $p->created_at->format('d M Y') }}</span>
                             @if($p->attachment)
                             <a href="{{ Storage::url($p->attachment) }}" target="_blank" class="flex items-center gap-1 text-amber-600 hover:text-amber-700 font-medium">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
@@ -51,21 +51,21 @@
         <!-- Dummy data (ketika belum ada pengumuman di DB) -->
         <div class="space-y-4">
             @php $pngs = [
-                ['icon'=>'<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>','title'=>'Jadwal Pembagian BLT Dana Desa Triwulan III Tahun 2025','isi'=>'Diberitahukan kepada seluruh warga penerima manfaat BLT Dana Desa bahwa pembagian akan dilaksanakan pada hari Rabu, 30 Juli 2025 di Balai Desa Blumbang mulai pukul 08.00 WIB.','tgl'=>'28 Jul 2025','status'=>'Aktif','sc'=>'green'],
-                ['icon'=>'<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>','title'=>'Posyandu Balita Bulan Agustus 2025','isi'=>'Posyandu balita Desa Blumbang akan dilaksanakan pada Selasa, 15 Agustus 2025 pukul 08.00-11.00 WIB di Balai Posyandu. Mohon seluruh ibu dengan balita hadir untuk penimbangan dan imunisasi.','tgl'=>'25 Jul 2025','status'=>'Mendatang','sc'=>'blue'],
-                ['icon'=>'<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>','title'=>'Musyawarah Rencana Pembangunan Desa (Musrenbangdes) 2026','isi'=>'Kepala Desa mengundang seluruh tokoh masyarakat, perwakilan RT/RW, dan warga untuk hadir dalam Musrenbangdes pada Jumat, 8 Agustus 2025 pukul 09.00 WIB di Balai Desa.','tgl'=>'20 Jul 2025','status'=>'Mendatang','sc'=>'blue'],
+                ['icon'=>'📅','title'=>'Jadwal Pembagian BLT Dana Desa Triwulan III Tahun 2025','isi'=>'Diberitahukan kepada seluruh warga penerima manfaat BLT Dana Desa bahwa pembagian akan dilaksanakan pada hari Rabu, 30 Juli 2025 di Balai Desa Blumbang mulai pukul 08.00 WIB.','tgl'=>'28 Jul 2025','status'=>'Aktif','sc'=>'green'],
+                ['icon'=>'🏥','title'=>'Posyandu Balita Bulan Agustus 2025','isi'=>'Posyandu balita Desa Blumbang akan dilaksanakan pada Selasa, 15 Agustus 2025 pukul 08.00-11.00 WIB di Balai Posyandu. Mohon seluruh ibu dengan balita hadir untuk penimbangan dan imunisasi.','tgl'=>'25 Jul 2025','status'=>'Mendatang','sc'=>'blue'],
+                ['icon'=>'🌾','title'=>'Musyawarah Rencana Pembangunan Desa (Musrenbangdes) 2026','isi'=>'Kepala Desa mengundang seluruh tokoh masyarakat, perwakilan RT/RW, dan warga untuk hadir dalam Musrenbangdes pada Jumat, 8 Agustus 2025 pukul 09.00 WIB di Balai Desa.','tgl'=>'20 Jul 2025','status'=>'Mendatang','sc'=>'blue'],
             ]; @endphp
             @foreach ($pngs as $p)
             <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
                 <div class="flex items-start gap-4 p-6">
-                    <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0 text-gray-500">{!! $p['icon'] !!}</div>
+                    <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0 text-2xl">{{ $p['icon'] }}</div>
                     <div class="flex-1">
                         <div class="flex flex-wrap items-start justify-between gap-2 mb-2">
                             <h3 class="font-bold text-gray-900 text-base leading-snug">{{ $p['title'] }}</h3>
                             <span class="flex-shrink-0 text-xs font-semibold px-3 py-1 rounded-full bg-{{ $p['sc'] }}-100 text-{{ $p['sc'] }}-700">{{ $p['status'] }}</span>
                         </div>
                         <p class="text-sm text-gray-600 leading-relaxed mb-3">{{ $p['isi'] }}</p>
-                        <p class="text-xs text-gray-400 flex items-center gap-1.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> Diumumkan: {{ $p['tgl'] }}</p>
+                        <p class="text-xs text-gray-400">📅 Diumumkan: {{ $p['tgl'] }}</p>
                         <span class="inline-block text-xs text-gray-400 italic mt-2">Data akan diisi oleh Admin Desa</span>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
             @endforeach
         </div>
         <div class="mt-8 bg-amber-50 border border-amber-200 rounded-xl p-4 text-center text-sm text-amber-700">
-            <span class="mr-1"><svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span> Belum ada pengumuman. Admin dapat menambahkannya melalui
+            ℹ️ Belum ada pengumuman. Admin dapat menambahkannya melalui
             @auth <a href="{{ route('admin.pengumuman.create') }}" class="font-semibold underline">Panel Admin</a>. @else Panel Admin. @endauth
         </div>
         @endif

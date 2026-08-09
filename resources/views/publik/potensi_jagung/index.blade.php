@@ -1,10 +1,10 @@
 <x-publik-layout>
     <x-slot name="title">Produk Olahan Jagung</x-slot>
     <div class="bg-gradient-to-br from-amber-600 to-orange-500 py-14 relative overflow-hidden">
-        <div class="absolute top-0 right-0 opacity-10 mt-10 mr-10 text-white"><svg class="w-64 h-64" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg></div>
+        <div class="absolute top-0 right-0 text-[180px] opacity-10 select-none leading-none">🌽</div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <nav class="text-sm text-amber-100 mb-3"><a href="/" class="hover:text-white">Beranda</a> <span class="mx-2">/</span><span class="text-white">Produk Jagung</span></nav>
-            <h1 class="text-4xl font-bold text-white flex items-center gap-3"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg> Produk Olahan Jagung</h1>
+            <h1 class="text-4xl font-bold text-white">🌽 Produk Olahan Jagung</h1>
             <p class="text-amber-100 mt-2">Inovasi produk bergizi berbasis jagung untuk pencegahan stunting di Desa Blumbang</p>
         </div>
     </div>
@@ -13,7 +13,7 @@
     <div class="bg-red-50 border-b border-red-100 py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-wrap items-center gap-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center text-red-700"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></div>
+                <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center text-2xl">🏥</div>
                 <div class="flex-1">
                     <p class="font-bold text-red-800 text-sm">Tentang Stunting</p>
                     <p class="text-sm text-red-700">Stunting adalah kondisi gagal tumbuh pada anak akibat kekurangan gizi kronis. Konsumsi jagung yang kaya protein, vitamin B, dan mineral dapat membantu mencegah stunting pada balita.</p>
@@ -40,7 +40,7 @@
                     <img src="{{ Storage::url($p->thumbnail) }}" alt="{{ $p->title }}" class="w-full h-full object-cover">
                     @else
                     <div class="w-full h-full bg-gradient-to-br from-amber-400 to-orange-400 flex items-center justify-center">
-                        <span class="text-white drop-shadow-md"><svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg></span>
+                        <span class="text-6xl drop-shadow-md">🌽</span>
                     </div>
                     @endif
                     <div class="absolute top-3 right-3">
@@ -67,7 +67,7 @@
         @else
         <!-- Empty State -->
         <div class="py-16 text-center bg-amber-50 rounded-2xl border border-amber-100">
-            <div class="mb-4 flex justify-center text-amber-300"><svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg></div>
+            <div class="text-6xl mb-4 opacity-50">🌽</div>
             <h2 class="text-xl font-bold text-gray-700 mb-2">Belum Ada Olahan Jagung</h2>
             <p class="text-gray-500 max-w-md mx-auto">Saat ini belum ada produk olahan jagung atau edukasi yang dipublikasikan. Silakan cek kembali nanti.</p>
         </div>

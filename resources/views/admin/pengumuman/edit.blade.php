@@ -79,60 +79,57 @@
                             <p class="text-xs text-gray-400 mt-1">Kosongkan jika tidak ada batas waktu</p>
                         </div>
 
-                        <div x-data="{ 
-                                photoPreview: '{{ isset($pengumuman) && $pengumuman->attachment && preg_match('/\.(jpeg|jpg|gif|png|webp)$/i', $pengumuman->attachment) ? Storage::url($pengumuman->attachment) : '' }}',
-                                hasFile: {{ isset($pengumuman) && $pengumuman->attachment ? 'true' : 'false' }},
-                                fileName: '{{ isset($pengumuman) && $pengumuman->attachment ? basename($pengumuman->attachment) : '' }}'
-                            }">
+                        <div x-data="{ photoPreview: null, isImage(url) { return url.match(/\.(jpeg|jpg|gif|png|webp)$/) != null; } }">
                             <label class="block text-sm font-medium text-gray-700 mb-1.5">Lampiran (PDF/Gambar)</label>
                             
-                            <div class="relative w-full h-48 rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 flex items-center justify-center overflow-hidden group hover:border-amber-400 transition-colors cursor-pointer"
-                                 x-on:click="$refs.photo.click()">
-                                
-                                <!-- Preview Image -->
-                                <template x-if="photoPreview">
-                                    <img :src="photoPreview" class="absolute inset-0 w-full h-full object-cover">
-                                </template>
-                                
-                                <!-- Preview Document -->
-                                <template x-if="hasFile && !photoPreview">
-                                    <div class="flex flex-col items-center">
-                                        <svg class="w-12 h-12 text-amber-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-                                        <span class="text-sm font-medium text-gray-700" x-text="fileName"></span>
-                                    </div>
-                                </template>
-
-                                <!-- Overlay -->
-                                <div x-show="hasFile" style="display: none;" class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <svg class="w-8 h-8 text-white mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg>
-                                    <span class="text-white text-sm font-medium">Klik untuk mengganti lampiran</span>
+                            <div x-show="!photoPreview" class="mb-3">
+                                @if(isset($pengumuman) && $pengumuman->attachment)
+                                    <template x-if="isImage('{{ Storage::url($pengumuman->attachment) }}')">
+                                        <div>
+                                            <img src="{{ Storage::url($pengumuman->attachment) }}" alt="Lampiran" class="w-full h-48 object-cover rounded-xl border border-gray-100 shadow-sm">
+                                            <p class="text-xs text-gray-400 mt-1">Lampiran saat ini</p>
+                                        </div>
+                                    </template>
+                                    <template x-if="!isImage('{{ Storage::url($pengumuman->attachment) }}')">
+                                        <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+                                            <a href="{{ Storage::url($pengumuman->attachment) }}" target="_blank"
+                                               class="text-sm text-amber-600 hover:underline flex items-center gap-2 font-medium">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                                                Dokumen Terlampir (Klik untuk buka)
+                                            </a>
+                                        </div>
+                                    </template>
+                                @else
+                                <div class="w-full h-24 bg-gray-50 flex items-center justify-center rounded-xl border border-dashed border-gray-300">
+                                    <span class="text-gray-400 text-sm">Belum ada lampiran</span>
                                 </div>
-
-                                <!-- Empty State -->
-                                <template x-if="!hasFile">
-                                    <div class="text-center">
-                                        <svg class="mx-auto h-10 w-10 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                        <span class="text-sm text-gray-500 block">Klik untuk memilih lampiran</span>
-                                    </div>
-                                </template>
-
-                                <input type="file" name="attachment" x-ref="photo" class="hidden"
-                                       x-on:change="
-                                            const file = $refs.photo.files[0];
-                                            if (file) {
-                                                hasFile = true;
-                                                fileName = file.name;
-                                                if (file.type.startsWith('image/')) {
-                                                    const reader = new FileReader();
-                                                    reader.onload = (e) => { photoPreview = e.target.result; };
-                                                    reader.readAsDataURL(file);
-                                                } else {
-                                                    photoPreview = '';
-                                                }
-                                            }
-                                       ">
+                                @endif
                             </div>
-                            <p class="text-xs text-gray-400 mt-2">Format: PDF, JPG, PNG. Max 5MB.</p>
+
+                            <div x-show="photoPreview" class="mb-3" style="display: none;">
+                                <span class="block w-full h-48 bg-cover bg-no-repeat bg-center rounded-xl border border-gray-100 shadow-sm"
+                                      x-bind:style="'background-image: url(\'' + photoPreview + '\');'"></span>
+                                <p class="text-xs text-green-600 mt-1 font-medium">Lampiran gambar baru yang akan diunggah</p>
+                            </div>
+
+                            <input type="file" name="attachment" x-ref="photo"
+                                   x-on:change="
+                                        const file = $refs.photo.files[0];
+                                        if (file && file.type.startsWith('image/')) {
+                                            const reader = new FileReader();
+                                            reader.onload = (e) => { photoPreview = e.target.result; };
+                                            reader.readAsDataURL(file);
+                                        } else {
+                                            photoPreview = null;
+                                        }
+                                   "
+                                   class="w-full text-sm text-gray-500
+                                          file:mr-3 file:py-2 file:px-4
+                                          file:rounded-lg file:border-0
+                                          file:text-sm file:font-medium
+                                          file:bg-amber-50 file:text-amber-700
+                                          hover:file:bg-amber-100 cursor-pointer">
+                            <p class="text-xs text-gray-400 mt-1">Max 5MB. Format: PDF, JPG, PNG. (Preview hanya untuk gambar)</p>
                         </div>
                     </div>
 
