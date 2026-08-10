@@ -1,10 +1,10 @@
 <x-publik-layout>
     <x-slot name="title">Kontak</x-slot>
 
-    <div class="bg-gradient-to-br from-green-800 to-teal-600 py-14">
+    <div class="bg-gradient-to-br from-green-900 via-green-800 to-emerald-800 py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="text-sm text-green-200 mb-3">
-                <a href="/" class="hover:text-white">Beranda</a> <span class="mx-2">/</span>
+            <nav class="text-sm text-green-300 mb-3">
+                <a href="{{ route('beranda') }}" class="hover:text-white">Beranda</a> <span class="mx-2">/</span>
                 <span class="text-white">Kontak</span>
             </nav>
             <h1 class="text-4xl font-bold text-white">Hubungi Kami</h1>

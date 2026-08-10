@@ -1,10 +1,10 @@
 <x-publik-layout>
     <x-slot name="title">Pengumuman</x-slot>
-    <div class="bg-gradient-to-br from-amber-600 to-yellow-500 py-14">
+    <div class="bg-gradient-to-br from-green-900 via-green-800 to-emerald-800 py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="text-sm text-amber-100 mb-3"><a href="/" class="hover:text-white">Beranda</a> <span class="mx-2">/</span><span class="text-white">Pengumuman</span></nav>
+            <nav class="text-sm text-green-300 mb-3"><a href="{{ route('beranda') }}" class="hover:text-white">Beranda</a> <span class="mx-2">/</span><span class="text-white">Pengumuman</span></nav>
             <h1 class="text-4xl font-bold text-white">Pengumuman Desa</h1>
-            <p class="text-amber-100 mt-2">Informasi resmi dan pemberitahuan dari Pemerintah Desa Blumbang</p>
+            <p class="text-green-200 mt-2">Informasi resmi dan pemberitahuan dari Pemerintah Desa</p>
         </div>
     </div>
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -18,30 +18,25 @@
         @if(isset($pengumumans) && $pengumumans->isNotEmpty())
         <div class="space-y-4">
             @foreach ($pengumumans as $p)
-            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+            <a href="{{ route('publik.pengumuman.show', $p->slug) }}" class="block bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
                 <div class="flex flex-col sm:flex-row gap-4 p-6">
                     <div class="flex-1">
                         <div class="flex flex-wrap items-start justify-between gap-2 mb-2">
-                            <h3 class="font-bold text-gray-900 text-base leading-snug">{{ $p->title }}</h3>
+                            <h3 class="font-bold text-gray-900 text-base leading-snug hover:text-green-700 transition-colors">{{ $p->title }}</h3>
                             @if($p->expired_at && \Carbon\Carbon::parse($p->expired_at)->isPast())
                                 <span class="flex-shrink-0 text-xs font-semibold px-3 py-1 rounded-full bg-red-100 text-red-700">Kedaluwarsa</span>
                             @else
                                 <span class="flex-shrink-0 text-xs font-semibold px-3 py-1 rounded-full bg-green-100 text-green-700">Aktif</span>
                             @endif
                         </div>
-                        <div class="text-sm text-gray-600 leading-relaxed mb-3 prose prose-sm max-w-none">{!! $p->content !!}</div>
+                        <div class="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-2">{!! strip_tags($p->content) !!}</div>
                         <div class="flex items-center gap-4 text-xs text-gray-400">
-                            <span class="flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> Diumumkan: {{ $p->published_at ? \Carbon\Carbon::parse($p->published_at)->format('d M Y') : $p->created_at->format('d M Y') }}</span>
-                            @if($p->attachment)
-                            <a href="{{ Storage::url($p->attachment) }}" target="_blank" class="flex items-center gap-1 text-amber-600 hover:text-amber-700 font-medium">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
-                                Lampiran
-                            </a>
-                            @endif
+                            <span class="flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> {{ $p->published_at ? \Carbon\Carbon::parse($p->published_at)->format('d M Y') : $p->created_at->format('d M Y') }}</span>
+                            <span class="text-green-600 font-medium flex items-center gap-1">Baca selengkapnya <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></span>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
             @endforeach
         </div>
         @if ($pengumumans->hasPages())

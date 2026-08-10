@@ -1,10 +1,10 @@
 <x-publik-layout>
     <x-slot name="title">Berita Desa</x-slot>
-    <div class="bg-gradient-to-br from-blue-800 to-blue-600 py-14">
+    <div class="bg-gradient-to-br from-green-900 via-green-800 to-emerald-800 py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="text-sm text-blue-300 mb-3"><a href="/" class="hover:text-white">Beranda</a> <span class="mx-2">/</span><span class="text-white">Berita</span></nav>
-            <h1 class="text-4xl font-bold text-white">Berita Desa Blumbang</h1>
-            <p class="text-blue-200 mt-2">Informasi terkini seputar aktivitas dan program desa</p>
+            <nav class="text-sm text-green-300 mb-3"><a href="{{ route('beranda') }}" class="hover:text-white">Beranda</a> <span class="mx-2">/</span><span class="text-white">Berita</span></nav>
+            <h1 class="text-4xl font-bold text-white">Berita Desa</h1>
+            <p class="text-green-200 mt-2">Informasi terkini seputar aktivitas dan program desa</p>
         </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

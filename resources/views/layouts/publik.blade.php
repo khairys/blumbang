@@ -140,7 +140,7 @@
                     @endif
                     <div class="hidden sm:block">
                         <p class="font-bold text-green-800 leading-tight text-sm">{{ $pengaturan->village_name ?? 'Desa Blumbang' }}</p>
-                        <p class="text-xs text-gray-500 leading-tight">{{ $pengaturan?->website_description ?? 'Website Resmi Desa' }}</p>
+                        <p class="text-xs text-gray-400 leading-tight">Website Resmi Desa</p>
                     </div>
                 </a>
 
@@ -180,9 +180,8 @@
                         Admin Panel
                     </a>
                     @else
-                    <a href="{{ route('login') }}" class="hidden lg:inline-flex items-center gap-1.5 text-sm font-semibold text-white bg-green-600 hover:bg-green-700 rounded-xl px-5 py-2.5 transition-colors shadow-sm">
-                        Masuk Sistem
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+                    <a href="{{ route('login') }}" class="hidden lg:inline-flex items-center gap-1.5 text-sm font-semibold text-green-700 border border-green-300 hover:bg-green-50 rounded-lg px-3.5 py-2 transition-colors">
+                        Masuk
                     </a>
                     @endauth
 

@@ -63,10 +63,10 @@
             </div>
         </div>
 
-        <!-- Wave -->
-        <div class="absolute bottom-0 left-0 right-0 translate-y-[1px]">
-            <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 80L1440 80L1440 40C1200 80 960 0 720 20C480 40 240 80 0 40L0 80Z" fill="#f9fafb"/>
+        <!-- Wave - fills gap seamlessly -->
+        <div class="absolute bottom-0 left-0 right-0" style="line-height:0">
+            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
+                <path d="M0 60L1440 60L1440 30C1200 60 960 0 720 15C480 30 240 60 0 30L0 60Z" fill="#f9fafb"/>
             </svg>
         </div>
     </section>

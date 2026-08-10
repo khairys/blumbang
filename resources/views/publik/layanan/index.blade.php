@@ -1,22 +1,22 @@
 <x-publik-layout>
     <x-slot name="title">Layanan Publik</x-slot>
-    <div class="bg-gradient-to-br from-purple-800 to-purple-600 py-14">
+    <div class="bg-gradient-to-br from-green-900 via-green-800 to-emerald-800 py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="text-sm text-purple-200 mb-3"><a href="/" class="hover:text-white">Beranda</a> <span class="mx-2">/</span><span class="text-white">Layanan Publik</span></nav>
+            <nav class="text-sm text-green-300 mb-3"><a href="{{ route('beranda') }}" class="hover:text-white">Beranda</a> <span class="mx-2">/</span><span class="text-white">Layanan Publik</span></nav>
             <h1 class="text-4xl font-bold text-white">Layanan Publik Desa</h1>
-            <p class="text-purple-200 mt-2">Panduan prosedur dan persyaratan layanan administrasi Desa Blumbang</p>
+            <p class="text-green-200 mt-2">Panduan prosedur dan persyaratan layanan administrasi desa</p>
         </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <!-- Info Jam Layanan -->
-        <div class="bg-green-50 border border-green-200 rounded-2xl p-5 mb-8 flex flex-wrap items-center gap-4">
-            <div class="text-green-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 mb-8 flex flex-wrap items-center gap-4">
+            <div class="text-emerald-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
             <div class="flex-1">
-                <p class="font-bold text-green-800">Jam Pelayanan Kantor Desa</p>
+                <p class="font-bold text-emerald-800">Jam Pelayanan Kantor Desa</p>
                 @if($pengaturan?->operating_hours)
-                <div class="text-sm text-green-700 mt-1 prose prose-sm max-w-none prose-green">{!! $pengaturan->operating_hours !!}</div>
+                <div class="text-sm text-emerald-700 mt-1 prose prose-sm max-w-none">{!! $pengaturan->operating_hours !!}</div>
                 @else
-                <p class="text-sm text-green-700">Senin – Kamis: 08.00 – 15.00 WIB &nbsp;|&nbsp; Jumat: 08.00 – 11.00 WIB &nbsp;|&nbsp; Sabtu – Minggu: Tutup</p>
+                <p class="text-sm text-emerald-700">Senin – Kamis: 08.00 – 15.00 WIB &nbsp;|&nbsp; Jumat: 08.00 – 11.00 WIB &nbsp;|&nbsp; Sabtu – Minggu: Tutup</p>
                 @endif
             </div>
         </div>

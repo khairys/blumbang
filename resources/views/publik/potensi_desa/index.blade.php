@@ -2,7 +2,7 @@
     <x-slot name="title">Potensi Desa</x-slot>
     <div class="bg-gradient-to-br from-emerald-800 to-teal-600 py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="text-sm text-emerald-200 mb-3"><a href="/" class="hover:text-white">Beranda</a> <span class="mx-2">/</span><span class="text-white">Potensi Desa</span></nav>
+            <nav class="text-sm text-emerald-200 mb-3"><a href="{{ route('beranda') }}" class="hover:text-white">Beranda</a> <span class="mx-2">/</span><span class="text-white">Potensi Desa</span></nav>
             <h1 class="text-4xl font-bold text-white">Potensi Desa Blumbang</h1>
             <p class="text-emerald-200 mt-2">Kekayaan alam, budaya, dan sumber daya manusia Desa Blumbang</p>
         </div>
