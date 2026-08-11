@@ -2,15 +2,21 @@
     <x-slot name="title">Profil Desa</x-slot>
 
     <!-- Page Header -->
-    <div class="bg-gradient-to-br from-green-900 via-green-800 to-emerald-800 py-14 relative overflow-hidden">
+    <div class="bg-gradient-to-br from-emerald-800 via-emerald-700 to-green-600 pt-16 pb-24 relative overflow-hidden">
         <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,<svg width=60 height=60 viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'><g fill=\'none\'><g fill=\'%23fff\' fill-opacity=\'1\'><path d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/></g></g></svg>')"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <nav class="text-sm text-green-300 mb-3">
-                <a href="{{ route('beranda') }}" class="hover:text-white">Beranda</a> <span class="mx-2">/</span>
+            <nav class="text-sm text-emerald-100 mb-4">
+                <a href="{{ route('beranda') }}" class="hover:text-white font-medium transition-colors">Beranda</a> <span class="mx-2 text-emerald-300">/</span>
                 <span class="text-white">Profil Desa</span>
             </nav>
-            <h1 class="text-4xl font-bold text-white">Profil Desa Blumbang</h1>
-            <p class="text-green-200 mt-2">Kecamatan Klego, Kabupaten Boyolali, Jawa Tengah</p>
+            <h1 class="text-4xl font-extrabold text-white tracking-tight">Profil Desa Blumbang</h1>
+            <p class="text-emerald-50 mt-3 text-lg max-w-2xl">Kecamatan Klego, Kabupaten Boyolali, Jawa Tengah</p>
+        </div>
+        <!-- Wave -->
+        <div class="absolute bottom-0 left-0 right-0" style="line-height:0">
+            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
+                <path d="M0 60L1440 60L1440 30C1200 60 960 0 720 15C480 30 240 60 0 30L0 60Z" fill="#ffffff"/>
+            </svg>
         </div>
     </div>
 

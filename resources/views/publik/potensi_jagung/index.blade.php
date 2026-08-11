@@ -1,11 +1,17 @@
 <x-publik-layout>
     <x-slot name="title">Produk Olahan Jagung</x-slot>
-    <div class="bg-gradient-to-br from-amber-600 to-orange-500 py-14 relative overflow-hidden">
+    <div class="bg-gradient-to-br from-emerald-800 via-emerald-700 to-green-600 pt-16 pb-24 relative overflow-hidden">
         <div class="absolute top-0 right-0 opacity-10 mt-10 mr-10 text-white"><svg class="w-64 h-64" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <nav class="text-sm text-amber-100 mb-3"><a href="{{ route('beranda') }}" class="hover:text-white">Beranda</a> <span class="mx-2">/</span><span class="text-white">Produk Jagung</span></nav>
-            <h1 class="text-4xl font-bold text-white flex items-center gap-3"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg> Produk Olahan Jagung</h1>
-            <p class="text-amber-100 mt-2">Inovasi produk bergizi berbasis jagung untuk pencegahan stunting di Desa Blumbang</p>
+            <nav class="text-sm text-emerald-100 mb-4"><a href="{{ route('beranda') }}" class="hover:text-white font-medium transition-colors">Beranda</a> <span class="mx-2 text-emerald-300">/</span><span class="text-white">Produk Jagung</span></nav>
+            <h1 class="text-4xl font-extrabold text-white tracking-tight flex items-center gap-3"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg> Produk Olahan Jagung</h1>
+            <p class="text-emerald-50 mt-3 text-lg max-w-2xl">Inovasi produk bergizi berbasis jagung untuk pencegahan stunting di Desa Blumbang</p>
+        </div>
+        <!-- Wave -->
+        <div class="absolute bottom-0 left-0 right-0" style="line-height:0">
+            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
+                <path d="M0 60L1440 60L1440 30C1200 60 960 0 720 15C480 30 240 60 0 30L0 60Z" fill="#ffffff"/>
+            </svg>
         </div>
     </div>
 

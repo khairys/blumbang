@@ -1,10 +1,16 @@
 <x-publik-layout>
     <x-slot name="title">Layanan Publik</x-slot>
-    <div class="bg-gradient-to-br from-green-900 via-green-800 to-emerald-800 py-14">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="text-sm text-green-300 mb-3"><a href="{{ route('beranda') }}" class="hover:text-white">Beranda</a> <span class="mx-2">/</span><span class="text-white">Layanan Publik</span></nav>
-            <h1 class="text-4xl font-bold text-white">Layanan Publik Desa</h1>
-            <p class="text-green-200 mt-2">Panduan prosedur dan persyaratan layanan administrasi desa</p>
+    <div class="bg-gradient-to-br from-emerald-800 via-emerald-700 to-green-600 pt-16 pb-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <nav class="text-sm text-emerald-100 mb-4"><a href="{{ route('beranda') }}" class="hover:text-white font-medium transition-colors">Beranda</a> <span class="mx-2 text-emerald-300">/</span><span class="text-white">Layanan Publik</span></nav>
+            <h1 class="text-4xl font-extrabold text-white tracking-tight">Layanan Publik Desa</h1>
+            <p class="text-emerald-50 mt-3 text-lg max-w-2xl">Panduan prosedur dan persyaratan layanan administrasi desa</p>
+        </div>
+        <!-- Wave -->
+        <div class="absolute bottom-0 left-0 right-0" style="line-height:0">
+            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
+                <path d="M0 60L1440 60L1440 30C1200 60 960 0 720 15C480 30 240 60 0 30L0 60Z" fill="#ffffff"/>
+            </svg>
         </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

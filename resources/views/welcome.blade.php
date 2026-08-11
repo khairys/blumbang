@@ -479,20 +479,25 @@
             const speed = 100;
 
             const animateCounters = () => {
+                const duration = 2000;
                 counters.forEach(counter => {
-                    const updateCount = () => {
-                        const target = +counter.getAttribute('data-target');
-                        const count = +counter.innerText;
-                        const inc = target / speed;
-
-                        if (count < target) {
-                            counter.innerText = Math.ceil(count + inc);
-                            setTimeout(updateCount, 15);
+                    const target = +counter.getAttribute('data-target');
+                    const startTime = performance.now();
+                    
+                    const updateCount = (currentTime) => {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const easeOut = 1 - Math.pow(1 - progress, 3);
+                        
+                        counter.innerText = Math.floor(easeOut * target);
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCount);
                         } else {
                             counter.innerText = target;
                         }
                     };
-                    updateCount();
+                    requestAnimationFrame(updateCount);
                 });
             }
             

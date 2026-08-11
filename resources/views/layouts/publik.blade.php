@@ -180,8 +180,8 @@
                         Admin Panel
                     </a>
                     @else
-                    <a href="{{ route('login') }}" class="hidden lg:inline-flex items-center gap-1.5 text-sm font-semibold text-green-700 border border-green-300 hover:bg-green-50 rounded-lg px-3.5 py-2 transition-colors">
-                        Masuk
+                    <a href="{{ route('login') }}" class="hidden lg:inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 border-2 border-emerald-600 hover:bg-emerald-600 hover:text-white rounded-full px-6 py-2.5 transition-all shadow-sm">
+                        Masuk Sistem
                     </a>
                     @endauth
 
@@ -217,7 +217,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-gradient-to-b from-gray-900 to-slate-950 text-white pt-16 pb-8 border-t-4 border-gray-800">
+    <footer class="bg-emerald-950 text-emerald-50 pt-16 pb-8 border-t-4 border-emerald-600">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                 <!-- Branding -->
@@ -228,16 +228,16 @@
                             <img src="{{ Storage::url($pengaturan->logo) }}" alt="Logo" class="w-full h-full object-contain">
                         </div>
                         @else
-                        <div class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center shadow-md">
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        <div class="w-12 h-12 bg-emerald-900 rounded-xl flex items-center justify-center shadow-md">
+                            <svg class="w-6 h-6 text-emerald-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                         </div>
                         @endif
                         <div>
                             <p class="font-bold text-lg">{{ $pengaturan->village_name ?? 'Desa Blumbang' }}</p>
-                            <p class="text-gray-400 text-sm font-semibold">Website Resmi Desa</p>
+                            <p class="text-emerald-200/70 text-sm font-semibold">Website Resmi Desa</p>
                         </div>
                     </div>
-                    <p class="text-gray-400 text-sm leading-relaxed max-w-sm">{{ $pengaturan?->website_description ?? 'Website resmi Desa Blumbang sebagai media digitalisasi informasi desa dan edukasi produk olahan jagung dalam upaya pencegahan stunting.' }}</p>
+                    <p class="text-emerald-200/70 text-sm leading-relaxed max-w-sm">{{ $pengaturan?->website_description ?? 'Website resmi Desa Blumbang sebagai media digitalisasi informasi desa dan edukasi produk olahan jagung dalam upaya pencegahan stunting.' }}</p>
                     <div class="flex gap-3 mt-4">
                         @if(isset($pengaturan) && $pengaturan->facebook)
                         <a href="{{ $pengaturan->facebook }}" target="_blank" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition-colors">
@@ -259,39 +259,39 @@
 
                 <!-- Links -->
                 <div>
-                    <h3 class="font-semibold text-sm uppercase tracking-wider text-gray-300 mb-4">Navigasi</h3>
+                    <h3 class="font-semibold text-sm uppercase tracking-wider text-emerald-100 mb-4">Navigasi</h3>
                     <ul class="space-y-2">
-                        <li><a href="{{ route('beranda') }}" class="text-sm text-gray-400 hover:text-white transition-colors">Beranda</a></li>
-                        <li><a href="{{ route('publik.profil') }}" class="text-sm text-gray-400 hover:text-white transition-colors">Profil Desa</a></li>
-                        <li><a href="{{ route('publik.berita.index') }}" class="text-sm text-gray-400 hover:text-white transition-colors">Berita Desa</a></li>
-                        <li><a href="{{ route('publik.pengumuman.index') }}" class="text-sm text-gray-400 hover:text-white transition-colors">Pengumuman</a></li>
-                        <li><a href="{{ route('publik.layanan.index') }}" class="text-sm text-gray-400 hover:text-white transition-colors">Layanan Publik</a></li>
+                        <li><a href="{{ route('beranda') }}" class="text-sm text-emerald-200/70 hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="{{ route('publik.profil') }}" class="text-sm text-emerald-200/70 hover:text-white transition-colors">Profil Desa</a></li>
+                        <li><a href="{{ route('publik.berita.index') }}" class="text-sm text-emerald-200/70 hover:text-white transition-colors">Berita Desa</a></li>
+                        <li><a href="{{ route('publik.pengumuman.index') }}" class="text-sm text-emerald-200/70 hover:text-white transition-colors">Pengumuman</a></li>
+                        <li><a href="{{ route('publik.layanan.index') }}" class="text-sm text-emerald-200/70 hover:text-white transition-colors">Layanan Publik</a></li>
                     </ul>
                 </div>
 
                 <!-- Contact -->
                 <div>
-                    <h3 class="font-semibold text-sm uppercase tracking-wider text-gray-300 mb-4">Kontak</h3>
+                    <h3 class="font-semibold text-sm uppercase tracking-wider text-emerald-100 mb-4">Kontak</h3>
                     <ul class="space-y-3">
                         <li class="flex items-start gap-2.5">
-                            <svg class="w-4 h-4 text-gray-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <span class="text-sm text-gray-400">{{ $pengaturan->address ?? 'Alamat belum diatur' }}</span>
+                            <svg class="w-4 h-4 text-emerald-400/80 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                            <span class="text-sm text-emerald-200/70">{{ $pengaturan->address ?? 'Alamat belum diatur' }}</span>
                         </li>
                         <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                            <span class="text-sm text-gray-400">{{ $pengaturan->phone ?? 'Telepon belum diatur' }}</span>
+                            <svg class="w-4 h-4 text-emerald-400/80 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                            <span class="text-sm text-emerald-200/70">{{ $pengaturan->phone ?? 'Telepon belum diatur' }}</span>
                         </li>
                         <li class="flex items-center gap-2.5">
-                            <svg class="w-4 h-4 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                            <span class="text-sm text-gray-400">{{ $pengaturan->email ?? 'Email belum diatur' }}</span>
+                            <svg class="w-4 h-4 text-emerald-400/80 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            <span class="text-sm text-emerald-200/70">{{ $pengaturan->email ?? 'Email belum diatur' }}</span>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-                <p class="text-sm text-gray-500">© {{ date('Y') }} Pemerintah {{ $pengaturan->village_name ?? 'Desa Blumbang' }}. Semua hak dilindungi.</p>
-                <p class="text-xs text-gray-600">Dibangun dengan ❤️ untuk masyarakat {{ $pengaturan->village_name ?? 'Desa Blumbang' }}</p>
+            <div class="border-t border-emerald-800/50 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+                <p class="text-sm text-emerald-400/80">© {{ date('Y') }} Pemerintah {{ $pengaturan->village_name ?? 'Desa Blumbang' }}. Semua hak dilindungi.</p>
+                <p class="text-xs text-emerald-500/70">Dibangun dengan ❤️ untuk masyarakat {{ $pengaturan->village_name ?? 'Desa Blumbang' }}</p>
             </div>
         </div>
     </footer>
