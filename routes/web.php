@@ -16,14 +16,22 @@ Route::get('/', [App\Http\Controllers\Publik\BerandaController::class, 'index'])
 use App\Http\Controllers\Publik\BeritaPublikController;
 use App\Http\Controllers\Publik\PengumumanPublikController;
 use App\Http\Controllers\Publik\ProfilDesaPublikController;
+use App\Http\Controllers\Publik\LayananPublikController;
+
 Route::prefix('desa')->name('publik.')->group(function () {
     Route::get('/profil', [ProfilDesaPublikController::class, 'index'])->name('profil');
     Route::get('/berita', [BeritaPublikController::class, 'index'])->name('berita.index');
     Route::get('/berita/{slug}', [BeritaPublikController::class, 'show'])->name('berita.show');
     Route::get('/pengumuman', [PengumumanPublikController::class, 'index'])->name('pengumuman.index');
     Route::get('/pengumuman/{slug}', [PengumumanPublikController::class, 'show'])->name('pengumuman.show');
-    Route::get('/layanan', [App\Http\Controllers\Publik\LayananPublikController::class, 'index'])->name('layanan.index');
-    Route::get('/layanan/{layanan}', [App\Http\Controllers\Publik\LayananPublikController::class, 'show'])->name('layanan.show');
+    
+    // Layanan
+    Route::prefix('layanan')->group(function () {
+        Route::get('/', [LayananPublikController::class, 'index'])->name('layanan.index');
+        Route::get('/kategori/{kategori}', [LayananPublikController::class, 'kategori'])->name('layanan.kategori');
+        Route::get('/{layanan}', [LayananPublikController::class, 'show'])->name('layanan.show');
+    });
+
     Route::get('/potensi-desa', [App\Http\Controllers\Publik\PotensiDesaPublikController::class, 'index'])->name('potensi-desa.index');
     Route::get('/potensi-desa/{slug}', [App\Http\Controllers\Publik\PotensiDesaPublikController::class, 'show'])->name('potensi-desa.show');
     Route::get('/potensi-jagung', [App\Http\Controllers\Publik\PotensiJagungPublikController::class, 'index'])->name('potensi-jagung.index');

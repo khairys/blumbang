@@ -25,37 +25,38 @@
                         {{ $pengaturan?->website_description ?? 'Portal Informasi resmi Desa Blumbang sebagai media digitalisasi desa dan transparansi pelayanan publik.' }}
                     </p>
 
-                    <div class="flex flex-wrap gap-4 justify-center">
+                    <div class="flex flex-wrap gap-5 justify-center mt-4">
                         <a href="{{ route('publik.layanan.index') }}"
-                           class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-8 py-3.5 rounded-full shadow-lg shadow-emerald-500/30 transition-all duration-300 hover:-translate-y-1">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                            Layanan Publik
+                           class="group relative inline-flex items-center gap-2 bg-gradient-to-r from-emerald-400 to-emerald-500 text-white font-bold px-9 py-4 rounded-full overflow-hidden shadow-lg hover:shadow-emerald-500/50 transition-all duration-300 hover:-translate-y-1">
+                            <span class="absolute inset-0 bg-white/20 group-hover:bg-transparent transition-colors"></span>
+                            <svg class="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                            <span class="relative z-10 tracking-wide">Layanan Publik</span>
                         </a>
                         <a href="{{ route('publik.profil') }}"
-                           class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold px-8 py-3.5 rounded-full transition-all duration-300 hover:-translate-y-1">
-                            Profil Desa
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                           class="group inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white font-bold px-9 py-4 rounded-full shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-white/40">
+                            <span class="tracking-wide">Profil Desa</span>
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                         </a>
                     </div>
 
                     <!-- Stats -->
                     <!-- Stats -->
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-10 border-t border-white/10">
-                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="stat-item">
                             <p class="text-4xl font-extrabold text-white count-up" data-target="{{ $profil?->stat_penduduk ? preg_replace('/[^0-9]/', '', $profil->stat_penduduk) : '2847' }}">0</p>
                             <p class="text-green-200 font-medium text-sm mt-1">Jiwa Penduduk</p>
                         </div>
-                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="stat-item">
                             <p class="text-4xl font-extrabold text-white count-up" data-target="{{ $profil?->stat_rt ? preg_replace('/[^0-9]/', '', $profil->stat_rt) : '24' }}">0</p>
                             <p class="text-green-200 font-medium text-sm mt-1">Total RT</p>
                         </div>
-                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="stat-item">
                             <p class="text-4xl font-extrabold text-white count-up" data-target="{{ $profil?->stat_rw ? preg_replace('/[^0-9]/', '', $profil->stat_rw) : '6' }}">0</p>
                             <p class="text-green-200 font-medium text-sm mt-1">Total RW</p>
                         </div>
-                        <div class="stat-item" data-aos="zoom-in" data-aos-delay="400">
-                            <p class="text-4xl font-extrabold text-white count-up" data-target="{{ $profil?->stat_luas_wilayah ? preg_replace('/[^0-9]/', '', $profil->stat_luas_wilayah) : '154' }}">0</p>
-                            <p class="text-green-200 font-medium text-sm mt-1">Hektar Wilayah</p>
+                        <div class="stat-item">
+                            <p class="text-4xl font-extrabold text-white count-up" data-target="{{ $profil?->stat_kk ? preg_replace('/[^0-9]/', '', $profil->stat_kk) : '924' }}">0</p>
+                            <p class="text-green-200 font-medium text-sm mt-1">Jumlah KK</p>
                         </div>
                     </div>
                 </div>
@@ -190,18 +191,43 @@
                 <p class="text-gray-500 mt-2 max-w-md mx-auto text-sm">Informasi mengenai syarat dan prosedur layanan administrasi Desa Blumbang</p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" data-aos="fade-up" data-aos-delay="100">
-                @if(isset($layanans) && $layanans->isNotEmpty())
-                    @foreach ($layanans as $l)
-                    <div class="card-hover bg-gray-50 hover:bg-white rounded-2xl p-6 border border-gray-100 hover:border-green-200 hover:shadow-md transition-all duration-200">
-                        <div class="mb-4 text-green-600"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
-                        <h3 class="font-bold text-gray-900 text-sm mb-2 line-clamp-2">{{ $l->title }}</h3>
-                        <p class="text-xs text-gray-500 mb-4 line-clamp-3">{{ strip_tags($l->description) }}</p>
-                        <a href="{{ route('publik.layanan.index') }}" class="text-xs font-semibold text-green-600 hover:text-green-700 flex items-center gap-1 transition-colors">
-                            Lihat Syarat
-                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100">
+                @if(isset($groupedLayanans) && $groupedLayanans->isNotEmpty())
+                    @foreach($groupedLayanans as $kategori => $layanans)
+                        <a href="{{ route('publik.layanan.kategori', Str::slug($kategori)) }}" class="group bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col min-h-[250px]">
+                            <!-- Background Decoration -->
+                            <div class="absolute -right-10 -top-10 w-32 h-32 bg-emerald-50 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500 pointer-events-none"></div>
+                            
+                            <div class="relative z-10 flex-1 flex flex-col h-full items-start justify-center">
+                                <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
+                                    @if($kategori == 'Surat Keterangan')
+                                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                    @elseif($kategori == 'Surat Pengantar')
+                                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                    @else
+                                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"/></svg>
+                                    @endif
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">{{ $kategori }}</h3>
+                                <p class="text-sm text-gray-500 mb-4">{{ $layanans->count() }} Jenis Layanan</p>
+                            </div>
+                            
+                            <!-- Preview List (Hover Effect) -->
+                            <div class="absolute inset-x-0 bottom-0 top-auto bg-white/95 backdrop-blur shadow-[0_-10px_40px_rgba(0,0,0,0.1)] p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out border-t border-gray-100 z-20">
+                                <h4 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+                                    Daftar Layanan
+                                </h4>
+                                <ul class="space-y-3">
+                                    @foreach($layanans as $layanan)
+                                        <li class="flex items-start gap-2 text-gray-700 text-sm font-medium">
+                                            <svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                            {{ $layanan->title }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </a>
-                    </div>
                     @endforeach
                 @else
                     <div class="col-span-full py-10 text-center bg-gray-50 rounded-2xl border border-gray-100">
@@ -368,7 +394,14 @@
                     <div class="bg-green-50 rounded-xl p-4 border border-green-100">
                         <h4 class="text-sm font-bold text-green-800 mb-2 flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Jam Pelayanan</h4>
                         <div class="prose prose-sm prose-green">
-                            @if(isset($pengaturan) && $pengaturan->operating_hours)
+                            @if(isset($pengaturan) && is_array($pengaturan->operating_hours))
+                                <div class="space-y-1.5 text-xs text-green-700">
+                                    <div class="flex justify-between"><span>Senin – Kamis</span><span class="font-medium">{{ $pengaturan->operating_hours['senin_kamis'] ?? '07.30 - 14.00 WIB' }}</span></div>
+                                    <div class="flex justify-between"><span>Jumat</span><span class="font-medium">{{ $pengaturan->operating_hours['jumat'] ?? '07.30 - 11.00 WIB' }}</span></div>
+                                    <div class="flex justify-between"><span>Sabtu</span><span class="font-medium">{{ $pengaturan->operating_hours['sabtu'] ?? '07.30 - 12.30 WIB' }}</span></div>
+                                    <div class="flex justify-between text-gray-400"><span>Minggu</span><span>Tutup</span></div>
+                                </div>
+                            @elseif(isset($pengaturan) && $pengaturan->operating_hours)
                                 {!! $pengaturan->operating_hours !!}
                             @else
                                 <div class="space-y-1.5 text-xs text-green-700">
@@ -403,7 +436,7 @@
 
     <!-- ===== POPUP PENGUMUMAN ===== -->
     @if(isset($popup_pengumuman))
-    <div id="announcementPopup" class="fixed inset-0 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300" style="z-index: 99999;">
+    <div id="announcementPopup" class="fixed inset-0 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300 z-[9999]">
         <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full relative overflow-hidden transform scale-95 transition-transform duration-300 popup-content">
             <!-- Close Button -->
             <button onclick="closePopup({{ $popup_pengumuman->id }})" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors z-10">

@@ -4,7 +4,7 @@
     @if($potensi->thumbnail)
     <x-slot name="og_image">{{ Storage::url($potensi->thumbnail) }}</x-slot>
     @endif
-    <div class="bg-gradient-to-br from-emerald-800 to-teal-600 pt-20 pb-24 relative overflow-hidden">
+    <div class="bg-gradient-to-br from-emerald-800 via-emerald-700 to-green-600 pt-20 pb-32 relative overflow-hidden">
         <div class="absolute top-0 right-0 opacity-10 mt-10 mr-10 text-white"><svg class="w-64 h-64" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></div>
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <div class="inline-flex items-center gap-2 mb-6">
@@ -15,6 +15,12 @@
             </div>
             <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4">{{ $potensi->title }}</h1>
             <p class="text-emerald-100 text-lg md:text-xl font-medium max-w-2xl mx-auto">{{ $potensi->summary }}</p>
+        </div>
+        <!-- Wave -->
+        <div class="absolute bottom-[-1px] left-0 right-0" style="line-height:0">
+            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block; width: 100%;">
+                <path d="M0 60L1440 60L1440 30C1200 60 960 0 720 15C480 30 240 60 0 30L0 60Z" fill="#ffffff"/>
+            </svg>
         </div>
     </div>
     

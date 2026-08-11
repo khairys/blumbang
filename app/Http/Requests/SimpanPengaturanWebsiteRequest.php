@@ -23,7 +23,7 @@ class SimpanPengaturanWebsiteRequest extends FormRequest
             'instagram'    => 'nullable|string|max:255',
             'youtube'      => 'nullable|url|max:255',
             'maps_embed'   => 'nullable|string',
-            'operating_hours' => 'nullable|string',
+            'operating_hours' => 'nullable|array',
             'logo'         => 'nullable|image|max:2048',
             'favicon'      => 'nullable|image|max:512',
         ];

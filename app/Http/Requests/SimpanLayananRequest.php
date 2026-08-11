@@ -19,6 +19,8 @@ class SimpanLayananRequest extends FormRequest
             'requirements'  => 'nullable|string',
             'service_flow'  => 'nullable|string',
             'service_hours' => 'nullable|string|max:100',
+            'kategori'      => 'nullable|string|max:150',
+            'sub_kategori'  => 'nullable|string|max:150',
             'is_active'     => 'nullable|boolean',
         ];
     }

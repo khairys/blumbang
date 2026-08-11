@@ -7,8 +7,8 @@
             <p class="text-emerald-50 mt-3 text-lg max-w-2xl">Kekayaan alam, budaya, dan sumber daya manusia Desa Blumbang</p>
         </div>
         <!-- Wave -->
-        <div class="absolute bottom-0 left-0 right-0" style="line-height:0">
-            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
+        <div class="absolute bottom-[-1px] left-0 right-0" style="line-height:0">
+            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block; width: 100%;">
                 <path d="M0 60L1440 60L1440 30C1200 60 960 0 720 15C480 30 240 60 0 30L0 60Z" fill="#ffffff"/>
             </svg>
         </div>
@@ -45,7 +45,7 @@
                     @if ($p->thumbnail)
                     <img src="{{ Storage::url($p->thumbnail) }}" alt="{{ $p->title }}" class="w-full h-full object-cover">
                     @else
-                    <div class="w-full h-full bg-gradient-to-br from-emerald-700 to-teal-500 flex items-center justify-center">
+                    <div class="w-full h-full bg-gradient-to-br from-emerald-600 to-green-500 flex items-center justify-center">
                         <span class="text-white drop-shadow-md"><svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></span>
                     </div>
                     @endif

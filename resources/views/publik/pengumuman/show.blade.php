@@ -5,17 +5,17 @@
     <x-slot name="og_image">{{ Storage::url($pengumuman->attachment) }}</x-slot>
     @endif
 
-    <div class="bg-gradient-to-br from-amber-600 to-yellow-500 py-12">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="text-sm text-amber-100 mb-4">
+    <div class="bg-gradient-to-br from-emerald-800 via-emerald-700 to-green-600 py-12 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <nav class="text-sm text-emerald-100 mb-4">
                 <a href="/" class="hover:text-white">Beranda</a>
-                <span class="mx-2">/</span>
+                <span class="mx-2 text-emerald-300">/</span>
                 <a href="{{ route('publik.pengumuman.index') }}" class="hover:text-white">Pengumuman</a>
-                <span class="mx-2">/</span>
+                <span class="mx-2 text-emerald-300">/</span>
                 <span class="text-white">Detail</span>
             </nav>
             <h1 class="text-3xl font-bold text-white leading-tight">{{ $pengumuman->title }}</h1>
-            <div class="flex flex-wrap items-center gap-3 text-amber-100 text-sm mt-3">
+            <div class="flex flex-wrap items-center gap-3 text-emerald-100 text-sm mt-3">
                 <span class="flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> {{ $pengumuman->created_at->format('d M Y') }}</span>
                 @if ($pengumuman->expired_at)
                 <span class="{{ \Carbon\Carbon::parse($pengumuman->expired_at)->isPast() ? 'line-through opacity-60' : '' }}">
@@ -23,9 +23,15 @@
                 </span>
                 @endif
                 <span class="bg-white/20 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                    {{ $pengumuman->status === 'published' ? 'Aktif' : 'Draft' }}
+                    {{ $pengumuman->type == 'urgent' ? 'Penting' : 'Info Biasa' }}
                 </span>
             </div>
+        </div>
+        <!-- Wave -->
+        <div class="absolute bottom-0 left-0 right-0" style="line-height:0">
+            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
+                <path d="M0 60L1440 60L1440 30C1200 60 960 0 720 15C480 30 240 60 0 30L0 60Z" fill="#ffffff"/>
+            </svg>
         </div>
     </div>
 

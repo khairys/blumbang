@@ -119,7 +119,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased">
+<body class="bg-gray-50 text-gray-800 antialiased flex flex-col min-h-screen">
 
     <!-- NAVBAR -->
     <nav class="bg-white/95 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50 shadow-sm">
@@ -159,10 +159,10 @@
                         </button>
                         <div class="absolute top-full left-0 mt-2 w-52 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                             <div class="p-1">
-                                <a href="{{ route('publik.potensi-desa.index') }}" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">
+                                <a href="{{ route('publik.potensi-desa.index') }}" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg">
                                     Potensi Desa
                                 </a>
-                                <a href="{{ route('publik.potensi-jagung.index') }}" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-amber-50 hover:text-amber-700 rounded-lg">
+                                <a href="{{ route('publik.potensi-jagung.index') }}" class="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg">
                                     Produk Olahan Jagung
                                 </a>
                             </div>
@@ -173,15 +173,17 @@
                     <a href="{{ route('publik.kontak') }}" class="nav-link text-sm font-medium text-gray-700 hover:text-green-700 {{ request()->routeIs('publik.kontak') ? 'active text-green-700' : '' }}">Kontak</a>
                 </div>
 
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-4">
+                    <div class="hidden lg:block w-px h-6 bg-gray-200"></div> <!-- Vertical divider -->
                     @auth
-                    <a href="{{ url('/dashboard') }}" class="hidden lg:inline-flex items-center gap-1.5 text-sm font-medium text-green-700 bg-green-50 hover:bg-green-100 border border-green-200 rounded-lg px-4 py-2 transition-colors">
+                    <a href="{{ url('/dashboard') }}" class="hidden lg:inline-flex items-center gap-1.5 text-sm font-medium text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-full px-5 py-2.5 transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
                         Admin Panel
                     </a>
                     @else
-                    <a href="{{ route('login') }}" class="hidden lg:inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 border-2 border-emerald-600 hover:bg-emerald-600 hover:text-white rounded-full px-6 py-2.5 transition-all shadow-sm">
-                        Masuk Sistem
+                    <a href="{{ route('login') }}" class="hidden lg:inline-flex items-center gap-2 text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-full px-7 py-3 transition-all shadow-md shadow-emerald-500/20 hover:-translate-y-0.5">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
+                        Masuk
                     </a>
                     @endauth
 
@@ -196,23 +198,25 @@
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="lg:hidden bg-white border-t border-gray-100">
             <div class="px-4 py-3 space-y-1">
-                <a href="{{ route('beranda') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">Beranda</a>
-                <a href="{{ route('publik.profil') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">Profil Desa</a>
-                <a href="{{ route('publik.berita.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">Berita</a>
-                <a href="{{ route('publik.pengumuman.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">Pengumuman</a>
-                <a href="{{ route('publik.potensi-desa.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">Potensi Desa</a>
-                <a href="{{ route('publik.potensi-jagung.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-amber-50 hover:text-amber-700 rounded-lg">Produk Olahan Jagung</a>
-                <a href="{{ route('publik.layanan.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">Layanan Publik</a>
-                <a href="{{ route('publik.kontak') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-green-50 hover:text-green-700 rounded-lg">Kontak</a>
+                <a href="{{ route('beranda') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg">Beranda</a>
+                <a href="{{ route('publik.profil') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg">Profil Desa</a>
+                <a href="{{ route('publik.berita.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg">Berita</a>
+                <a href="{{ route('publik.pengumuman.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg">Pengumuman</a>
+                <a href="{{ route('publik.potensi-desa.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg">Potensi Desa</a>
+                <a href="{{ route('publik.potensi-jagung.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg">Produk Olahan Jagung</a>
+                <a href="{{ route('publik.layanan.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg">Layanan Publik</a>
+                <a href="{{ route('publik.kontak') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg">Kontak</a>
                 @auth
-                <a href="{{ url('/dashboard') }}" class="block px-3 py-2 text-sm font-medium text-green-700 bg-green-50 rounded-lg">Admin Panel</a>
+                <a href="{{ url('/dashboard') }}" class="block px-3 py-2 text-sm font-medium text-emerald-700 bg-emerald-50 rounded-lg">Admin Panel</a>
+                @else
+                <a href="{{ route('login') }}" class="block px-3 py-2 text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg text-center mt-2">Masuk</a>
                 @endauth
             </div>
         </div>
     </nav>
 
     <!-- Page Content -->
-    <main>
+    <main class="flex-grow">
         {{ $slot }}
     </main>
 

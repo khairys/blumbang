@@ -38,6 +38,7 @@
                 <thead class="bg-gray-50 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                     <tr>
                         <th class="text-left px-4 py-3">Nama Layanan</th>
+                        <th class="text-left px-4 py-3 hidden md:table-cell">Kategori</th>
                         <th class="text-left px-4 py-3 hidden md:table-cell">Jam Layanan</th>
                         <th class="text-left px-4 py-3">Status</th>
                         <th class="text-right px-4 py-3">Aksi</th>
@@ -49,6 +50,16 @@
                         <td class="px-4 py-3">
                             <p class="font-medium text-gray-900">{{ $item->title }}</p>
                             @if($item->description)<p class="text-xs text-gray-400 mt-0.5 line-clamp-1">{{ strip_tags($item->description) }}</p>@endif
+                        </td>
+                        <td class="px-4 py-3 hidden md:table-cell">
+                            @if($item->kategori)
+                                <span class="text-xs font-medium bg-emerald-100 text-emerald-700 px-2 py-1 rounded">{{ $item->kategori }}</span>
+                                @if($item->sub_kategori)
+                                    <span class="text-xs text-gray-500 block mt-1">↳ {{ $item->sub_kategori }}</span>
+                                @endif
+                            @else
+                                <span class="text-xs text-gray-400">—</span>
+                            @endif
                         </td>
                         <td class="px-4 py-3 text-gray-500 text-sm hidden md:table-cell">{{ $item->service_hours ?? '—' }}</td>
                         <td class="px-4 py-3">

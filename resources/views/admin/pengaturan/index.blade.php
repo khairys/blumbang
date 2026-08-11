@@ -175,10 +175,31 @@
                                   class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm font-mono focus:outline-none focus:ring-2 focus:ring-green-400 transition-all resize-none">{{ old('maps_embed', $pengaturan?->maps_embed) }}</textarea>
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Jam Pelayanan Operasional</label>
-                        <p class="text-xs text-gray-400 mb-1.5">Jadwal operasional balai desa. Bisa berupa list atau tabel.</p>
-                        <textarea name="operating_hours" class="tinymce w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm">{{ old('operating_hours', $pengaturan?->operating_hours) }}</textarea>
+                    <div class="border-t border-gray-100 pt-4 mt-4">
+                        <h4 class="font-medium text-gray-800 mb-4">Jam Pelayanan Operasional</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1.5">Senin - Kamis</label>
+                                <input type="text" name="operating_hours[senin_kamis]" 
+                                       value="{{ old('operating_hours.senin_kamis', is_array($pengaturan?->operating_hours) ? ($pengaturan->operating_hours['senin_kamis'] ?? '07.30 - 14.00 WIB') : '07.30 - 14.00 WIB') }}"
+                                       placeholder="07.30 - 14.00 WIB"
+                                       class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400 transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1.5">Jumat</label>
+                                <input type="text" name="operating_hours[jumat]" 
+                                       value="{{ old('operating_hours.jumat', is_array($pengaturan?->operating_hours) ? ($pengaturan->operating_hours['jumat'] ?? '07.30 - 11.00 WIB') : '07.30 - 11.00 WIB') }}"
+                                       placeholder="07.30 - 11.00 WIB"
+                                       class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400 transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1.5">Sabtu</label>
+                                <input type="text" name="operating_hours[sabtu]" 
+                                       value="{{ old('operating_hours.sabtu', is_array($pengaturan?->operating_hours) ? ($pengaturan->operating_hours['sabtu'] ?? '07.30 - 12.30 WIB') : '07.30 - 12.30 WIB') }}"
+                                       placeholder="07.30 - 12.30 WIB"
+                                       class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400 transition-all">
+                            </div>
+                        </div>
                     </div>
                 </div>
 

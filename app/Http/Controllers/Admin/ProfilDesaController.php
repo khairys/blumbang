@@ -29,6 +29,13 @@ class ProfilDesaController extends Controller
             $data['organizational_structure'] = $request->file('organizational_structure')->store('profil', 'public');
         }
 
+        if ($request->hasFile('bpd_structure')) {
+            if ($profil && $profil->bpd_structure) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($profil->bpd_structure);
+            }
+            $data['bpd_structure'] = $request->file('bpd_structure')->store('profil', 'public');
+        }
+
         ProfilDesa::updateOrCreate(['id' => 1], $data);
 
         return redirect()->route('admin.profil.index')

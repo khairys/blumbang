@@ -8,4 +8,8 @@ class PengaturanWebsite extends Model
 {
     protected $table = 'pengaturan_website';
     protected $guarded = ['id'];
+    
+    protected $casts = [
+        'operating_hours' => 'array',
+    ];
 }

@@ -33,6 +33,21 @@
                         @error('title')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                     </div>
 
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Kategori Induk (Opsional)</label>
+                            <input type="text" name="kategori" value="{{ old('kategori', $layanan->kategori ?? '') }}"
+                                   placeholder="Contoh: Pelayanan Umum"
+                                   class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Sub Kategori (Opsional)</label>
+                            <input type="text" name="sub_kategori" value="{{ old('sub_kategori', $layanan->sub_kategori ?? '') }}"
+                                   placeholder="Contoh: Surat Keterangan"
+                                   class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all">
+                        </div>
+                    </div>
+
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1.5">Jam Pelayanan</label>
                         <input type="text" name="service_hours"

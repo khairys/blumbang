@@ -4,15 +4,21 @@
     @if($produk->thumbnail)
     <x-slot name="og_image">{{ Storage::url($produk->thumbnail) }}</x-slot>
     @endif
-    <div class="bg-gradient-to-br from-amber-600 to-orange-500 pt-20 pb-24 relative overflow-hidden">
+    <div class="bg-gradient-to-br from-emerald-800 via-emerald-700 to-green-600 pt-20 pb-32 relative overflow-hidden">
         <div class="absolute top-0 right-0 opacity-10 mt-10 mr-10 text-white"><svg class="w-64 h-64" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg></div>
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <div class="inline-flex items-center gap-2 mb-6">
                 <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">{{ $produk->category }}</span>
-                <span class="text-amber-100 text-sm flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> {{ $produk->created_at->format('d M Y') }}</span>
+                <span class="text-emerald-100 text-sm flex items-center gap-1.5"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> {{ $produk->created_at->format('d M Y') }}</span>
             </div>
             <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4">{{ $produk->title }}</h1>
-            <p class="text-amber-100 text-lg md:text-xl font-medium max-w-2xl mx-auto">{{ $produk->summary }}</p>
+            <p class="text-emerald-100 text-lg md:text-xl font-medium max-w-2xl mx-auto">{{ $produk->summary }}</p>
+        </div>
+        <!-- Wave -->
+        <div class="absolute bottom-[-1px] left-0 right-0" style="line-height:0">
+            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block; width: 100%;">
+                <path d="M0 60L1440 60L1440 30C1200 60 960 0 720 15C480 30 240 60 0 30L0 60Z" fill="#ffffff"/>
+            </svg>
         </div>
     </div>
     
