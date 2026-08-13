@@ -128,7 +128,7 @@
                 <!-- Logo -->
                 <a href="{{ route('beranda') }}" class="flex items-center gap-3">
                     @if(isset($pengaturan) && $pengaturan->logo)
-                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-md flex-shrink-0 overflow-hidden p-1 border border-gray-100">
+                    <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden p-1">
                         <img src="{{ Storage::url($pengaturan->logo) }}" alt="Logo" class="w-full h-full object-contain">
                     </div>
                     @else
@@ -174,19 +174,6 @@
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <div class="hidden lg:block w-px h-6 bg-gray-200"></div> <!-- Vertical divider -->
-                    @auth
-                    <a href="{{ url('/dashboard') }}" class="hidden lg:inline-flex items-center gap-1.5 text-sm font-medium text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-full px-5 py-2.5 transition-colors">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/></svg>
-                        Admin Panel
-                    </a>
-                    @else
-                    <a href="{{ route('login') }}" class="hidden lg:inline-flex items-center gap-2 text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-full px-7 py-3 transition-all shadow-md shadow-emerald-500/20 hover:-translate-y-0.5">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/></svg>
-                        Masuk
-                    </a>
-                    @endauth
-
                     <!-- Mobile hamburger -->
                     <button id="menuBtn" class="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -206,11 +193,6 @@
                 <a href="{{ route('publik.potensi-jagung.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg">Produk Olahan Jagung</a>
                 <a href="{{ route('publik.layanan.index') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg">Layanan Publik</a>
                 <a href="{{ route('publik.kontak') }}" class="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg">Kontak</a>
-                @auth
-                <a href="{{ url('/dashboard') }}" class="block px-3 py-2 text-sm font-medium text-emerald-700 bg-emerald-50 rounded-lg">Admin Panel</a>
-                @else
-                <a href="{{ route('login') }}" class="block px-3 py-2 text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg text-center mt-2">Masuk</a>
-                @endauth
             </div>
         </div>
     </nav>
@@ -241,7 +223,7 @@
                             <p class="text-emerald-200/70 text-sm font-semibold">Website Resmi Desa</p>
                         </div>
                     </div>
-                    <p class="text-emerald-200/70 text-sm leading-relaxed max-w-sm">{{ $pengaturan?->website_description ?? 'Website resmi Desa Blumbang sebagai media digitalisasi informasi desa dan edukasi produk olahan jagung dalam upaya pencegahan stunting.' }}</p>
+                    <p class="text-emerald-200/70 text-sm leading-relaxed max-w-sm">Website resmi Pemerintah Desa Blumbang sebagai pusat informasi dan layanan bagi masyarakat.</p>
                     <div class="flex gap-3 mt-4">
                         @if(isset($pengaturan) && $pengaturan->facebook)
                         <a href="{{ $pengaturan->facebook }}" target="_blank" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition-colors">
@@ -269,7 +251,9 @@
                         <li><a href="{{ route('publik.profil') }}" class="text-sm text-emerald-200/70 hover:text-white transition-colors">Profil Desa</a></li>
                         <li><a href="{{ route('publik.berita.index') }}" class="text-sm text-emerald-200/70 hover:text-white transition-colors">Berita Desa</a></li>
                         <li><a href="{{ route('publik.pengumuman.index') }}" class="text-sm text-emerald-200/70 hover:text-white transition-colors">Pengumuman</a></li>
+                        <li><a href="{{ route('publik.potensi-desa.index') }}" class="text-sm text-emerald-200/70 hover:text-white transition-colors">Potensi Desa</a></li>
                         <li><a href="{{ route('publik.layanan.index') }}" class="text-sm text-emerald-200/70 hover:text-white transition-colors">Layanan Publik</a></li>
+                        <li><a href="{{ route('publik.kontak') }}" class="text-sm text-emerald-200/70 hover:text-white transition-colors">Kontak</a></li>
                     </ul>
                 </div>
 
@@ -279,23 +263,22 @@
                     <ul class="space-y-3">
                         <li class="flex items-start gap-2.5">
                             <svg class="w-4 h-4 text-emerald-400/80 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                            <span class="text-sm text-emerald-200/70">{{ $pengaturan->address ?? 'Alamat belum diatur' }}</span>
+                            <span class="text-sm text-emerald-200/70">Dk, Jalan, Jl. Raya Klego-Simo No.Km. 1, Blumbang Kidul, Blumbang, Kec. Klego, Kabupaten Boyolali, Jawa Tengah 57385</span>
                         </li>
                         <li class="flex items-center gap-2.5">
                             <svg class="w-4 h-4 text-emerald-400/80 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                            <span class="text-sm text-emerald-200/70">{{ $pengaturan->phone ?? 'Telepon belum diatur' }}</span>
+                            <span class="text-sm text-emerald-200/70">081234567890</span>
                         </li>
                         <li class="flex items-center gap-2.5">
                             <svg class="w-4 h-4 text-emerald-400/80 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                            <span class="text-sm text-emerald-200/70">{{ $pengaturan->email ?? 'Email belum diatur' }}</span>
+                            <span class="text-sm text-emerald-200/70">info@blumbang.desa.id</span>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="border-t border-emerald-800/50 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-                <p class="text-sm text-emerald-400/80">© {{ date('Y') }} Pemerintah {{ $pengaturan->village_name ?? 'Desa Blumbang' }}. Semua hak dilindungi.</p>
-                <p class="text-xs text-emerald-500/70">Dibangun dengan ❤️ untuk masyarakat {{ $pengaturan->village_name ?? 'Desa Blumbang' }}</p>
+            <div class="border-t border-emerald-800/50 pt-6 flex flex-col sm:flex-row justify-center items-center gap-3">
+                <p class="text-sm text-emerald-400/80">© 2026 Pemerintah Desa Blumbang. Semua hak dilindungi.</p>
             </div>
         </div>
     </footer>

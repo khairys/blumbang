@@ -1,29 +1,15 @@
 <x-publik-layout>
     <x-slot name="title">Layanan Publik</x-slot>
     
-    <style>
-        .service-details {
-            transition: all 0.4s ease-in-out;
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transform: translateY(-10px);
-        }
-        .service-details.expanded {
-            max-height: 2000px; /* large enough */
-            opacity: 1;
-            transform: translateY(0);
-            padding-top: 1.5rem;
-            margin-top: 1.5rem;
-            border-top: 1px dashed #e5e7eb;
-        }
-    </style>
-
     <div class="bg-gradient-to-br from-emerald-800 via-emerald-700 to-green-600 pt-16 pb-24 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <nav class="text-sm text-emerald-100 mb-6 flex items-center gap-2"><a href="{{ route('beranda') }}" class="hover:text-white transition-colors">Beranda</a> <svg class="w-3 h-3 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg><span class="text-white">Layanan Publik</span></nav>
+            <nav class="text-sm text-emerald-100 mb-6 flex items-center gap-2">
+                <a href="{{ route('beranda') }}" class="hover:text-white transition-colors">Beranda</a> 
+                <svg class="w-3 h-3 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                <span class="text-white">Layanan Publik</span>
+            </nav>
             <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">Layanan Publik Desa</h1>
-            <p class="text-emerald-50 mt-3 text-lg max-w-2xl">Panduan prosedur dan persyaratan layanan administrasi desa</p>
+            <p class="text-emerald-50 mt-3 text-lg max-w-2xl">Informasi persyaratan dan layanan administrasi yang tersedia di Desa Blumbang.</p>
         </div>
         <!-- Wave -->
         <div class="absolute bottom-[-1px] left-0 right-0" style="line-height:0">
@@ -34,125 +20,122 @@
     </div>
     
     <div class="bg-gray-50 min-h-screen">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-24">
             
-            <!-- Pencarian -->
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-12">
-                @php
-                    $dayOfWeek = date('N'); // 1 (Senin) - 7 (Minggu)
-                    $dayNames = [
-                        1 => 'Senin', 2 => 'Selasa', 3 => 'Rabu', 4 => 'Kamis',
-                        5 => 'Jumat', 6 => 'Sabtu', 7 => 'Minggu'
-                    ];
-                    $todayName = $dayNames[$dayOfWeek];
-                    $todayHours = '';
+            <!-- Jam Pelayanan -->
+            @php
+                $dayOfWeek = date('N'); // 1 (Senin) - 7 (Minggu)
+                $dayNames = [
+                    1 => 'Senin', 2 => 'Selasa', 3 => 'Rabu', 4 => 'Kamis',
+                    5 => 'Jumat', 6 => 'Sabtu', 7 => 'Minggu'
+                ];
+                $todayName = $dayNames[$dayOfWeek];
+                $todayHours = '';
+                
+                if ($dayOfWeek >= 1 && $dayOfWeek <= 4) {
+                    $todayHours = '07.30 - 14.00 WIB';
+                } elseif ($dayOfWeek == 5) {
+                    $todayHours = '07.30 - 11.00 WIB';
+                } elseif ($dayOfWeek == 6) {
+                    $todayHours = '07.30 - 12.30 WIB';
+                } else {
+                    $todayHours = 'Tutup';
+                }
+            @endphp
+            
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-emerald-100 mb-12">
+                <div class="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between">
+                    <div>
+                        <h2 class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Jam Pelayanan Desa
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1 text-sm text-gray-600">
+                            <div>Senin–Kamis: 07.30–14.00 WIB</div>
+                            <div>Jumat: 07.30–11.00 WIB</div>
+                            <div>Sabtu: 07.30–12.30 WIB</div>
+                            <div>Minggu: <span class="text-red-500 font-medium">Tutup</span></div>
+                        </div>
+                    </div>
                     
-                    $opHours = is_array($pengaturan?->operating_hours) ? $pengaturan->operating_hours : [];
-                    
-                    if ($dayOfWeek >= 1 && $dayOfWeek <= 4) {
-                        $todayHours = $opHours['senin_kamis'] ?? '07.30 - 14.00 WIB';
-                    } elseif ($dayOfWeek == 5) {
-                        $todayHours = $opHours['jumat'] ?? '07.30 - 11.00 WIB';
-                    } elseif ($dayOfWeek == 6) {
-                        $todayHours = $opHours['sabtu'] ?? '07.30 - 12.30 WIB';
-                    } else {
-                        $todayHours = 'Tutup / Libur';
-                    }
-                @endphp
-                <!-- Info Jam Layanan -->
-                <div class="bg-white border border-gray-200 rounded-full py-2.5 px-5 flex items-center gap-3 shadow-sm w-full md:w-auto">
-                    <div class="text-emerald-500"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-                    <p class="text-sm text-gray-700 font-medium">Layanan Hari Ini ({{ $todayName }}): <span class="text-gray-500 font-normal">{{ $todayHours }}</span></p>
+                    <div class="bg-emerald-50 text-emerald-800 rounded-xl px-6 py-4 min-w-[250px] border border-emerald-100/50">
+                        <p class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-1">Pelayanan Hari Ini</p>
+                        <p class="text-lg font-bold">
+                            {{ $todayName }}@if($todayHours != 'Tutup'), {{ $todayHours }} @else — <span class="text-red-500">Tutup</span> @endif
+                        </p>
+                    </div>
                 </div>
+            </div>
 
-                <form action="{{ route('publik.layanan.index') }}" method="GET" class="relative w-full md:w-80">
-                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari layanan (cth: SKTM)..." class="w-full pl-11 pr-4 py-3 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 shadow-sm transition-shadow">
+            <!-- Filter & Pencarian -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
+                @php
+                    $kategoriList = ['Administrasi Kependudukan', 'Surat Keterangan', 'Surat Pengantar'];
+                @endphp
+                <div class="flex flex-wrap gap-2">
+                    <a href="{{ route('publik.layanan.index') }}"
+                       class="px-4 py-2 text-sm font-medium rounded-full {{ !request('kategori') ? 'bg-emerald-600 text-white' : 'bg-white border border-gray-200 text-gray-600 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200' }} transition-colors shadow-sm">Semua</a>
+                    @foreach ($kategoriList as $k)
+                    <a href="{{ route('publik.layanan.index', ['kategori' => $k]) }}"
+                       class="px-4 py-2 text-sm font-medium rounded-full {{ request('kategori') === $k ? 'bg-emerald-600 text-white' : 'bg-white border border-gray-200 text-gray-600 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200' }} transition-colors shadow-sm">{{ $k }}</a>
+                    @endforeach
+                </div>
+                
+                <form action="{{ route('publik.layanan.index') }}" method="GET" class="relative w-full md:w-80 flex-shrink-0">
+                    @if(request('kategori'))
+                        <input type="hidden" name="kategori" value="{{ request('kategori') }}">
+                    @endif
+                    <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari layanan (contoh: SKTM)..." class="w-full pl-11 pr-4 py-3 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all shadow-sm">
                     <svg class="w-5 h-5 text-gray-400 absolute left-4 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </form>
             </div>
             
-            @if($isSearching)
-                <!-- HASIL PENCARIAN -->
-                <div class="mb-6"><h2 class="text-xl font-bold text-gray-800">Hasil Pencarian: "{{ request('search') }}"</h2></div>
-                @if(isset($layanans) && $layanans->isNotEmpty())
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @foreach ($layanans as $l)
-                        <a href="{{ route('publik.layanan.show', $l) }}" class="card-hover group block bg-white rounded-3xl border border-gray-100 shadow-sm transition-all duration-300 overflow-hidden">
-                            <div class="p-6 h-full flex flex-col">
-                                <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-4 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                                </div>
-                                <h3 class="font-bold text-gray-900 text-lg mb-1 group-hover:text-emerald-700 transition-colors">{{ $l->title }}</h3>
-                                @if($l->kategori)<span class="text-xs text-emerald-600 font-medium mb-3 block">{{ $l->kategori }}</span>@endif
-                                
-                                <div class="mt-auto pt-4 flex items-center justify-between">
-                                    <span class="inline-flex items-center gap-1.5 text-sm text-emerald-600 font-bold group-hover:text-emerald-800 transition-colors">
-                                        Lihat Syarat <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                                    </span>
-                                </div>
-                            </div>
-                        </a>
-                        @endforeach
-                    </div>
-                @else
-                    <div class="py-12 text-center bg-white rounded-2xl border border-emerald-100 shadow-sm">
-                        <div class="mb-3 text-emerald-300 flex justify-center"><svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
-                        <p class="text-gray-500 font-medium">Layanan dengan kata kunci tersebut tidak ada.</p>
-                    </div>
-                @endif
-                <div class="mt-10 text-center"><a href="{{ route('publik.layanan.index') }}" class="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-800 font-semibold bg-emerald-50 px-6 py-3 rounded-full transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg> Kembali ke Daftar Layanan</a></div>
+            @if(isset($layanans) && $layanans->isNotEmpty())
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                    @foreach ($layanans as $l)
+                    <a href="{{ route('publik.layanan.show', $l) }}" class="card-hover group flex flex-col bg-white rounded-3xl p-6 border border-gray-100 shadow-sm transition-all duration-300">
+                        <h3 class="font-bold text-gray-900 text-xl mb-3 group-hover:text-emerald-600 transition-colors">{{ $l->title }}</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed line-clamp-2 mb-6">
+                            {{ $l->summary ?? Str::limit(strip_tags($l->content), 100) }}
+                        </p>
+                        <div class="mt-auto pt-4 border-t border-gray-50 flex items-center">
+                            <span class="inline-flex items-center gap-1.5 text-sm text-emerald-600 font-bold group-hover:text-emerald-700 transition-colors">
+                                Lihat Persyaratan 
+                                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            </span>
+                        </div>
+                    </a>
+                    @endforeach
+                </div>
             @else
-                
-                <!-- 3 KARTU UTAMA LAYANAN -->
-                @if(isset($groupedLayanans) && $groupedLayanans->isNotEmpty())
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        @foreach($groupedLayanans as $kategori => $layanans)
-                            <a href="{{ route('publik.layanan.kategori', Str::slug($kategori)) }}" class="group bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 relative overflow-hidden flex flex-col h-full">
-                                <!-- Background Decoration -->
-                                <div class="absolute -right-10 -top-10 w-40 h-40 bg-emerald-50 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500 ease-in-out pointer-events-none"></div>
-                                
-                                <div class="relative z-10 flex-1 flex flex-col h-full items-start">
-                                    <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300 shadow-sm">
-                                        @if($kategori == 'Surat Keterangan')
-                                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                                        @elseif($kategori == 'Surat Pengantar')
-                                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                                        @else
-                                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"/></svg>
-                                        @endif
-                                    </div>
-                                    <h2 class="text-2xl font-extrabold text-gray-900 mb-6">{{ $kategori }}</h2>
-                                    
-                                    <!-- Daftar Layanan (Selalu Tampil) -->
-                                    <ul class="space-y-3 mb-6 w-full">
-                                        @foreach($layanans as $layanan)
-                                            <li class="flex items-start gap-2 text-gray-600 text-sm font-medium">
-                                                <svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                                {{ $layanan->title }}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                
-                                <div class="mt-auto relative z-10 w-full pt-4 border-t border-gray-100 flex justify-between items-center">
-                                    <span class="inline-flex items-center gap-1.5 text-sm text-emerald-600 font-bold group-hover:text-emerald-700 group-hover:underline underline-offset-4 decoration-2 transition-all">
-                                        Selengkapnya
-                                    </span>
-                                    <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300 shadow-sm group-hover:shadow-md">
-                                        <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                                    </div>
-                                </div>
-                            </a>
-                        @endforeach
+                <div class="py-16 text-center bg-white rounded-3xl border border-gray-100 shadow-sm mb-16">
+                    <div class="w-20 h-20 bg-gray-50 text-gray-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                     </div>
-                @else
-                    <div class="py-20 text-center bg-white rounded-3xl border border-gray-100 shadow-sm">
-                        <div class="mb-4 flex justify-center text-gray-300"><svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
-                        <h2 class="text-xl font-bold text-gray-700 mb-2">Belum Ada Layanan</h2>
-                        <p class="text-gray-500 max-w-md mx-auto">Saat ini belum ada informasi layanan publik yang ditambahkan.</p>
-                    </div>
-                @endif
+                    @if(request('search') || request('kategori'))
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Layanan tidak ditemukan.</h3>
+                        <p class="text-gray-500 max-w-sm mx-auto mb-6">Coba gunakan kata kunci yang berbeda atau hapus filter untuk melihat semua layanan.</p>
+                        <a href="{{ route('publik.layanan.index') }}" class="inline-flex items-center gap-2 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 font-semibold px-6 py-2.5 rounded-full transition-colors shadow-sm">
+                            Reset Filter
+                        </a>
+                    @else
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Belum ada layanan publik.</h3>
+                        <p class="text-gray-500 max-w-sm mx-auto">Informasi layanan administrasi desa akan segera diperbarui.</p>
+                    @endif
+                </div>
             @endif
+
+            <!-- Catatan Penting -->
+            <div class="bg-amber-50 border-l-4 border-amber-500 rounded-r-2xl p-6 md:p-8">
+                <h3 class="text-amber-800 font-bold text-lg mb-2 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                    Catatan Penting
+                </h3>
+                <p class="text-amber-700 text-sm leading-relaxed">
+                    Persyaratan dan ketentuan pelayanan dapat berubah sesuai dengan kebijakan Pemerintah Desa dan instansi terkait. Masyarakat disarankan memastikan kelengkapan dokumen sebelum datang ke kantor Desa Blumbang.
+                </p>
+            </div>
+            
         </div>
     </div>
 </x-publik-layout>

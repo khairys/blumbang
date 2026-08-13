@@ -15,9 +15,21 @@ class BeritaPublikController extends Controller
             ->where('status', 'published')
             ->latest('published_at');
             
-        if ($request->has('search')) {
+        if ($request->has('search') && $request->get('search') != '') {
             $search = $request->get('search');
-            $query->where('title', 'like', "%{$search}%");
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('content', 'like', "%{$search}%")
+                  ->orWhereHas('category', function($qCat) use ($search) {
+                      $qCat->where('name', 'like', "%{$search}%");
+                  });
+            });
+        }
+        
+        if ($request->has('kategori') && $request->get('kategori') != '') {
+            $query->whereHas('category', function($q) use ($request) {
+                $q->where('slug', $request->get('kategori'));
+            });
         }
 
         $beritas = $query->paginate(9)->withQueryString();

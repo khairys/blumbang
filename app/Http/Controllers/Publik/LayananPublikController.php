@@ -11,24 +11,29 @@ class LayananPublikController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Layanan::where('is_active', true)->orderBy('kategori')->orderBy('sub_kategori')->orderBy('title');
-        
-        if ($request->has('search') && !empty($request->search)) {
-            $search = $request->get('search');
-            $query->where('title', 'like', "%{$search}%");
-            $layanans = $query->get();
-            $isSearching = true;
-            return view('publik.layanan.index', compact('layanans', 'isSearching'));
-        }
-        
-        // Group by category only
-        $groupedLayanans = $query->get()->groupBy(function($item) {
-            return $item->kategori ?: 'Layanan Lainnya';
-        });
+        $query = Layanan::where('is_active', true)->orderBy('kategori')->orderBy('title');
         
         $isSearching = false;
+
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->get('search');
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('kategori', 'like', "%{$search}%")
+                  ->orWhere('content', 'like', "%{$search}%");
+            });
+            $isSearching = true;
+        }
+
+        if ($request->has('kategori') && !empty($request->kategori) && $request->kategori != 'Semua') {
+            // Revert slug if necessary, but actually we can just pass the exact string from the view
+            $query->where('kategori', $request->kategori);
+            $isSearching = true; 
+        }
         
-        return view('publik.layanan.index', compact('groupedLayanans', 'isSearching'));
+        $layanans = $query->get();
+
+        return view('publik.layanan.index', compact('layanans', 'isSearching'));
     }
 
     public function show(Layanan $layanan)
@@ -37,25 +42,5 @@ class LayananPublikController extends Controller
             abort(404);
         }
         return view('publik.layanan.show', compact('layanan'));
-    }
-
-    public function kategori($kategori)
-    {
-        // Unslug the category name (e.g., 'surat-keterangan' to 'Surat Keterangan')
-        $kategoriName = str_replace('-', ' ', $kategori);
-        
-        $layanans = Layanan::where('is_active', true)
-            ->where('kategori', 'like', $kategoriName)
-            ->orderBy('title')
-            ->get();
-            
-        if ($layanans->isEmpty()) {
-            abort(404);
-        }
-        
-        // Ensure proper capitalization for display
-        $kategoriTitle = ucwords($kategoriName);
-        
-        return view('publik.layanan.kategori', compact('layanans', 'kategoriTitle'));
     }
 }
