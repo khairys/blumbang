@@ -54,11 +54,26 @@
                 <div class="bg-green-50 border border-green-100 rounded-2xl p-6">
                     <h2 class="font-bold text-green-800 mb-4 flex items-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Jam Pelayanan</h2>
                     <div class="space-y-2.5">
-                        @if($pengaturan?->operating_hours)
+                        @if($pengaturan?->operating_hours && is_array($pengaturan->operating_hours))
+                        @php
+                            $jams = [
+                                ['Senin - Kamis', $pengaturan->operating_hours['senin_kamis'] ?? '07.30 - 14.00 WIB'],
+                                ['Jumat', $pengaturan->operating_hours['jumat'] ?? '07.30 - 11.00 WIB'],
+                                ['Sabtu', $pengaturan->operating_hours['sabtu'] ?? '07.30 - 12.30 WIB'],
+                                ['Minggu', 'Tutup']
+                            ];
+                        @endphp
+                        @foreach ($jams as $j)
+                        <div class="flex justify-between text-sm {{ in_array($j[0], ['Sabtu','Minggu']) ? 'text-gray-400' : 'text-green-800' }}">
+                            <span>{{ $j[0] }}</span>
+                            <span class="font-medium">{{ $j[1] }}</span>
+                        </div>
+                        @endforeach
+                        @elseif($pengaturan?->operating_hours)
                         <div class="text-sm text-green-800 prose prose-sm max-w-none prose-green">{!! $pengaturan->operating_hours !!}</div>
                         @else
                         @php
-                        $jams = [['Senin', '08.00 – 15.00 WIB'],['Selasa', '08.00 – 15.00 WIB'],['Rabu', '08.00 – 15.00 WIB'],['Kamis', '08.00 – 15.00 WIB'],['Jumat', '08.00 – 11.00 WIB'],['Sabtu', 'Tutup'],['Minggu', 'Tutup']];
+                        $jams = [['Senin - Kamis', '08.00 – 15.00 WIB'],['Jumat', '08.00 – 11.00 WIB'],['Sabtu', 'Tutup'],['Minggu', 'Tutup']];
                         @endphp
                         @foreach ($jams as $j)
                         <div class="flex justify-between text-sm {{ in_array($j[0], ['Sabtu','Minggu']) ? 'text-gray-400' : 'text-green-800' }}">

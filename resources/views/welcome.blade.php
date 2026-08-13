@@ -143,7 +143,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100">
                 @if(isset($beritas) && $beritas->isNotEmpty())
                     @foreach ($beritas as $b)
-                    <article class="card-hover bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                    <a href="{{ route('publik.berita.show', $b->slug) }}" class="block card-hover bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow group">
                         <!-- Thumbnail -->
                         <div class="h-48 bg-gradient-to-br from-green-800 to-emerald-600 relative overflow-hidden">
                             @if ($b->thumbnail)
@@ -162,16 +162,16 @@
 
                         <div class="p-5 flex flex-col h-full">
                             <p class="text-xs text-gray-400 mb-2">{{ $b->created_at->format('d M Y') }}</p>
-                            <h3 class="font-bold text-gray-900 mb-2 leading-snug line-clamp-2"><a href="{{ route('publik.berita.show', $b->slug) }}" class="hover:text-green-600">{{ $b->title }}</a></h3>
+                            <h3 class="font-bold text-gray-900 mb-2 leading-snug line-clamp-2 group-hover:text-green-600 transition-colors">{{ $b->title }}</h3>
                             <p class="text-sm text-gray-500 leading-relaxed line-clamp-3 mb-4">{{ $b->summary }}</p>
                             <div class="mt-auto pt-2">
-                                <a href="{{ route('publik.berita.show', $b->slug) }}" class="inline-flex items-center gap-1 text-green-600 hover:text-green-700 text-sm font-medium transition-colors">
+                                <span class="inline-flex items-center gap-1 text-green-600 group-hover:text-green-700 text-sm font-medium transition-colors">
                                     Baca Selengkapnya
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                                </a>
+                                </span>
                             </div>
                         </div>
-                    </article>
+                    </a>
                     @endforeach
                 @else
                 <div class="col-span-full py-8 text-center bg-gray-50 rounded-2xl border border-gray-100">
@@ -194,11 +194,11 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100">
                 @if(isset($groupedLayanans) && $groupedLayanans->isNotEmpty())
                     @foreach($groupedLayanans as $kategori => $layanans)
-                        <a href="{{ route('publik.layanan.kategori', Str::slug($kategori)) }}" class="group bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col min-h-[250px]">
+                        <a href="{{ route('publik.layanan.kategori', Str::slug($kategori)) }}" class="group bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:scale-[1.02] transition-all duration-300 relative overflow-hidden flex flex-col h-full">
                             <!-- Background Decoration -->
                             <div class="absolute -right-10 -top-10 w-32 h-32 bg-emerald-50 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500 pointer-events-none"></div>
                             
-                            <div class="relative z-10 flex-1 flex flex-col h-full items-start justify-center">
+                            <div class="relative z-10 flex-1 flex flex-col h-full items-start">
                                 <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300">
                                     @if($kategori == 'Surat Keterangan')
                                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
@@ -208,24 +208,26 @@
                                         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"/></svg>
                                     @endif
                                 </div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">{{ $kategori }}</h3>
-                                <p class="text-sm text-gray-500 mb-4">{{ $layanans->count() }} Jenis Layanan</p>
-                            </div>
-                            
-                            <!-- Preview List (Hover Effect) -->
-                            <div class="absolute inset-x-0 bottom-0 top-auto bg-white/95 backdrop-blur shadow-[0_-10px_40px_rgba(0,0,0,0.1)] p-8 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out border-t border-gray-100 z-20">
-                                <h4 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                    <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
-                                    Daftar Layanan
-                                </h4>
-                                <ul class="space-y-3">
+                                <h3 class="text-xl font-bold text-gray-900 mb-6">{{ $kategori }}</h3>
+                                
+                                <!-- Daftar Layanan (Selalu Tampil) -->
+                                <ul class="space-y-3 mb-6 w-full">
                                     @foreach($layanans as $layanan)
-                                        <li class="flex items-start gap-2 text-gray-700 text-sm font-medium">
+                                        <li class="flex items-start gap-2 text-gray-600 text-sm font-medium">
                                             <svg class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                             {{ $layanan->title }}
                                         </li>
                                     @endforeach
                                 </ul>
+                            </div>
+                            
+                            <div class="mt-auto relative z-10 w-full pt-4 border-t border-gray-100 flex justify-between items-center">
+                                <span class="inline-flex items-center gap-1.5 text-sm text-emerald-600 font-bold group-hover:text-emerald-700 group-hover:underline underline-offset-4 decoration-2 transition-all">
+                                    Selengkapnya
+                                </span>
+                                <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-500 group-hover:text-white transition-colors duration-300 shadow-sm group-hover:shadow-md">
+                                    <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                                </div>
                             </div>
                         </a>
                     @endforeach
@@ -256,7 +258,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100">
                 @if(isset($potensi_desa) && $potensi_desa->isNotEmpty())
                     @foreach ($potensi_desa as $pot)
-                    <div class="card-hover rounded-2xl overflow-hidden border border-green-100 shadow-sm bg-white">
+                    <a href="{{ route('publik.potensi-desa.show', $pot->slug) }}" class="block card-hover rounded-2xl overflow-hidden border border-green-100 shadow-sm bg-white hover:shadow-md transition-shadow group">
                         <div class="h-36 bg-gradient-to-br from-green-700 to-emerald-600 flex items-center justify-center relative">
                             @if($pot->thumbnail)
                             <img src="{{ Storage::url($pot->thumbnail) }}" alt="{{ $pot->title }}" class="w-full h-full object-cover">
@@ -265,10 +267,10 @@
                             @endif
                         </div>
                         <div class="p-5">
-                            <h3 class="font-bold text-gray-900 mb-2 line-clamp-1"><a href="{{ route('publik.potensi-desa.show', $pot->slug) }}" class="hover:text-green-600">{{ $pot->title }}</a></h3>
+                            <h3 class="font-bold text-gray-900 mb-2 line-clamp-1 group-hover:text-green-600 transition-colors">{{ $pot->title }}</h3>
                             <p class="text-sm text-gray-500 leading-relaxed line-clamp-3">{{ $pot->summary }}</p>
                         </div>
-                    </div>
+                    </a>
                     @endforeach
                 @else
                     <div class="col-span-full py-10 text-center bg-white rounded-2xl border border-green-100 shadow-sm">
@@ -413,23 +415,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== CALL TO ACTION ===== -->
-    <section class="py-16 bg-gradient-to-br from-green-800 to-emerald-700" data-aos="fade-up">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="mb-4 flex justify-center text-emerald-200"><svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
-            <h2 class="text-3xl font-bold text-white mb-4">Mari Bersama Membangun Desa Blumbang</h2>
-            <p class="text-green-200 mb-8 max-w-xl mx-auto">Kami terus berinovasi memberikan pelayanan terbaik dan mengembangkan potensi lokal untuk kesejahteraan masyarakat Desa Blumbang.</p>
-            <div class="flex flex-wrap gap-4 justify-center">
-                <a href="{{ route('publik.layanan.index') }}" class="bg-white text-green-800 hover:bg-gray-50 font-semibold px-8 py-3.5 rounded-xl shadow-lg transition-all duration-200 hover:-translate-y-0.5">
-                    Lihat Layanan Publik
-                </a>
-                <a href="{{ route('publik.profil') }}" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white font-medium px-8 py-3.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5">
-                    Jelajahi Profil Desa
-                </a>
             </div>
         </div>
     </section>

@@ -24,6 +24,7 @@
         <!-- Tab Navigation -->
         <div class="flex gap-2 flex-wrap mb-8 border-b border-gray-200 pb-0">
             <button onclick="showTab('sejarah')" id="tab-sejarah" class="tab-btn active-tab px-5 py-2.5 text-sm font-semibold border-b-2 border-green-600 text-green-700 -mb-px transition-all">Sejarah</button>
+            <button onclick="showTab('pandang')" id="tab-pandang" class="tab-btn px-5 py-2.5 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-green-700 -mb-px transition-all">Selayang Pandang</button>
             <button onclick="showTab('visi')" id="tab-visi" class="tab-btn px-5 py-2.5 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-green-700 -mb-px transition-all">Visi & Misi</button>
             <button onclick="showTab('geografi')" id="tab-geografi" class="tab-btn px-5 py-2.5 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-green-700 -mb-px transition-all">Geografi</button>
             <button onclick="showTab('info')" id="tab-info" class="tab-btn px-5 py-2.5 text-sm font-medium text-gray-500 border-b-2 border-transparent hover:text-green-700 -mb-px transition-all">Data & Statistik</button>
@@ -44,10 +45,25 @@
             </div>
         </div>
 
+        <div id="content-pandang" class="tab-content hidden">
+            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Selayang Pandang</h2>
+                <div class="prose max-w-none text-gray-600 leading-relaxed space-y-4 text-justify">
+                    <p>Menurut cerita rakyat yang berkembang di masyarakat, wilayah Desa Blumbang pada masa dahulu merupakan kawasan hutan belantara. Di tengah kawasan tersebut terdapat banyak genangan air atau blumbang yang sering digunakan oleh hewan-hewan, termasuk badak atau warak, untuk berkubang. Keberadaan banyak blumbang tersebut kemudian dipercaya menjadi salah satu asal-usul nama Blumbang.</p>
+                    <p>Pada masa terjadinya Perang Diponegoro, sekelompok orang datang dan menetap di kawasan hutan tersebut untuk mencari tempat berlindung. Salah seorang di antaranya adalah Arum Ginang, yang berasal dari Purwokerto. Pada masa itu, kawasan tersebut belum banyak dihuni oleh manusia karena masih berupa hutan dan dikenal sebagai tempat hidup berbagai hewan, termasuk badak atau warak.</p>
+                    <p>Arum Ginang kemudian merasa nyaman tinggal di kawasan tersebut bersama para pengikutnya. Seiring berjalannya waktu, keberadaan manusia di kawasan tersebut semakin berkembang. Masyarakat mulai menetap dan memanfaatkan lahan untuk bercocok tanam, sementara hewan-hewan yang sebelumnya menghuni kawasan tersebut perlahan meninggalkan wilayah tersebut.</p>
+                    <p>Kawasan permukiman yang semakin berkembang kemudian menjadi sebuah dukuh yang dikenal dengan nama Dukuh Blumbang. Nama tersebut dipercaya berasal dari banyaknya blumbang atau genangan air yang terdapat di wilayah tersebut.</p>
+                    <p>Arum Ginang kemudian menetap di wilayah Blumbang hingga akhir hayatnya dan dimakamkan di kawasan tersebut. Karena dianggap sebagai salah satu tokoh awal yang datang dan menetap di wilayah Blumbang, makamnya kemudian dikenal sebagai Makam Arum Ginang. Hingga saat ini, makam tersebut masih dikunjungi oleh anak cucu dan keturunannya.</p>
+                    <p>Seiring bertambahnya jumlah penduduk di Dukuh Blumbang, sebagian masyarakat kemudian mencari wilayah baru untuk bercocok tanam. Mereka bergerak ke arah timur Dukuh Blumbang, menuju kawasan yang memiliki kondisi tanah yang cenderung basah dan wilayah yang naik turun.</p>
+                    <p>Di kawasan tersebut tumbuh banyak rumput yang oleh masyarakat setempat disebut glagah. Karena tanaman glagah tumbuh dalam jumlah yang luas, masyarakat kemudian menyebut kawasan tersebut sebagai Glagahombo, yang berasal dari kata glagah dan ombo dalam bahasa Jawa yang berarti luas.</p>
+                    <p>Perkembangan permukiman di wilayah tersebut kemudian membentuk Dukuh Glagahombo, yang dalam perjalanan selanjutnya menjadi bagian dari wilayah Desa Blumbang bersama dengan Dukuh Blumbang.</p>
+                </div>
+            </div>
+        </div>
+
         <div id="content-visi" class="tab-content hidden">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="bg-green-700 text-white rounded-2xl p-8">
-                    <div class="mb-4 text-green-200"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
                     <h2 class="text-xl font-bold mb-4">Visi Desa Blumbang</h2>
                     <div class="prose prose-invert max-w-none text-green-100 text-lg font-serif italic">
                         @if(isset($profil) && $profil->vision)
@@ -58,7 +74,6 @@
                     </div>
                 </div>
                 <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-                    <div class="mb-4 text-green-600"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
                     <h2 class="text-xl font-bold text-gray-900 mb-4">Misi Desa Blumbang</h2>
                     <div class="prose max-w-none text-gray-700">
                         @if(isset($profil) && $profil->mission)
