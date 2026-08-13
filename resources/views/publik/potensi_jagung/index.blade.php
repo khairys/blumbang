@@ -38,30 +38,14 @@
         </div>
 
         {{-- Wave --}}
-        <div class="absolute bottom-0 left-0 right-0" style="line-height:0">
-            <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
-                <path d="M0 80L1440 80L1440 40C1200 75 960 5 720 20C480 35 240 75 0 40L0 80Z" fill="#ffffff"/>
+        <div class="absolute bottom-[-1px] left-0 right-0" style="line-height:0">
+            <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block; width: 100%;">
+                <path d="M0 80L1440 80L1440 40C1200 75 960 5 720 20C480 35 240 75 0 40L0 80Z" fill="#f9fafb"/>
             </svg>
         </div>
     </div>
 
-    {{-- ===== STATISTIK ===== --}}
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-10 mb-16">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            @foreach([
-                ['282,77 Ha', 'Luas Wilayah Desa', '🗺️', 'from-amber-500 to-yellow-400'],
-                ['10', 'Kreasi Olahan Jagung', '🥣', 'from-green-500 to-emerald-400'],
-                ['1', 'Produk Unggulan', '⭐', 'from-yellow-500 to-amber-400'],
-                ['1', 'Program Multidisiplin KKN', '🎓', 'from-emerald-600 to-green-500'],
-            ] as $stat)
-            <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 text-center hover:shadow-xl transition-shadow">
-                <div class="text-3xl mb-2">{{ $stat[2] }}</div>
-                <div class="text-2xl font-extrabold text-gray-900 mb-1">{{ $stat[0] }}</div>
-                <div class="text-xs text-gray-500 font-medium">{{ $stat[1] }}</div>
-            </div>
-            @endforeach
-        </div>
-    </div>
+
 
     {{-- ===== PENGANTAR ===== --}}
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
@@ -128,15 +112,6 @@
                 @endforeach
             </div>
 
-            {{-- Disclaimer --}}
-            <div class="max-w-3xl mx-auto bg-white border border-green-200 rounded-2xl p-6 flex gap-4 items-start">
-                <div class="w-10 h-10 bg-green-100 rounded-xl flex-shrink-0 flex items-center justify-center text-green-600">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <p class="text-sm text-green-800 leading-relaxed">
-                    <strong>Catatan penting:</strong> Pemanfaatan jagung sebagai pangan perlu dilakukan sebagai bagian dari pola makan beragam dan bergizi seimbang. Produk berbahan dasar jagung bukan merupakan satu-satunya makanan untuk memenuhi kebutuhan gizi keluarga. Masyarakat dapat memanfaatkan Posyandu untuk pemantauan pertumbuhan dan edukasi kesehatan.
-                </p>
-            </div>
         </div>
     </div>
 
@@ -187,7 +162,7 @@
         @if($lainnya->isNotEmpty())
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($lainnya as $p)
-            <article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
+            <article class="card-hover bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm transition-all duration-300 flex flex-col group">
                 <a href="{{ route('publik.potensi-jagung.show', $p->slug) }}" class="block relative aspect-video">
                     @if($p->thumbnail)
                         <img src="{{ Storage::url($p->thumbnail) }}" alt="{{ $p->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">

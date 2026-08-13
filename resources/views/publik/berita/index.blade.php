@@ -2,14 +2,14 @@
     <x-slot name="title">Berita Desa</x-slot>
     <div class="bg-gradient-to-br from-emerald-800 via-emerald-700 to-green-600 pt-16 pb-24 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <nav class="text-sm text-emerald-100 mb-4"><a href="{{ route('beranda') }}" class="hover:text-white font-medium transition-colors">Beranda</a> <span class="mx-2 text-emerald-300">/</span><span class="text-white">Berita</span></nav>
-            <h1 class="text-4xl font-extrabold text-white tracking-tight">Berita Desa</h1>
+            <nav class="text-sm text-emerald-100 mb-6 flex items-center gap-2"><a href="{{ route('beranda') }}" class="hover:text-white transition-colors">Beranda</a> <svg class="w-3 h-3 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg><span class="text-white">Berita Desa</span></nav>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">Berita Desa</h1>
             <p class="text-emerald-50 mt-3 text-lg max-w-2xl">Informasi terkini seputar aktivitas dan program desa</p>
         </div>
         <!-- Wave -->
-        <div class="absolute bottom-0 left-0 right-0" style="line-height:0">
-            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
-                <path d="M0 60L1440 60L1440 30C1200 60 960 0 720 15C480 30 240 60 0 30L0 60Z" fill="#ffffff"/>
+        <div class="absolute bottom-[-1px] left-0 right-0" style="line-height:0">
+            <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block; width: 100%;">
+                <path d="M0 60L1440 60L1440 30C1200 60 960 0 720 15C480 30 240 60 0 30L0 60Z" fill="#f9fafb"/>
             </svg>
         </div>
     </div>
@@ -40,7 +40,7 @@
         <!-- Real Data -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($beritas as $b)
-            <article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200">
+            <article class="card-hover bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm transition-all duration-200">
                 @if ($b->thumbnail)
                 <img src="{{ Storage::url($b->thumbnail) }}" alt="{{ $b->title }}" class="w-full h-44 object-cover">
                 @else
@@ -83,7 +83,7 @@
             ];
             @endphp
             @foreach ($dummies as $b)
-            <article class="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-200">
+            <article class="card-hover bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm transition-all duration-200">
                 <div class="h-44 bg-gradient-to-br {{ $b['bg'] }} relative flex items-center justify-center">
                     <svg class="w-16 h-16 text-white/20" fill="currentColor" viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
                     <div class="absolute top-3 left-3"><span class="bg-white/90 text-{{ $b['warna'] }}-700 text-xs font-bold px-2.5 py-1 rounded-full">{{ $b['kat'] }}</span></div>

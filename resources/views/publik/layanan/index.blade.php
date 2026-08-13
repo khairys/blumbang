@@ -21,8 +21,8 @@
 
     <div class="bg-gradient-to-br from-emerald-800 via-emerald-700 to-green-600 pt-16 pb-24 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <nav class="text-sm text-emerald-100 mb-4"><a href="{{ route('beranda') }}" class="hover:text-white font-medium transition-colors">Beranda</a> <span class="mx-2 text-emerald-300">/</span><span class="text-white">Layanan Publik</span></nav>
-            <h1 class="text-4xl font-extrabold text-white tracking-tight">Layanan Publik Desa</h1>
+            <nav class="text-sm text-emerald-100 mb-6 flex items-center gap-2"><a href="{{ route('beranda') }}" class="hover:text-white transition-colors">Beranda</a> <svg class="w-3 h-3 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg><span class="text-white">Layanan Publik</span></nav>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">Layanan Publik Desa</h1>
             <p class="text-emerald-50 mt-3 text-lg max-w-2xl">Panduan prosedur dan persyaratan layanan administrasi desa</p>
         </div>
         <!-- Wave -->
@@ -77,7 +77,7 @@
                 @if(isset($layanans) && $layanans->isNotEmpty())
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach ($layanans as $l)
-                        <a href="{{ route('publik.layanan.show', $l) }}" class="group block bg-white rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:border-emerald-200 transition-all duration-300 overflow-hidden">
+                        <a href="{{ route('publik.layanan.show', $l) }}" class="card-hover group block bg-white rounded-3xl border border-gray-100 shadow-sm transition-all duration-300 overflow-hidden">
                             <div class="p-6 h-full flex flex-col">
                                 <div class="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-4 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
@@ -95,10 +95,9 @@
                         @endforeach
                     </div>
                 @else
-                    <div class="py-16 text-center bg-white rounded-3xl border border-gray-100 shadow-sm">
-                        <div class="mb-4 flex justify-center text-gray-300"><svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
-                        <h2 class="text-xl font-bold text-gray-700 mb-2">Tidak Ditemukan</h2>
-                        <p class="text-gray-500">Layanan dengan kata kunci tersebut tidak ada.</p>
+                    <div class="py-12 text-center bg-white rounded-2xl border border-emerald-100 shadow-sm">
+                        <div class="mb-3 text-emerald-300 flex justify-center"><svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
+                        <p class="text-gray-500 font-medium">Layanan dengan kata kunci tersebut tidak ada.</p>
                     </div>
                 @endif
                 <div class="mt-10 text-center"><a href="{{ route('publik.layanan.index') }}" class="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-800 font-semibold bg-emerald-50 px-6 py-3 rounded-full transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg> Kembali ke Daftar Layanan</a></div>

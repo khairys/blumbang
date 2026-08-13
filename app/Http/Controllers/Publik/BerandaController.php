@@ -16,7 +16,7 @@ class BerandaController extends Controller
         $beritas = Berita::with('category')->where('status', 'published')->latest()->take(3)->get();
         $pengumumans = Pengumuman::where('status', 'published')->latest()->take(5)->get();
         $popup_pengumuman = Pengumuman::where('status', 'published')->where('is_popup', true)->latest()->first();
-        $potensi_jagung = PotensiJagung::where('status', 'published')->latest()->take(4)->get();
+        $potensi_jagung = PotensiJagung::where('status', 'published')->get();
         $groupedLayanans = \App\Models\Layanan::where('is_active', true)->orderBy('kategori')->orderBy('title')->get()->groupBy(function($item) {
             return $item->kategori ?: 'Layanan Lainnya';
         });

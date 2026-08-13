@@ -283,61 +283,123 @@
     </section>
 
     <!-- ===== POTENSI JAGUNG HIGHLIGHT ===== -->
-    <section class="py-16 bg-gradient-to-br from-emerald-50/50 to-stone-50/50" data-aos="fade-up">
+    <section class="py-20 relative overflow-hidden" data-aos="fade-up">
+        <!-- Background Decor -->
+        <div class="absolute inset-0 bg-gradient-to-br from-amber-50/80 via-emerald-50/60 to-white -z-10"></div>
+        <div class="absolute -right-64 -top-64 w-[500px] h-[500px] bg-amber-100/50 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute -left-64 -bottom-64 w-[500px] h-[500px] bg-emerald-100/50 rounded-full blur-3xl -z-10"></div>
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Text -->
-                <div>
-                    <div class="inline-flex items-center gap-1.5 bg-emerald-100 text-emerald-700 text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
-                        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg> Inovasi Program KKN
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Text Content (Left) -->
+                <div class="lg:col-span-5 relative z-10">
+                    <div class="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-6 shadow-md shadow-amber-500/20">
+                        <span class="text-sm">🌽</span> Program KKN Multidisiplin
                     </div>
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Olahan Jagung<br><span class="text-emerald-600">Bergizi untuk Keluarga</span></h2>
-                    <p class="text-gray-600 leading-relaxed mb-6">Desa Blumbang mengembangkan berbagai produk olahan jagung sebagai upaya nyata mencegah stunting. Produk kami kaya protein, vitamin, dan mineral penting untuk tumbuh kembang optimal anak-anak.</p>
+                    
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+                        Potensi Jagung<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-500">Desa Blumbang</span>
+                    </h2>
+                    
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                        Mengembangkan hasil panen lokal menjadi pangan bernilai tambah. Terdapat <strong class="text-amber-600">10 Kreasi Olahan</strong> jagung bergizi yang dikembangkan untuk mendukung pemanfaatan pangan lokal keluarga.
+                    </p>
 
-                    <div class="grid grid-cols-2 gap-3 mb-8">
-                        @foreach(['Bubur Jagung Instan','Roti Jagung Fortifikasi','Susu Jagung Manis','Camilan Jagung Bergizi'] as $p)
-                        <div class="flex items-center gap-2.5 bg-white rounded-xl p-3 border border-emerald-100 shadow-sm">
-                            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span class="text-sm font-medium text-gray-700">{{ $p }}</span>
-                        </div>
-                        @endforeach
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="{{ route('publik.potensi-jagung.index') }}" class="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-emerald-500/30">
+                            Selengkapnya
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
                     </div>
-
-                    <a href="{{ route('publik.potensi-jagung.index') }}" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-md hover:shadow-emerald-300">
-                        Lihat Semua Produk
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                    </a>
                 </div>
 
-                <!-- Product Cards Grid -->
-                <div class="grid grid-cols-2 gap-4" data-aos="fade-up" data-aos-delay="100">
-                    @if(isset($potensi_jagung) && $potensi_jagung->isNotEmpty())
-                        @foreach ($potensi_jagung as $p)
-                        <div class="card-hover bg-white rounded-2xl p-5 border border-emerald-100 shadow-sm text-center">
-                            @if($p->thumbnail)
-                            <div class="w-16 h-16 mx-auto mb-3 rounded-xl overflow-hidden">
-                                <img src="{{ Storage::url($p->thumbnail) }}" alt="{{ $p->title }}" class="w-full h-full object-cover">
+                <!-- Product Grid (Right) -->
+                <div class="lg:col-span-7 relative z-10">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full" data-aos="fade-up" data-aos-delay="100">
+                        @php
+                            $featured = isset($potensi_jagung) ? $potensi_jagung->where('title', 'Bubur Jagung')->first() : null;
+                            $cornRibs = isset($potensi_jagung) ? $potensi_jagung->where('title', 'Corn Ribs')->first() : null;
+                            $esJagung = isset($potensi_jagung) ? $potensi_jagung->where('title', 'Es Jagung dan Ubi Ungu')->first() : null;
+                        @endphp
+
+                        @if($featured && $cornRibs && $esJagung)
+                            <!-- 1. Featured: Bubur Jagung (Besar, Kiri) -->
+                            <a href="{{ route('publik.potensi-jagung.show', $featured->slug) }}" class="group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 sm:row-span-2 min-h-[320px] flex flex-col">
+                                <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent z-10 transition-opacity duration-300 group-hover:opacity-90"></div>
+                                
+                                @if($featured->thumbnail)
+                                    <img src="{{ Storage::url($featured->thumbnail) }}" alt="{{ $featured->title }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                @endif
+                                
+                                <div class="absolute top-4 left-4 z-20">
+                                    <span class="bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                        ⭐ Produk Unggulan
+                                    </span>
+                                </div>
+                                
+                                <div class="relative z-20 mt-auto p-6">
+                                    <div class="transform group-hover:-translate-y-2 transition-transform duration-300">
+                                        <h3 class="text-2xl font-bold text-white mb-2 leading-tight">{{ $featured->title }}</h3>
+                                        <p class="text-gray-200 text-sm line-clamp-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">{{ $featured->summary }}</p>
+                                        <span class="inline-flex items-center gap-1.5 text-amber-400 font-semibold text-sm group-hover:text-amber-300">
+                                            Lihat Resep <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="flex flex-col gap-4">
+                                <!-- 2. Corn Ribs (Kanan Atas) -->
+                                <a href="{{ route('publik.potensi-jagung.show', $cornRibs->slug) }}" class="group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-48 flex flex-col">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-emerald-900/10 to-transparent z-10 transition-opacity duration-300 group-hover:opacity-90"></div>
+                                    
+                                    @if($cornRibs->thumbnail)
+                                        <img src="{{ Storage::url($cornRibs->thumbnail) }}" alt="{{ $cornRibs->title }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                    @endif
+                                    
+                                    <div class="relative z-20 mt-auto p-5">
+                                        <div class="transform group-hover:-translate-y-1 transition-transform duration-300">
+                                            <h4 class="text-lg font-bold text-white mb-1">{{ $cornRibs->title }}</h4>
+                                            <span class="inline-flex items-center gap-1.5 text-emerald-300 font-semibold text-xs group-hover:text-emerald-200">
+                                                Eksplorasi <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <!-- 3. Es Jagung dan Ubi Ungu (Kanan Bawah) -->
+                                <a href="{{ route('publik.potensi-jagung.show', $esJagung->slug) }}" class="group relative bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 h-48 flex flex-col">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-purple-900/80 via-purple-900/10 to-transparent z-10 transition-opacity duration-300 group-hover:opacity-90"></div>
+                                    
+                                    @if($esJagung->thumbnail)
+                                        <img src="{{ Storage::url($esJagung->thumbnail) }}" alt="{{ $esJagung->title }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                    @endif
+                                    
+                                    <div class="relative z-20 mt-auto p-5">
+                                        <div class="transform group-hover:-translate-y-1 transition-transform duration-300">
+                                            <h4 class="text-lg font-bold text-white mb-1">{{ $esJagung->title }}</h4>
+                                            <span class="inline-flex items-center gap-1.5 text-purple-300 font-semibold text-xs group-hover:text-purple-200">
+                                                Eksplorasi <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                            @else
-                            <div class="mb-3 border border-amber-50 rounded-xl bg-emerald-50 w-16 h-16 flex items-center justify-center mx-auto text-emerald-600">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                        @else
+                            <div class="col-span-full py-12 text-center bg-white rounded-2xl border border-emerald-100 shadow-sm">
+                                <div class="mb-3 text-amber-300 flex justify-center"><span class="text-5xl">🌽</span></div>
+                                <p class="text-gray-500 font-medium">Belum ada produk olahan jagung atau thumbnail belum diatur.</p>
                             </div>
-                            @endif
-                            <h4 class="font-bold text-gray-900 text-sm mb-1 line-clamp-1"><a href="{{ route('publik.potensi-jagung.show', $p->slug) }}" class="hover:text-emerald-600">{{ $p->title }}</a></h4>
-                            <p class="text-xs text-gray-500 line-clamp-2">{{ $p->summary }}</p>
-                        </div>
-                        @endforeach
-                    @else
-                        <!-- Empty State -->
-                        <div class="col-span-2 py-10 text-center bg-emerald-50 rounded-2xl border border-emerald-100">
-                            <div class="mb-3 text-gray-400 flex justify-center"><svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg></div>
-                            <p class="text-gray-500 font-medium">Belum ada produk olahan jagung.</p>
-                        </div>
-                    @endif
+                        @endif
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
+
 
     
 
