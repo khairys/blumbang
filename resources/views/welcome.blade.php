@@ -106,19 +106,33 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
                 @if(isset($pengumumans) && $pengumumans->isNotEmpty())
-                    @foreach ($pengumumans->take(4) as $p)
-                    <a href="{{ route('publik.pengumuman.show', $p->slug) }}" class="flex flex-col bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-green-200 transition-all duration-300 group">
-                        <h3 class="font-bold text-gray-900 text-lg mb-2 group-hover:text-green-600 transition-colors">{{ $p->title }}</h3>
-                        <p class="text-sm text-gray-400 mb-4">{{ $p->created_at->format('d F Y') }}</p>
-                        <div class="mt-auto flex items-center gap-1.5 text-green-600 font-medium text-sm group-hover:text-green-700 transition-colors">
+                    @foreach ($pengumumans->take(3) as $p)
+                    <a href="{{ route('publik.pengumuman.show', $p->slug) }}" class="flex flex-col bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-emerald-200 transition-all duration-300 group">
+                        <div class="mb-3">
+                            @php
+                                $statusClass = 'bg-emerald-100 text-emerald-700';
+                                if($p->activity_status === 'mendatang') $statusClass = 'bg-blue-100 text-blue-700';
+                                if($p->activity_status === 'selesai') $statusClass = 'bg-gray-100 text-gray-600';
+                            @endphp
+                            <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full {{ $statusClass }}">
+                                {{ ucfirst($p->activity_status ?? 'Aktif') }}
+                            </span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-2 group-hover:text-emerald-600 transition-colors">{{ $p->title }}</h3>
+                        <p class="text-sm text-gray-500 mb-4 line-clamp-2 leading-relaxed">{!! strip_tags($p->content) !!}</p>
+                        <p class="text-xs text-gray-400 mb-4 flex items-center gap-1.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            {{ $p->published_at ? \Carbon\Carbon::parse($p->published_at)->format('d M Y') : $p->created_at->format('d M Y') }}
+                        </p>
+                        <div class="mt-auto flex items-center gap-1.5 text-emerald-600 font-medium text-sm group-hover:text-emerald-700 transition-colors">
                             Baca Selengkapnya
                             <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                         </div>
                     </a>
                     @endforeach
                 @else
-                    <div class="col-span-full py-8 text-center">
-                        <p class="text-gray-500">Belum ada pengumuman terbaru.</p>
+                    <div class="col-span-full py-8 text-center bg-white rounded-2xl border border-gray-100">
+                        <p class="text-gray-500 font-medium">Belum ada pengumuman.</p>
                     </div>
                 @endif
             </div>

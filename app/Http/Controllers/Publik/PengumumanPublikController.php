@@ -14,9 +14,13 @@ class PengumumanPublikController extends Controller
         $query = Pengumuman::where('status', 'published')
             ->orderBy('published_at', 'desc');
             
-        if ($request->has('search')) {
+        if ($request->has('search') && $request->search != '') {
             $search = $request->get('search');
             $query->where('title', 'like', "%{$search}%");
+        }
+        
+        if ($request->has('filter') && in_array($request->filter, ['aktif', 'mendatang', 'selesai'])) {
+            $query->where('activity_status', $request->filter);
         }
 
         $pengumumans = $query->paginate(10)->withQueryString();
