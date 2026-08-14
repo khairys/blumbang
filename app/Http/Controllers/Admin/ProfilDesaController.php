@@ -20,6 +20,22 @@ class ProfilDesaController extends Controller
         $data['created_by'] = auth()->id();
         $data['updated_by'] = auth()->id();
 
+        // Parse comma-separated string to array for industri
+        if (isset($data['geografi_json']['industri']) && is_string($data['geografi_json']['industri'])) {
+            $data['geografi_json']['industri'] = array_map('trim', explode(',', $data['geografi_json']['industri']));
+            $data['geografi_json']['industri'] = array_filter($data['geografi_json']['industri']);
+        }
+
+        // Parse newline-separated string to array for RT/RW
+        if (isset($data['daftar_rt_rw']['rt']) && is_string($data['daftar_rt_rw']['rt'])) {
+            $data['daftar_rt_rw']['rt'] = array_map('trim', explode("\n", $data['daftar_rt_rw']['rt']));
+            $data['daftar_rt_rw']['rt'] = array_filter($data['daftar_rt_rw']['rt']);
+        }
+        if (isset($data['daftar_rt_rw']['rw']) && is_string($data['daftar_rt_rw']['rw'])) {
+            $data['daftar_rt_rw']['rw'] = array_map('trim', explode("\n", $data['daftar_rt_rw']['rw']));
+            $data['daftar_rt_rw']['rw'] = array_filter($data['daftar_rt_rw']['rw']);
+        }
+
         $profil = ProfilDesa::first();
 
         if ($request->hasFile('organizational_structure')) {

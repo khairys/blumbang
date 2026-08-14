@@ -49,14 +49,11 @@
             <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">Selayang Pandang</h2>
                 <div class="prose max-w-none text-gray-600 leading-relaxed space-y-4 text-justify">
-                    <p>Menurut cerita rakyat yang berkembang di masyarakat, wilayah Desa Blumbang pada masa dahulu merupakan kawasan hutan belantara. Di tengah kawasan tersebut terdapat banyak genangan air atau blumbang yang sering digunakan oleh hewan-hewan, termasuk badak atau warak, untuk berkubang. Keberadaan banyak blumbang tersebut kemudian dipercaya menjadi salah satu asal-usul nama Blumbang.</p>
-                    <p>Pada masa terjadinya Perang Diponegoro, sekelompok orang datang dan menetap di kawasan hutan tersebut untuk mencari tempat berlindung. Salah seorang di antaranya adalah Arum Ginang, yang berasal dari Purwokerto. Pada masa itu, kawasan tersebut belum banyak dihuni oleh manusia karena masih berupa hutan dan dikenal sebagai tempat hidup berbagai hewan, termasuk badak atau warak.</p>
-                    <p>Arum Ginang kemudian merasa nyaman tinggal di kawasan tersebut bersama para pengikutnya. Seiring berjalannya waktu, keberadaan manusia di kawasan tersebut semakin berkembang. Masyarakat mulai menetap dan memanfaatkan lahan untuk bercocok tanam, sementara hewan-hewan yang sebelumnya menghuni kawasan tersebut perlahan meninggalkan wilayah tersebut.</p>
-                    <p>Kawasan permukiman yang semakin berkembang kemudian menjadi sebuah dukuh yang dikenal dengan nama Dukuh Blumbang. Nama tersebut dipercaya berasal dari banyaknya blumbang atau genangan air yang terdapat di wilayah tersebut.</p>
-                    <p>Arum Ginang kemudian menetap di wilayah Blumbang hingga akhir hayatnya dan dimakamkan di kawasan tersebut. Karena dianggap sebagai salah satu tokoh awal yang datang dan menetap di wilayah Blumbang, makamnya kemudian dikenal sebagai Makam Arum Ginang. Hingga saat ini, makam tersebut masih dikunjungi oleh anak cucu dan keturunannya.</p>
-                    <p>Seiring bertambahnya jumlah penduduk di Dukuh Blumbang, sebagian masyarakat kemudian mencari wilayah baru untuk bercocok tanam. Mereka bergerak ke arah timur Dukuh Blumbang, menuju kawasan yang memiliki kondisi tanah yang cenderung basah dan wilayah yang naik turun.</p>
-                    <p>Di kawasan tersebut tumbuh banyak rumput yang oleh masyarakat setempat disebut glagah. Karena tanaman glagah tumbuh dalam jumlah yang luas, masyarakat kemudian menyebut kawasan tersebut sebagai Glagahombo, yang berasal dari kata glagah dan ombo dalam bahasa Jawa yang berarti luas.</p>
-                    <p>Perkembangan permukiman di wilayah tersebut kemudian membentuk Dukuh Glagahombo, yang dalam perjalanan selanjutnya menjadi bagian dari wilayah Desa Blumbang bersama dengan Dukuh Blumbang.</p>
+                    @if(isset($profil) && $profil->selayang_pandang)
+                        {!! $profil->selayang_pandang !!}
+                    @else
+                        <p>Belum ada data selayang pandang.</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -91,9 +88,13 @@
             <!-- 1. PENGANTAR -->
             <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
                 <h2 class="text-2xl font-bold text-gray-900 mb-4">Kondisi Geografis Desa Blumbang</h2>
-                <p class="text-gray-500 mb-6 italic">Gambaran mengenai letak wilayah, batas administrasi, kondisi lingkungan, sumber daya alam, serta penggunaan lahan Desa Blumbang.</p>
                 <div class="prose max-w-none text-gray-700 leading-relaxed text-justify">
-                    <p>Desa Blumbang merupakan salah satu desa di Kecamatan Klego, Kabupaten Boyolali, Jawa Tengah. Kondisi wilayah Desa Blumbang meliputi karakteristik geografis, pembagian wilayah, kondisi iklim, sumber daya air, jenis tanah, serta penggunaan lahan yang turut memengaruhi kehidupan dan kegiatan ekonomi masyarakat.</p>
+                    @if(isset($profil) && $profil->geography)
+                        {!! $profil->geography !!}
+                    @else
+                        <p class="text-gray-500 mb-6 italic">Gambaran mengenai letak wilayah, batas administrasi, kondisi lingkungan, sumber daya alam, serta penggunaan lahan Desa Blumbang.</p>
+                        <p>Desa Blumbang merupakan salah satu desa di Kecamatan Klego, Kabupaten Boyolali, Jawa Tengah. Kondisi wilayah Desa Blumbang meliputi karakteristik geografis, pembagian wilayah, kondisi iklim, sumber daya air, jenis tanah, serta penggunaan lahan yang turut memengaruhi kehidupan dan kegiatan ekonomi masyarakat.</p>
+                    @endif
                 </div>
             </div>
 
@@ -109,7 +110,7 @@
                         </div>
                         <div>
                             <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Utara</p>
-                            <p class="font-semibold text-gray-900">Desa Klego</p>
+                            <p class="font-semibold text-gray-900">{{ $profil?->geografi_json['batas']['utara'] ?? 'Desa Klego' }}</p>
                         </div>
                     </div>
                     <div class="bg-gray-50 p-5 rounded-xl border border-gray-100 flex items-start gap-4 hover:border-emerald-200 transition-colors">
@@ -118,16 +119,16 @@
                         </div>
                         <div>
                             <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Selatan</p>
-                            <p class="font-semibold text-gray-900">Desa Jaten</p>
+                            <p class="font-semibold text-gray-900">{{ $profil?->geografi_json['batas']['selatan'] ?? 'Desa Jaten' }}</p>
                         </div>
                     </div>
                     <div class="bg-gray-50 p-5 rounded-xl border border-gray-100 flex items-start gap-4 hover:border-emerald-200 transition-colors">
                         <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7-7m7-7H3"/></svg>
                         </div>
                         <div>
                             <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Timur</p>
-                            <p class="font-semibold text-gray-900">Desa Sangge</p>
+                            <p class="font-semibold text-gray-900">{{ $profil?->geografi_json['batas']['timur'] ?? 'Desa Sangge' }}</p>
                         </div>
                     </div>
                     <div class="bg-gray-50 p-5 rounded-xl border border-gray-100 flex items-start gap-4 hover:border-emerald-200 transition-colors">
@@ -136,7 +137,7 @@
                         </div>
                         <div>
                             <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Barat</p>
-                            <p class="font-semibold text-gray-900 text-sm">Desa Pengkol,<br>Kec. Karanggede</p>
+                            <p class="font-semibold text-gray-900 text-sm">{{ $profil?->geografi_json['batas']['barat'] ?? 'Desa Pengkol, Kec. Karanggede' }}</p>
                         </div>
                     </div>
                 </div>
@@ -200,13 +201,13 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col">
                     <h2 class="text-xl font-bold text-gray-900 mb-4">Kondisi Iklim</h2>
-                    <p class="text-sm text-gray-600 mb-6 flex-grow leading-relaxed">Berdasarkan data yang tersedia, Desa Blumbang memiliki karakteristik iklim lembap dengan curah hujan sebesar 20 mm/tahun dan jumlah bulan kering sebanyak 6 bulan.</p>
+                    <p class="text-sm text-gray-600 mb-6 flex-grow leading-relaxed">Berdasarkan data yang tersedia, Desa Blumbang memiliki karakteristik iklim lembap dengan curah hujan sebesar {{ $profil?->geografi_json['iklim']['curah_hujan'] ?? '20' }} mm/tahun dan jumlah bulan kering sebanyak {{ $profil?->geografi_json['iklim']['bulan_kering'] ?? '6' }} bulan.</p>
                     <div class="space-y-3">
                         <div class="bg-blue-50 text-blue-800 rounded-xl p-3 font-semibold text-center border border-blue-100 text-sm">
-                            Curah Hujan<br><span class="text-lg font-black text-blue-900">20 mm/tahun</span>
+                            Curah Hujan<br><span class="text-lg font-black text-blue-900">{{ $profil?->geografi_json['iklim']['curah_hujan'] ?? '20' }} mm/tahun</span>
                         </div>
                         <div class="bg-orange-50 text-orange-800 rounded-xl p-3 font-semibold text-center border border-orange-100 text-sm">
-                            Jumlah Bulan Kering<br><span class="text-lg font-black text-orange-900">6 bulan</span>
+                            Jumlah Bulan Kering<br><span class="text-lg font-black text-orange-900">{{ $profil?->geografi_json['iklim']['bulan_kering'] ?? '6' }} bulan</span>
                         </div>
                     </div>
 
@@ -284,17 +285,17 @@
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                         <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200 shadow-sm">
                             <div class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1">Sapi Potong</div>
-                            <div class="font-black text-emerald-700 text-xl">200</div>
+                            <div class="font-black text-emerald-700 text-xl">{{ number_format($profil?->geografi_json['peternakan']['sapi'] ?? 200, 0, ',', '.') }}</div>
                             <div class="text-[10px] text-gray-400 font-bold">EKOR</div>
                         </div>
                         <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200 shadow-sm">
                             <div class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1">Kambing</div>
-                            <div class="font-black text-emerald-700 text-xl">115</div>
+                            <div class="font-black text-emerald-700 text-xl">{{ number_format($profil?->geografi_json['peternakan']['kambing'] ?? 115, 0, ',', '.') }}</div>
                             <div class="text-[10px] text-gray-400 font-bold">EKOR</div>
                         </div>
                         <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200 shadow-sm">
                             <div class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1">Puyuh</div>
-                            <div class="font-black text-emerald-700 text-xl">15.000</div>
+                            <div class="font-black text-emerald-700 text-xl">{{ number_format($profil?->geografi_json['peternakan']['puyuh'] ?? 15000, 0, ',', '.') }}</div>
                             <div class="text-[10px] text-gray-400 font-bold">EKOR</div>
                         </div>
                     </div>
@@ -306,7 +307,8 @@
                     <p class="text-gray-600 mb-6 text-sm">Selain mengandalkan sektor pertanian dan peternakan, masyarakat Desa Blumbang juga mengembangkan berbagai kegiatan usaha dan industri kecil.</p>
                     
                     <div class="flex flex-wrap gap-2">
-                        @foreach(['Mebel', 'Keripik pangsit', 'Pengepul pisang', 'Pembuatan batako', 'Percetakan', 'Kerajinan bambu'] as $industri)
+                        @php $industriList = $profil?->geografi_json['industri'] ?? ['Mebel', 'Keripik pangsit', 'Pengepul pisang', 'Pembuatan batako', 'Percetakan', 'Kerajinan bambu']; @endphp
+                        @foreach($industriList as $industri)
                         <span class="bg-emerald-50 text-emerald-700 border border-emerald-100 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-100 transition-colors">
                             {{ $industri }}
                         </span>
@@ -316,23 +318,32 @@
             </div>
 
             <!-- 11. LUAS WILAYAH -->
+            @php
+                $luasTotal = (float) ($profil?->geografi_json['luas']['total'] ?? 282.77);
+                $luasSawah = (float) ($profil?->geografi_json['luas']['sawah'] ?? 96.00);
+                $luasKering = (float) ($profil?->geografi_json['luas']['kering'] ?? 186.77);
+                
+                // Menghitung persentase
+                $persenSawah = $luasTotal > 0 ? round(($luasSawah / $luasTotal) * 100) : 34;
+                $persenKering = $luasTotal > 0 ? round(($luasKering / $luasTotal) * 100) : 66;
+            @endphp
             <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
                 <h2 class="text-xl font-bold text-gray-900 mb-6">Luas Wilayah</h2>
                 
                 <div class="mb-8 flex flex-col md:flex-row items-center gap-6">
                     <div class="bg-emerald-600 text-white p-6 rounded-2xl text-center min-w-[200px] shadow-lg shadow-emerald-600/20 w-full md:w-auto">
-                        <div class="text-4xl font-black mb-1">282,77</div>
+                        <div class="text-4xl font-black mb-1">{{ number_format($luasTotal, 2, ',', '.') }}</div>
                         <div class="text-sm font-medium text-emerald-100 uppercase tracking-wider">Hektare (Ha)</div>
                         <div class="text-xs text-emerald-200 mt-2 font-bold bg-black/10 rounded-full py-1 px-3 inline-block">Luas Wilayah Desa</div>
                     </div>
                     <div class="flex-grow grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                         <div class="bg-blue-50 p-5 rounded-2xl border border-blue-100 flex flex-col justify-center">
                             <div class="text-sm text-blue-600 font-bold uppercase tracking-wider mb-1">Tanah Sawah</div>
-                            <div class="text-3xl font-black text-blue-900">96,00 <span class="text-lg font-bold text-blue-700">Ha</span></div>
+                            <div class="text-3xl font-black text-blue-900">{{ number_format($luasSawah, 2, ',', '.') }} <span class="text-lg font-bold text-blue-700">Ha</span></div>
                         </div>
                         <div class="bg-amber-50 p-5 rounded-2xl border border-amber-100 flex flex-col justify-center">
                             <div class="text-sm text-amber-600 font-bold uppercase tracking-wider mb-1">Tanah Kering</div>
-                            <div class="text-3xl font-black text-amber-900">186,77 <span class="text-lg font-bold text-amber-700">Ha</span></div>
+                            <div class="text-3xl font-black text-amber-900">{{ number_format($luasKering, 2, ',', '.') }} <span class="text-lg font-bold text-amber-700">Ha</span></div>
                         </div>
                     </div>
                 </div>
@@ -342,15 +353,12 @@
                     <div class="flex justify-between text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">
                         <span>Proporsi Penggunaan Lahan</span>
                     </div>
-                    <!-- Total 282.77 -->
-                    <!-- Sawah: 96 / 282.77 = ~34% -->
-                    <!-- Kering: 186.77 / 282.77 = ~66% -->
                     <div class="w-full h-8 flex rounded-full overflow-hidden shadow-inner bg-gray-100">
-                        <div class="bg-blue-500 flex items-center justify-center text-white text-xs font-bold" style="width: 34%" title="Tanah Sawah (34%)">
-                            34%
+                        <div class="bg-blue-500 flex items-center justify-center text-white text-xs font-bold transition-all duration-1000" style="width: {{ $persenSawah }}%" title="Tanah Sawah ({{ $persenSawah }}%)">
+                            {{ $persenSawah }}%
                         </div>
-                        <div class="bg-amber-500 flex items-center justify-center text-white text-xs font-bold" style="width: 66%" title="Tanah Kering (66%)">
-                            66%
+                        <div class="bg-amber-500 flex items-center justify-center text-white text-xs font-bold transition-all duration-1000" style="width: {{ $persenKering }}%" title="Tanah Kering ({{ $persenKering }}%)">
+                            {{ $persenKering }}%
                         </div>
                     </div>
                     <div class="flex justify-center gap-6 text-xs font-semibold mt-3 text-gray-600">
@@ -494,7 +502,7 @@
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         @php
-                            $rws = ['Sukirno', 'Sutarno', 'M. Mustofa', 'Suniri'];
+                            $rws = $profil?->daftar_rt_rw['rw'] ?? ['Sukirno', 'Sutarno', 'M. Mustofa', 'Suniri'];
                         @endphp
                         @foreach($rws as $index => $rw)
                         <div class="bg-gray-50 rounded-xl p-3 flex items-center gap-3 border border-gray-100 hover:border-emerald-200 transition-colors">
@@ -513,7 +521,7 @@
                     </h3>
                     <div class="grid grid-cols-2 sm:grid-cols-2 gap-3 h-64 overflow-y-auto pr-2 custom-scrollbar">
                         @php
-                            $rts = ['M. Mustar', 'Suri', 'Tarsono', 'Suradi', 'Winarsih', 'Sumarno', 'Jarot Prianto', 'Supangat', 'Sumadi', 'Darmo', 'Rosman', 'Sobirin', 'Diman', 'Afrizal', 'Slamet Mulyono', 'Juweni'];
+                            $rts = $profil?->daftar_rt_rw['rt'] ?? ['M. Mustar', 'Suri', 'Tarsono', 'Suradi', 'Winarsih', 'Sumarno', 'Jarot Prianto', 'Supangat', 'Sumadi', 'Darmo', 'Rosman', 'Sobirin', 'Diman', 'Afrizal', 'Slamet Mulyono', 'Juweni'];
                         @endphp
                         @foreach($rts as $index => $rt)
                         <div class="bg-gray-50 rounded-xl p-2.5 flex items-center gap-2 border border-gray-100 hover:border-emerald-200 transition-colors">
@@ -557,6 +565,27 @@
         Chart.defaults.plugins.tooltip.padding = 12;
         Chart.defaults.plugins.tooltip.cornerRadius = 8;
 
+        // Data for Charts from Backend
+        @php
+            $statAgama = array_values($profil?->statistik_json['agama'] ?? ['Islam'=>2555, 'Katholik'=>7, 'Kristen'=>4, 'Hindu'=>0, 'Buddha'=>0, 'Khonghucu'=>0, 'Kepercayaan'=>0]);
+            $statPerkawinan = array_values($profil?->statistik_json['perkawinan'] ?? ['Belum Kawin'=>1050, 'Kawin'=>1237, 'Cerai Hidup'=>56, 'Cerai Mati'=>223]);
+            $statPendidikan = array_values($profil?->statistik_json['pendidikan'] ?? ['Tidak/Belum Sekolah'=>535, 'Belum Tamat SD/Sederajat'=>261, 'Tamat SD/Sederajat'=>594, 'Tamat SLTP/Sederajat'=>592, 'Tamat SLTA/Sederajat'=>446, 'Diploma I/II'=>9, 'Akademi/DIII/Sarjana Muda'=>31, 'Diploma IV/Strata I'=>93, 'Strata II'=>5, 'Strata III'=>0]);
+            
+            $rawLaki = array_values($profil?->statistik_json['piramida']['laki_laki'] ?? [-47, -48, -60, -54, -69, -77, -84, -95, -91, -106, -96, -107, -112, -99, -107, -76]);
+            $rawPerem = array_values($profil?->statistik_json['piramida']['perempuan'] ?? [80, 70, 74, 63, 68, 82, 84, 73, 82, 98, 98, 95, 79, 90, 78, 71]);
+        @endphp
+
+        const statAgama = @json($statAgama);
+        const statPerkawinan = @json($statPerkawinan);
+        const statPendidikan = @json($statPendidikan);
+        
+        const rawLaki = @json($rawLaki);
+        const rawPerem = @json($rawPerem);
+        
+        // Ensure laki-laki is negative for diverging bar chart
+        const dataLakiLaki = rawLaki.map(v => -Math.abs(v));
+        const dataPerempuan = rawPerem.map(v => Math.abs(v));
+
         // 1. Chart Agama (Pie)
         const ctxAgama = document.getElementById('chartAgama').getContext('2d');
         new Chart(ctxAgama, {
@@ -564,7 +593,7 @@
             data: {
                 labels: ['Islam', 'Katholik', 'Kristen', 'Hindu', 'Buddha', 'Khonghucu', 'Kepercayaan'],
                 datasets: [{
-                    data: [2555, 7, 4, 0, 0, 0, 0],
+                    data: statAgama,
                     backgroundColor: [
                         '#10b981', // Emerald 500 (Majority)
                         '#3b82f6', // Blue
@@ -602,7 +631,7 @@
             data: {
                 labels: ['Belum Kawin', 'Kawin', 'Cerai Hidup', 'Cerai Mati'],
                 datasets: [{
-                    data: [1050, 1237, 56, 223],
+                    data: statPerkawinan,
                     backgroundColor: [
                         '#60a5fa', // Blue 400
                         '#10b981', // Emerald 500 (Majority)
@@ -648,7 +677,7 @@
                 ],
                 datasets: [{
                     label: 'Jumlah Penduduk',
-                    data: [535, 261, 594, 592, 446, 9, 31, 93, 5, 0],
+                    data: statPendidikan,
                     backgroundColor: '#34d399', // Emerald 400
                     hoverBackgroundColor: '#10b981',
                     borderRadius: 6
@@ -695,11 +724,6 @@
         
         // Labels from Top (>75) to Bottom (0-4)
         const usiaLabels = ['>75', '70-74', '65-69', '60-64', '55-59', '50-54', '45-49', '40-44', '35-39', '30-34', '25-29', '20-24', '15-19', '10-14', '5-9', '0-4'];
-        
-        // Laki-laki: Make values negative for left-side display
-        const dataLakiLaki = [-47, -48, -60, -54, -69, -77, -84, -95, -91, -106, -96, -107, -112, -99, -107, -76];
-        // Perempuan: Positive values for right-side display
-        const dataPerempuan = [80, 70, 74, 63, 68, 82, 84, 73, 82, 98, 98, 95, 79, 90, 78, 71];
 
         new Chart(ctxPiramida, {
             type: 'bar',

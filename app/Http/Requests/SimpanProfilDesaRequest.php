@@ -26,6 +26,10 @@ class SimpanProfilDesaRequest extends FormRequest
             'stat_rt'             => 'nullable|string|max:50',
             'stat_rw'             => 'nullable|string|max:50',
             'stat_luas_wilayah'   => 'nullable|string|max:50',
+            'selayang_pandang'    => 'nullable|string',
+            'geografi_json'       => 'nullable|array',
+            'statistik_json'      => 'nullable|array',
+            'daftar_rt_rw'        => 'nullable|array',
         ];
     }
 }

@@ -25,8 +25,17 @@
                 </div>
 
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-                    <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">📜 Sejarah Desa</h3>
-                    <textarea name="history" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Tuliskan sejarah singkat Desa Blumbang, kapan desa ini berdiri, siapa tokoh-tokoh penting, dll...">{{ old('history', $profil?->history) }}</textarea>
+                    <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">📜 Sejarah Desa & Selayang Pandang</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Sejarah Desa</label>
+                            <textarea name="history" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Tuliskan sejarah singkat...">{{ old('history', $profil?->history) }}</textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Selayang Pandang</label>
+                            <textarea name="selayang_pandang" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Cerita rakyat, asal-usul Dukuh, dll...">{{ old('selayang_pandang', $profil?->selayang_pandang) }}</textarea>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
@@ -44,13 +53,43 @@
                 </div>
 
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-                    <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">🗺️ Kondisi Geografis</h3>
-                    <textarea name="geography" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Batas wilayah, topografi, luas wilayah, iklim, dll...">{{ old('geography', $profil?->geography) }}</textarea>
+                    <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">🗺️ Kondisi Geografis (Teks Umum)</h3>
+                    <textarea name="geography" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Batas wilayah, topografi, luas wilayah, iklim, dll secara umum...">{{ old('geography', $profil?->geography) }}</textarea>
                 </div>
 
                 <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
-                    <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">📊 Statistik Data & Informasi Umum</h3>
-                    
+                    <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">📍 Detail Geografi (Terstruktur)</h3>
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><label class="block text-sm text-gray-700 mb-1">Batas Utara</label><input type="text" name="geografi_json[batas][utara]" value="{{ old('geografi_json.batas.utara', $profil?->geografi_json['batas']['utara'] ?? 'Desa Klego') }}" class="w-full px-4 py-2 border rounded-xl text-sm"></div>
+                            <div><label class="block text-sm text-gray-700 mb-1">Batas Selatan</label><input type="text" name="geografi_json[batas][selatan]" value="{{ old('geografi_json.batas.selatan', $profil?->geografi_json['batas']['selatan'] ?? 'Desa Jaten') }}" class="w-full px-4 py-2 border rounded-xl text-sm"></div>
+                            <div><label class="block text-sm text-gray-700 mb-1">Batas Timur</label><input type="text" name="geografi_json[batas][timur]" value="{{ old('geografi_json.batas.timur', $profil?->geografi_json['batas']['timur'] ?? 'Desa Sangge') }}" class="w-full px-4 py-2 border rounded-xl text-sm"></div>
+                            <div><label class="block text-sm text-gray-700 mb-1">Batas Barat</label><input type="text" name="geografi_json[batas][barat]" value="{{ old('geografi_json.batas.barat', $profil?->geografi_json['batas']['barat'] ?? 'Desa Pengkol, Kec. Karanggede') }}" class="w-full px-4 py-2 border rounded-xl text-sm"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><label class="block text-sm text-gray-700 mb-1">Curah Hujan (mm/tahun)</label><input type="number" name="geografi_json[iklim][curah_hujan]" value="{{ old('geografi_json.iklim.curah_hujan', $profil?->geografi_json['iklim']['curah_hujan'] ?? '20') }}" class="w-full px-4 py-2 border rounded-xl text-sm"></div>
+                            <div><label class="block text-sm text-gray-700 mb-1">Jumlah Bulan Kering</label><input type="number" name="geografi_json[iklim][bulan_kering]" value="{{ old('geografi_json.iklim.bulan_kering', $profil?->geografi_json['iklim']['bulan_kering'] ?? '6') }}" class="w-full px-4 py-2 border rounded-xl text-sm"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div><label class="block text-sm text-gray-700 mb-1">Total Luas Wilayah (Ha)</label><input type="number" step="0.01" name="geografi_json[luas][total]" value="{{ old('geografi_json.luas.total', $profil?->geografi_json['luas']['total'] ?? '282.77') }}" class="w-full px-4 py-2 border rounded-xl text-sm"></div>
+                            <div><label class="block text-sm text-gray-700 mb-1">Tanah Sawah (Ha)</label><input type="number" step="0.01" name="geografi_json[luas][sawah]" value="{{ old('geografi_json.luas.sawah', $profil?->geografi_json['luas']['sawah'] ?? '96.00') }}" class="w-full px-4 py-2 border rounded-xl text-sm"></div>
+                            <div><label class="block text-sm text-gray-700 mb-1">Tanah Kering (Ha)</label><input type="number" step="0.01" name="geografi_json[luas][kering]" value="{{ old('geografi_json.luas.kering', $profil?->geografi_json['luas']['kering'] ?? '186.77') }}" class="w-full px-4 py-2 border rounded-xl text-sm"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div><label class="block text-sm text-gray-700 mb-1">Sapi Potong (Ekor)</label><input type="number" name="geografi_json[peternakan][sapi]" value="{{ old('geografi_json.peternakan.sapi', $profil?->geografi_json['peternakan']['sapi'] ?? '200') }}" class="w-full px-4 py-2 border rounded-xl text-sm"></div>
+                            <div><label class="block text-sm text-gray-700 mb-1">Kambing (Ekor)</label><input type="number" name="geografi_json[peternakan][kambing]" value="{{ old('geografi_json.peternakan.kambing', $profil?->geografi_json['peternakan']['kambing'] ?? '115') }}" class="w-full px-4 py-2 border rounded-xl text-sm"></div>
+                            <div><label class="block text-sm text-gray-700 mb-1">Puyuh (Ekor)</label><input type="number" name="geografi_json[peternakan][puyuh]" value="{{ old('geografi_json.peternakan.puyuh', $profil?->geografi_json['peternakan']['puyuh'] ?? '15000') }}" class="w-full px-4 py-2 border rounded-xl text-sm"></div>
+                        </div>
+                        <div>
+                            <label class="block text-sm text-gray-700 mb-1">Industri & Usaha (Pisahkan dengan koma)</label>
+                            @php $industriDefault = implode(', ', $profil?->geografi_json['industri'] ?? ['Mebel', 'Keripik pangsit', 'Pengepul pisang', 'Pembuatan batako', 'Percetakan', 'Kerajinan bambu']); @endphp
+                            <input type="text" name="geografi_json[industri]" value="{{ old('geografi_json.industri', $industriDefault) }}" class="w-full px-4 py-2 border rounded-xl text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+                    <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">📊 Data Statistik Utama</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1.5">Jumlah Penduduk</label>
@@ -69,8 +108,93 @@
                             <input type="text" name="stat_rw" value="{{ old('stat_rw', $profil?->stat_rw) }}" placeholder="Misal: 6" class="w-full px-4 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-green-400">
                         </div>
                     </div>
+                </div>
 
-                    <label class="block text-sm font-medium text-gray-700 mb-1.5">Penjelasan Tambahan (Opsional)</label>
+                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+                    <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">📈 Detail Data Diagram (Untuk Chart.js)</h3>
+                    <div class="space-y-6">
+                        <!-- Agama -->
+                        <div>
+                            <h4 class="font-medium text-sm text-gray-700 mb-3">Agama</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                @foreach(['Islam' => 2555, 'Katholik' => 7, 'Kristen' => 4, 'Hindu' => 0, 'Buddha' => 0, 'Khonghucu' => 0, 'Kepercayaan' => 0] as $agama => $defValue)
+                                <div>
+                                    <label class="block text-xs text-gray-600 mb-1">{{ $agama }}</label>
+                                    <input type="number" name="statistik_json[agama][{{ $agama }}]" value="{{ old("statistik_json.agama.{$agama}", $profil?->statistik_json['agama'][$agama] ?? $defValue) }}" class="w-full px-3 py-1.5 border rounded-lg text-sm">
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <!-- Status Perkawinan -->
+                        <div>
+                            <h4 class="font-medium text-sm text-gray-700 mb-3">Status Perkawinan</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                @foreach(['Belum Kawin' => 1050, 'Kawin' => 1237, 'Cerai Hidup' => 56, 'Cerai Mati' => 223] as $status => $defValue)
+                                <div>
+                                    <label class="block text-xs text-gray-600 mb-1">{{ $status }}</label>
+                                    <input type="number" name="statistik_json[perkawinan][{{ $status }}]" value="{{ old("statistik_json.perkawinan.{$status}", $profil?->statistik_json['perkawinan'][$status] ?? $defValue) }}" class="w-full px-3 py-1.5 border rounded-lg text-sm">
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <!-- Pendidikan -->
+                        <div>
+                            <h4 class="font-medium text-sm text-gray-700 mb-3">Pendidikan</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                                @foreach([
+                                    'Tidak/Belum Sekolah' => 535, 'Belum Tamat SD/Sederajat' => 261, 'Tamat SD/Sederajat' => 594, 'Tamat SLTP/Sederajat' => 592, 'Tamat SLTA/Sederajat' => 446,
+                                    'Diploma I/II' => 9, 'Akademi/DIII/Sarjana Muda' => 31, 'Diploma IV/Strata I' => 93, 'Strata II' => 5, 'Strata III' => 0
+                                ] as $edu => $defValue)
+                                <div>
+                                    <label class="block text-xs text-gray-600 mb-1 truncate" title="{{ $edu }}">{{ $edu }}</label>
+                                    <input type="number" name="statistik_json[pendidikan][{{ $edu }}]" value="{{ old("statistik_json.pendidikan.{$edu}", $profil?->statistik_json['pendidikan'][$edu] ?? $defValue) }}" class="w-full px-3 py-1.5 border rounded-lg text-sm">
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <!-- Piramida -->
+                        <div>
+                            <h4 class="font-medium text-sm text-gray-700 mb-3">Piramida Penduduk (Berdasarkan Usia)</h4>
+                            <div class="h-64 overflow-y-auto pr-2 border rounded-xl p-3 bg-gray-50">
+                                <div class="grid grid-cols-3 gap-2 font-semibold text-xs text-gray-600 mb-2 sticky top-0 bg-gray-50 py-1">
+                                    <div>Rentang Usia</div><div>Laki-laki</div><div>Perempuan</div>
+                                </div>
+                                @php
+                                $usiaLabels = ['>75', '70-74', '65-69', '60-64', '55-59', '50-54', '45-49', '40-44', '35-39', '30-34', '25-29', '20-24', '15-19', '10-14', '5-9', '0-4'];
+                                $defLaki = [-47, -48, -60, -54, -69, -77, -84, -95, -91, -106, -96, -107, -112, -99, -107, -76];
+                                $defPerem = [80, 70, 74, 63, 68, 82, 84, 73, 82, 98, 98, 95, 79, 90, 78, 71];
+                                @endphp
+                                @foreach($usiaLabels as $i => $usia)
+                                <div class="grid grid-cols-3 gap-2 mb-2">
+                                    <div class="flex items-center text-sm font-medium">{{ $usia }}</div>
+                                    <input type="number" name="statistik_json[piramida][laki_laki][{{ $usia }}]" value="{{ old("statistik_json.piramida.laki_laki.{$usia}", $profil?->statistik_json['piramida']['laki_laki'][$usia] ?? $defLaki[$i]) }}" class="w-full px-3 py-1.5 border border-blue-200 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-400">
+                                    <input type="number" name="statistik_json[piramida][perempuan][{{ $usia }}]" value="{{ old("statistik_json.piramida.perempuan.{$usia}", $profil?->statistik_json['piramida']['perempuan'][$usia] ?? $defPerem[$i]) }}" class="w-full px-3 py-1.5 border border-pink-200 rounded-lg text-sm bg-white focus:ring-2 focus:ring-pink-400">
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+                    <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">📋 Daftar Nama RT & RW</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Nama Ketua RT (Satu nama per baris)</label>
+                            @php $rtDefault = implode("\n", $profil?->daftar_rt_rw['rt'] ?? ['M. Mustar', 'Suri', 'Tarsono', 'Suradi', 'Winarsih', 'Sumarno', 'Jarot Prianto', 'Supangat', 'Sumadi', 'Darmo', 'Rosman', 'Sobirin', 'Diman', 'Afrizal', 'Slamet Mulyono', 'Juweni']); @endphp
+                            <textarea name="daftar_rt_rw[rt]" rows="10" class="w-full px-4 py-2 border border-gray-200 rounded-xl text-sm" placeholder="Nama RT 1&#10;Nama RT 2...">{{ old('daftar_rt_rw.rt', $rtDefault) }}</textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Nama Ketua RW (Satu nama per baris)</label>
+                            @php $rwDefault = implode("\n", $profil?->daftar_rt_rw['rw'] ?? ['Supardi', 'Hadi Suwito', 'Budi']); @endphp
+                            <textarea name="daftar_rt_rw[rw]" rows="10" class="w-full px-4 py-2 border border-gray-200 rounded-xl text-sm" placeholder="Nama RW 1&#10;Nama RW 2...">{{ old('daftar_rt_rw.rw', $rwDefault) }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+                    <h3 class="font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-100">📋 Informasi Tambahan</h3>
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5">Penjelasan Tambahan Profil (Opsional)</label>
                     <textarea name="general_information" class="tinymce w-full border border-gray-200 rounded-xl" placeholder="Penjelasan demografi tambahan...">{{ old('general_information', $profil?->general_information) }}</textarea>
                 </div>
 
