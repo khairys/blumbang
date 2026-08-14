@@ -86,17 +86,281 @@
             </div>
         </div>
 
-        <div id="content-geografi" class="tab-content hidden">
+        <div id="content-geografi" class="tab-content hidden space-y-8">
+            
+            <!-- 1. PENGANTAR -->
             <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-                <h2 class="text-2xl font-bold text-gray-900 mb-6">Kondisi Geografis</h2>
-                <div class="prose max-w-none text-gray-700">
-                    @if(isset($profil) && $profil->geography)
-                        {!! $profil->geography !!}
-                    @else
-                        <p>Belum ada data geografis.</p>
-                    @endif
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Kondisi Geografis Desa Blumbang</h2>
+                <p class="text-gray-500 mb-6 italic">Gambaran mengenai letak wilayah, batas administrasi, kondisi lingkungan, sumber daya alam, serta penggunaan lahan Desa Blumbang.</p>
+                <div class="prose max-w-none text-gray-700 leading-relaxed text-justify">
+                    <p>Desa Blumbang merupakan salah satu desa di Kecamatan Klego, Kabupaten Boyolali, Jawa Tengah. Kondisi wilayah Desa Blumbang meliputi karakteristik geografis, pembagian wilayah, kondisi iklim, sumber daya air, jenis tanah, serta penggunaan lahan yang turut memengaruhi kehidupan dan kegiatan ekonomi masyarakat.</p>
                 </div>
             </div>
+
+            <!-- 2. LETAK DAN BATAS WILAYAH -->
+            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                <h2 class="text-xl font-bold text-gray-900 mb-4">Letak dan Batas Wilayah</h2>
+                <p class="text-gray-600 mb-6">Desa Blumbang berada di Kecamatan Klego, Kabupaten Boyolali, Jawa Tengah. Secara administratif, wilayah Desa Blumbang berbatasan dengan beberapa desa di sekitarnya.</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-gray-50 p-5 rounded-xl border border-gray-100 flex items-start gap-4 hover:border-emerald-200 transition-colors">
+                        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Utara</p>
+                            <p class="font-semibold text-gray-900">Desa Klego</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-5 rounded-xl border border-gray-100 flex items-start gap-4 hover:border-emerald-200 transition-colors">
+                        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Selatan</p>
+                            <p class="font-semibold text-gray-900">Desa Jaten</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-5 rounded-xl border border-gray-100 flex items-start gap-4 hover:border-emerald-200 transition-colors">
+                        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Timur</p>
+                            <p class="font-semibold text-gray-900">Desa Sangge</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-5 rounded-xl border border-gray-100 flex items-start gap-4 hover:border-emerald-200 transition-colors">
+                        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Barat</p>
+                            <p class="font-semibold text-gray-900 text-sm">Desa Pengkol,<br>Kec. Karanggede</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. PEMBAGIAN WILAYAH -->
+            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                <h2 class="text-xl font-bold text-gray-900 mb-4">Pembagian Wilayah</h2>
+                <p class="text-gray-600 mb-6">Secara administratif, Desa Blumbang terbagi menjadi dua wilayah kepala dusun yang mencakup dua dukuh, yaitu:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-green-50 rounded-xl p-6 border border-green-100 flex items-center gap-4 hover:shadow-md transition-shadow">
+                        <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-green-600 shadow-sm shrink-0">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-green-600 mb-1 uppercase tracking-wider">Kadus 1</p>
+                            <p class="text-xl font-bold text-gray-900">Dukuh Blumbang</p>
+                        </div>
+                    </div>
+                    <div class="bg-emerald-50 rounded-xl p-6 border border-emerald-100 flex items-center gap-4 hover:shadow-md transition-shadow">
+                        <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-emerald-600 shadow-sm shrink-0">
+                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-emerald-600 mb-1 uppercase tracking-wider">Kadus 2</p>
+                            <p class="text-xl font-bold text-gray-900">Dukuh Glagahombo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 max-w-sm mx-auto font-mono text-sm text-gray-600 flex justify-center">
+                    <div class="text-left w-full max-w-[200px]">
+                        <div class="font-bold text-green-700 mb-2 text-base flex items-center gap-2">
+                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                            Desa Blumbang
+                        </div>
+                        <div class="pl-2 border-l-2 border-gray-300 ml-2">
+                            <div class="my-2">
+                                <span class="inline-block w-4 border-t-2 border-gray-300 mr-2 -translate-y-1"></span>
+                                <span class="font-bold text-gray-800">Kadus 1</span>
+                                <div class="pl-6 border-l-2 border-gray-300 ml-2 mt-2">
+                                    <span class="inline-block w-4 border-t-2 border-gray-300 mr-2 -translate-y-1"></span>
+                                    Dk. Blumbang
+                                </div>
+                            </div>
+                            <div class="my-4">
+                                <span class="inline-block w-4 border-t-2 border-gray-300 mr-2 -translate-y-1"></span>
+                                <span class="font-bold text-gray-800">Kadus 2</span>
+                                <div class="pl-6 border-l-2 border-gray-300 ml-2 mt-2 border-transparent">
+                                    <span class="inline-block w-4 border-t-2 border-gray-300 mr-2 -translate-y-1"></span>
+                                    Dk. Glagahombo
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. IKLIM DAN 5. AIR DAN 6. TANAH -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">Kondisi Iklim</h2>
+                    <p class="text-sm text-gray-600 mb-6 flex-grow leading-relaxed">Berdasarkan data yang tersedia, Desa Blumbang memiliki karakteristik iklim lembap dengan curah hujan sebesar 20 mm/tahun dan jumlah bulan kering sebanyak 6 bulan.</p>
+                    <div class="space-y-3">
+                        <div class="bg-blue-50 text-blue-800 rounded-xl p-3 font-semibold text-center border border-blue-100 text-sm">
+                            Curah Hujan<br><span class="text-lg font-black text-blue-900">20 mm/tahun</span>
+                        </div>
+                        <div class="bg-orange-50 text-orange-800 rounded-xl p-3 font-semibold text-center border border-orange-100 text-sm">
+                            Jumlah Bulan Kering<br><span class="text-lg font-black text-orange-900">6 bulan</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">Sumber Daya Air</h2>
+                    <p class="text-sm text-gray-600 leading-relaxed">Kondisi hidrologi Desa Blumbang dipengaruhi oleh keterbatasan sumber air, terutama pada musim kemarau. Kondisi tersebut dapat memengaruhi ketersediaan air bagi kegiatan pertanian dan menyebabkan sebagian lahan mengalami kekeringan.</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">Jenis Tanah</h2>
+                    <p class="text-sm text-gray-600 mb-6 flex-grow leading-relaxed">Jenis tanah pada umumnya termasuk tanah aluvial. Karakteristik tanah tersebut cukup mendukung kegiatan pertanian, meskipun kondisi tanah yang relatif labil dapat memengaruhi kondisi beberapa infrastruktur, termasuk jalan di Desa Blumbang.</p>
+                    <div class="bg-amber-50 text-amber-800 rounded-xl p-4 font-black text-center border border-amber-100 text-lg uppercase tracking-wider">
+                        Tanah Aluvial
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. KONDISI LINGKUNGAN DAN PERTANIAN -->
+            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                <h2 class="text-xl font-bold text-gray-900 mb-4">Kondisi Lingkungan dan Pertanian</h2>
+                <p class="text-gray-600 mb-6">Desa Blumbang memiliki karakteristik wilayah dengan kondisi lahan basah dan lahan kering. Kondisi tersebut turut memengaruhi jenis kegiatan pertanian yang berkembang di masyarakat.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border border-green-100 bg-green-50 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-full bg-green-200 text-green-700 flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <h3 class="font-bold text-green-900 text-lg mb-2">Lahan Basah</h3>
+                        <p class="text-green-800 text-sm leading-relaxed">Pengembangan lahan basah diarahkan untuk mendukung kegiatan pertanian dengan penerapan pengelolaan lahan dan penggunaan pupuk organik.</p>
+                    </div>
+                    <div class="border border-amber-100 bg-amber-50 rounded-2xl p-6 hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-full bg-amber-200 text-amber-700 flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                        </div>
+                        <h3 class="font-bold text-amber-900 text-lg mb-2">Lahan Kering</h3>
+                        <p class="text-amber-800 text-sm leading-relaxed">Lahan kering memiliki potensi untuk pengembangan pertanian tanaman pangan lahan kering, khususnya tanaman palawija.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. KOMODITAS PERTANIAN -->
+            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                <h2 class="text-xl font-bold text-gray-900 mb-4">Komoditas Pertanian</h2>
+                <p class="text-gray-600 mb-6">Desa Blumbang merupakan daerah penghasil padi tadah hujan dengan luas lahan sebesar 113,8 hektare. Selain padi, komoditas pertanian yang terdapat di Desa Blumbang antara lain jagung, kedelai, ubi kayu, dan berbagai jenis kacang-kacangan.</p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <div class="bg-white border-2 border-emerald-500 text-emerald-800 px-6 py-3 rounded-xl font-bold flex flex-col shadow-sm">
+                        <span>Padi</span>
+                        <span class="text-xs font-black text-emerald-600 mt-1">113,8 Ha</span>
+                    </div>
+                    <div class="bg-white border-2 border-yellow-200 text-yellow-800 px-6 py-3 rounded-xl font-bold flex items-center shadow-sm">
+                        Jagung
+                    </div>
+                    <div class="bg-white border-2 border-lime-200 text-lime-800 px-6 py-3 rounded-xl font-bold flex items-center shadow-sm">
+                        Kedelai
+                    </div>
+                    <div class="bg-white border-2 border-orange-200 text-orange-800 px-6 py-3 rounded-xl font-bold flex items-center shadow-sm">
+                        Ubi Kayu
+                    </div>
+                    <div class="bg-white border-2 border-amber-200 text-amber-800 px-6 py-3 rounded-xl font-bold flex items-center shadow-sm">
+                        Kacang-kacangan
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. PETERNAKAN DAN 10. INDUSTRI -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Peternakan -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">Potensi Peternakan</h2>
+                    <p class="text-gray-600 mb-6 text-sm">Selain sektor pertanian, masyarakat Desa Blumbang juga mengembangkan kegiatan peternakan sebagai salah satu bagian dari potensi ekonomi desa.</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200 shadow-sm">
+                            <div class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1">Sapi Potong</div>
+                            <div class="font-black text-emerald-700 text-xl">200</div>
+                            <div class="text-[10px] text-gray-400 font-bold">EKOR</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200 shadow-sm">
+                            <div class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1">Kambing</div>
+                            <div class="font-black text-emerald-700 text-xl">115</div>
+                            <div class="text-[10px] text-gray-400 font-bold">EKOR</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-4 text-center border border-gray-200 shadow-sm">
+                            <div class="text-xs text-gray-500 font-bold uppercase tracking-wider mb-1">Puyuh</div>
+                            <div class="font-black text-emerald-700 text-xl">15.000</div>
+                            <div class="text-[10px] text-gray-400 font-bold">EKOR</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Industri -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <h2 class="text-xl font-bold text-gray-900 mb-4">Industri dan Usaha Masyarakat</h2>
+                    <p class="text-gray-600 mb-6 text-sm">Selain mengandalkan sektor pertanian dan peternakan, masyarakat Desa Blumbang juga mengembangkan berbagai kegiatan usaha dan industri kecil.</p>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        @foreach(['Mebel', 'Keripik pangsit', 'Pengepul pisang', 'Pembuatan batako', 'Percetakan', 'Kerajinan bambu'] as $industri)
+                        <span class="bg-emerald-50 text-emerald-700 border border-emerald-100 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-100 transition-colors">
+                            {{ $industri }}
+                        </span>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. LUAS WILAYAH -->
+            <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                <h2 class="text-xl font-bold text-gray-900 mb-6">Luas Wilayah</h2>
+                
+                <div class="mb-8 flex flex-col md:flex-row items-center gap-6">
+                    <div class="bg-emerald-600 text-white p-6 rounded-2xl text-center min-w-[200px] shadow-lg shadow-emerald-600/20 w-full md:w-auto">
+                        <div class="text-4xl font-black mb-1">282,77</div>
+                        <div class="text-sm font-medium text-emerald-100 uppercase tracking-wider">Hektare (Ha)</div>
+                        <div class="text-xs text-emerald-200 mt-2 font-bold bg-black/10 rounded-full py-1 px-3 inline-block">Luas Wilayah Desa</div>
+                    </div>
+                    <div class="flex-grow grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+                        <div class="bg-blue-50 p-5 rounded-2xl border border-blue-100 flex flex-col justify-center">
+                            <div class="text-sm text-blue-600 font-bold uppercase tracking-wider mb-1">Tanah Sawah</div>
+                            <div class="text-3xl font-black text-blue-900">96,00 <span class="text-lg font-bold text-blue-700">Ha</span></div>
+                        </div>
+                        <div class="bg-amber-50 p-5 rounded-2xl border border-amber-100 flex flex-col justify-center">
+                            <div class="text-sm text-amber-600 font-bold uppercase tracking-wider mb-1">Tanah Kering</div>
+                            <div class="text-3xl font-black text-amber-900">186,77 <span class="text-lg font-bold text-amber-700">Ha</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12. VISUALISASI LUAS WILAYAH -->
+                <div class="space-y-2 max-w-3xl mx-auto">
+                    <div class="flex justify-between text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">
+                        <span>Proporsi Penggunaan Lahan</span>
+                    </div>
+                    <!-- Total 282.77 -->
+                    <!-- Sawah: 96 / 282.77 = ~34% -->
+                    <!-- Kering: 186.77 / 282.77 = ~66% -->
+                    <div class="w-full h-8 flex rounded-full overflow-hidden shadow-inner bg-gray-100">
+                        <div class="bg-blue-500 flex items-center justify-center text-white text-xs font-bold" style="width: 34%" title="Tanah Sawah (34%)">
+                            34%
+                        </div>
+                        <div class="bg-amber-500 flex items-center justify-center text-white text-xs font-bold" style="width: 66%" title="Tanah Kering (66%)">
+                            66%
+                        </div>
+                    </div>
+                    <div class="flex justify-center gap-6 text-xs font-semibold mt-3 text-gray-600">
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-blue-500"></div> Sawah (34%)</div>
+                        <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-amber-500"></div> Kering (66%)</div>
+                    </div>
+                    <p class="text-[10px] text-gray-400 text-center mt-6 italic">*Persentase merupakan perkiraan yang dihitung dari luasan tanah sawah dan tanah kering terhadap total wilayah.</p>
+                </div>
+            </div>
+
         </div>
 
         <!-- Data & Statistik -->
@@ -268,6 +532,7 @@
 
     <!-- Chart.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
     <script>
     function showTab(id) {
@@ -284,6 +549,8 @@
 
     // Chart.js implementation
     document.addEventListener("DOMContentLoaded", function() {
+        Chart.register(ChartDataLabels);
+
         // Chart Defaults
         Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
         Chart.defaults.color = '#6b7280';
@@ -315,7 +582,14 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { position: 'bottom', labels: { boxWidth: 12, padding: 15 } }
+                    legend: { position: 'bottom', labels: { boxWidth: 12, padding: 15 } },
+                    datalabels: {
+                        color: '#ffffff',
+                        font: { weight: 'bold', size: 12 },
+                        formatter: function(value) {
+                            return value > 0 ? value : '';
+                        }
+                    }
                 },
                 cutout: '65%'
             }
@@ -343,7 +617,14 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: { position: 'bottom', labels: { boxWidth: 12, padding: 15 } }
+                    legend: { position: 'bottom', labels: { boxWidth: 12, padding: 15 } },
+                    datalabels: {
+                        color: '#ffffff',
+                        font: { weight: 'bold', size: 12 },
+                        formatter: function(value) {
+                            return value > 0 ? value : '';
+                        }
+                    }
                 }
             }
         });
@@ -377,6 +658,7 @@
                 indexAxis: 'y',
                 responsive: true,
                 maintainAspectRatio: false,
+                layout: { padding: { right: 40 } },
                 plugins: {
                     legend: { display: false },
                     tooltip: {
@@ -384,6 +666,15 @@
                             label: function(context) {
                                 return ' ' + context.parsed.x + ' Jiwa';
                             }
+                        }
+                    },
+                    datalabels: {
+                        color: '#6b7280',
+                        anchor: 'end',
+                        align: 'end',
+                        font: { weight: 'bold' },
+                        formatter: function(value) {
+                            return value > 0 ? value : '';
                         }
                     }
                 },
@@ -446,6 +737,13 @@
                                 // Use absolute value in tooltip to hide the negative sign
                                 return ' ' + context.dataset.label + ': ' + Math.abs(context.parsed.x) + ' Jiwa';
                             }
+                        }
+                    },
+                    datalabels: {
+                        color: '#ffffff',
+                        font: { weight: 'bold', size: 11 },
+                        formatter: function(value) {
+                            return Math.abs(value) > 0 ? Math.abs(value) : '';
                         }
                     }
                 },

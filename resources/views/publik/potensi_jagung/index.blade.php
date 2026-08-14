@@ -24,7 +24,7 @@
                 </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="#produk-olahan" class="inline-flex items-center gap-2 bg-white text-amber-700 font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-yellow-50 transition-colors">
-                        🍽️ Lihat Olahan Jagung
+                        Lihat Olahan Jagung
                     </a>
                     <a href="#potensi-jagung" class="inline-flex items-center gap-2 bg-white/20 text-white border border-white/40 font-bold px-6 py-3 rounded-xl hover:bg-white/30 transition-colors">
                         Pelajari Potensinya
@@ -65,11 +65,11 @@
                         ['🌽', 'Jagung Lokal', 'bg-yellow-100 border-yellow-300 text-yellow-800'],
                         ['⚙️', 'Pengolahan', 'bg-orange-100 border-orange-300 text-orange-800'],
                         ['🥣', 'Produk Olahan', 'bg-green-100 border-green-300 text-green-800'],
-                        ['📈', 'Nilai Tambah', 'bg-emerald-100 border-emerald-300 text-emerald-800'],
+                        ['📈', 'Nilai Tambah', 'bg-blue-100 border-blue-300 text-blue-800'],
                     ] as $step)
                     <div class="w-full flex flex-col items-center">
-                        <div class="w-full max-w-xs border-2 {{ $step[2] }} rounded-xl px-6 py-4 flex items-center gap-4 text-center justify-center">
-                            <span class="text-3xl">{{ $step[0] }}</span>
+                        <div class="w-full max-w-xs border-2 {{ $step[2] }} rounded-xl px-6 py-4 flex items-center gap-4 text-center justify-center bg-opacity-50">
+                            <span class="text-3xl drop-shadow-sm">{{ $step[0] }}</span>
                             <div class="font-bold text-lg">{{ $step[1] }}</div>
                         </div>
                         @if(!$loop->last)
@@ -90,17 +90,19 @@
                 <h2 class="text-3xl font-extrabold text-gray-900 mb-3">Jagung sebagai Bagian dari Pangan Lokal</h2>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
                 @foreach([
-                    ['🌾', 'Sumber Karbohidrat', 'Jagung dapat menjadi salah satu sumber karbohidrat dalam menu makanan sehari-hari.', 'bg-amber-50 border-amber-200 text-amber-700'],
-                    ['🌿', 'Mengandung Serat', 'Jagung mengandung serat yang menjadi bagian dari pola makan yang baik.', 'bg-green-50 border-green-200 text-green-700'],
-                    ['💊', 'Mengandung Zat Gizi', 'Jagung mengandung berbagai zat gizi yang dapat melengkapi keberagaman makanan.', 'bg-blue-50 border-blue-200 text-blue-700'],
-                    ['🍽️', 'Dapat Dikombinasikan dengan Pangan Lain', 'Jagung dapat dikombinasikan dengan sumber protein, sayuran, buah, dan bahan pangan lainnya untuk menciptakan menu yang lebih beragam.', 'bg-purple-50 border-purple-200 text-purple-700'],
+                    ['01', 'Sumber Karbohidrat', 'Jagung dapat menjadi salah satu sumber karbohidrat utama atau alternatif dalam menu makanan sehari-hari.', 'from-amber-100 to-yellow-50 border-amber-200 text-amber-700'],
+                    ['02', 'Mengandung Serat', 'Kandungan serat pada jagung baik untuk pencernaan dan dapat menjadi bagian penting dari pola makan sehat.', 'from-green-100 to-emerald-50 border-green-200 text-green-700'],
+                    ['03', 'Kaya Zat Gizi', 'Jagung mengandung berbagai vitamin dan mineral yang dapat melengkapi asupan keberagaman makanan harian keluarga.', 'from-blue-100 to-indigo-50 border-blue-200 text-blue-700'],
+                    ['04', 'Sangat Fleksibel', 'Jagung sangat mudah dikombinasikan dengan sumber protein, sayuran, dan bahan pangan lain untuk menu yang lebih bervariasi.', 'from-purple-100 to-pink-50 border-purple-200 text-purple-700'],
                 ] as $item)
-                <div class="bg-white border-2 {{ $item[3] }} rounded-2xl p-6 text-center hover:shadow-md transition-shadow">
-                    <div class="text-4xl mb-3">{{ $item[0] }}</div>
-                    <h3 class="font-bold text-gray-900 mb-2">{{ $item[1] }}</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed">{{ $item[2] }}</p>
+                <div class="bg-gradient-to-br {{ $item[3] }} border rounded-3xl p-8 flex items-start gap-6 hover:shadow-lg transition-shadow">
+                    <div class="text-4xl font-black opacity-40 shrink-0">{{ $item[0] }}</div>
+                    <div>
+                        <h3 class="font-bold text-gray-900 text-xl mb-2">{{ $item[1] }}</h3>
+                        <p class="text-gray-700 leading-relaxed">{{ $item[2] }}</p>
+                    </div>
                 </div>
                 @endforeach
             </div>
@@ -159,23 +161,23 @@
         @if($lainnya->isNotEmpty())
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($lainnya as $p)
-            <article class="card-hover bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm transition-all duration-300 flex flex-col group">
-                <a href="{{ route('publik.potensi-jagung.show', $p->slug) }}" class="block relative aspect-video">
+            <article class="card-hover bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm transition-all duration-300 flex flex-col group h-full">
+                <a href="{{ route('publik.potensi-jagung.show', $p->slug) }}" class="block relative w-full h-56 shrink-0">
                     @if($p->thumbnail)
-                        <img src="{{ Storage::url($p->thumbnail) }}" alt="{{ $p->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <img src="{{ Storage::url($p->thumbnail) }}" alt="{{ $p->title }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     @else
-                        <div class="w-full h-full bg-gradient-to-br from-amber-300 via-yellow-300 to-green-400 flex items-center justify-center">
+                        <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-amber-300 via-yellow-300 to-green-400 flex items-center justify-center">
                             <span class="text-6xl drop-shadow">🌽</span>
                         </div>
                     @endif
-                    <div class="absolute top-3 left-3">
-                        <span class="text-xs font-bold bg-white/95 text-amber-700 px-2.5 py-1 rounded-full shadow-sm">{{ $p->category }}</span>
+                    <div class="absolute top-4 left-4">
+                        <span class="text-xs font-bold bg-white/95 backdrop-blur-sm text-amber-700 px-3 py-1.5 rounded-full shadow-sm">{{ $p->category }}</span>
                     </div>
                 </a>
-                <div class="p-5 flex-1 flex flex-col">
-                    <h3 class="font-bold text-gray-900 mb-2 leading-snug text-lg">{{ $p->title }}</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed line-clamp-3 mb-4 flex-1">{{ $p->summary }}</p>
-                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                <div class="p-6 flex-1 flex flex-col">
+                    <h3 class="font-bold text-gray-900 mb-3 text-xl group-hover:text-amber-600 transition-colors">{{ $p->title }}</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed line-clamp-3 mb-6 flex-1">{{ $p->summary }}</p>
+                    <div class="pt-4 border-t border-gray-50 mt-auto">
                         <a href="{{ route('publik.potensi-jagung.show', $p->slug) }}" class="inline-flex items-center gap-1.5 text-amber-600 hover:text-amber-700 text-sm font-bold transition-colors group-hover:gap-2.5">
                             Lihat Resep
                             <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
