@@ -83,6 +83,7 @@
         </div>
     </div>
 
+
     {{-- ===== JAGUNG SEBAGAI PANGAN LOKAL (EDUKASI) ===== --}}
     <div class="bg-gradient-to-br from-green-50 to-emerald-50 py-20 mb-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -188,6 +189,32 @@
             @endforeach
         </div>
         @endif
+    </div>
+
+    {{-- ===== VIDEO PEMBUATAN BUBUR JAGUNG ===== --}}
+    <div class="bg-gradient-to-br from-amber-50 to-green-50 py-16 mb-20 border-y border-amber-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold text-gray-900 mb-3">Video Pembuatan Bubur Jagung</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Saksikan proses pembuatan Bubur Jagung, salah satu kreasi olahan pangan berbahan dasar jagung yang dikembangkan dalam kegiatan KKN Universitas Diponegoro di Desa Blumbang.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-3xl p-4 sm:p-6 shadow-lg border border-gray-100">
+                    <div class="relative w-full overflow-hidden rounded-2xl" style="padding-top: 56.25%;">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube-nocookie.com/embed/2EEy-WoQDro" 
+                            title="Video Pembuatan Bubur Jagung" 
+                            frameborder="0" 
+                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p class="text-center text-sm text-gray-500 mt-4 italic">Video dokumentasi proses pembuatan Bubur Jagung Desa Blumbang.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     {{-- ===== PANDUAN PRODUKSI ===== --}}
@@ -314,23 +341,7 @@
         </div>
     </div>
 
-    {{-- ===== DOKUMENTASI ===== --}}
-    <div class="bg-gradient-to-br from-amber-50 to-green-50 py-16 mb-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-extrabold text-gray-900 mb-3">Dokumentasi Pengembangan Olahan Jagung</h2>
-            <p class="text-gray-500 max-w-2xl mx-auto mb-10">Bagian ini berisi dokumentasi kegiatan pengembangan dan pengolahan jagung di Desa Blumbang, mulai dari persiapan, pengolahan, edukasi, produksi, hingga hasil akhir.</p>
 
-            {{-- Placeholder Grid --}}
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                @foreach(['Persiapan', 'Pengolahan', 'Edukasi', 'Produksi', 'Produk', 'Penyuluhan', 'Kegiatan', 'Hasil Akhir'] as $dok)
-                <div class="aspect-square bg-gradient-to-br from-white to-gray-50 rounded-2xl flex flex-col items-center justify-center gap-2 hover:shadow-sm transition-shadow cursor-pointer border border-gray-200">
-                    <span class="text-3xl text-gray-300">📷</span>
-                    <span class="text-xs text-gray-500 font-medium">{{ $dok }}</span>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
 
     {{-- ===== TENTANG KEGIATAN KKN ===== --}}
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 text-center">

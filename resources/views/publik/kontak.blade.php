@@ -135,36 +135,7 @@
 
             </div>
 
-            <!-- Struktur Pemerintahan -->
-            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-3">Struktur Pemerintahan Desa</h2>
-                    <p class="text-gray-500 max-w-2xl mx-auto">Pemerintah Desa Blumbang senantiasa memberikan pelayanan terbaik bagi masyarakat melalui susunan perangkat desa yang kompeten.</p>
-                </div>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @php
-                    $perangkat = [
-                        ['jabatan' => 'Kepala Desa', 'nama' => 'Suharto, S.Sos'],
-                        ['jabatan' => 'Sekretaris Desa', 'nama' => 'Wahyuni, A.Md'],
-                        ['jabatan' => 'Kaur Perencanaan', 'nama' => 'Agus Supriyanto'],
-                        ['jabatan' => 'Kaur Keuangan', 'nama' => 'Sri Mulyani'],
-                        ['jabatan' => 'Kaur TU & Umum', 'nama' => 'Bambang Setiawan'],
-                        ['jabatan' => 'Kasi Pemerintahan', 'nama' => 'Eko Prasetyo'],
-                    ];
-                    @endphp
-                    
-                    @foreach ($perangkat as $index => $p)
-                    <div class="bg-gray-50 hover:bg-emerald-50 rounded-2xl p-6 border border-gray-100 hover:border-emerald-200 transition-all text-center group">
-                        <div class="w-16 h-16 bg-white border border-gray-200 rounded-full flex items-center justify-center text-gray-400 group-hover:text-emerald-600 group-hover:border-emerald-300 mx-auto mb-4 shadow-sm transition-colors">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-1 group-hover:text-emerald-700 transition-colors">{{ $p['nama'] }}</h3>
-                        <p class="text-sm font-semibold text-emerald-600 tracking-wide uppercase">{{ $p['jabatan'] }}</p>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
+
 
         </div>
     </div>
