@@ -1,2 +1,8 @@
 *
 !.gitignore
+!potensi/
+!potensi/*
+!berita/
+!berita/*
+!pengumuman/
+!pengumuman/*

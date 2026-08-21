@@ -2,9 +2,9 @@
     <x-slot name="title">Beranda</x-slot>
 
     <!-- ===== HERO SECTION ===== -->
-    <section class="hero-pattern relative overflow-hidden min-h-[90vh] flex items-center">
+    <section class="relative overflow-hidden min-h-[90vh] flex items-center bg-cover bg-center" style="background-image: url('{{ asset('images/landscapeBlumbang.jpeg') }}');">
         <!-- Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-br from-green-900/95 via-green-800/85 to-emerald-900/90"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-green-900/80 via-gray-900/70 to-emerald-900/80"></div>
 
         <!-- Decorative circles -->
         <div class="absolute top-20 right-20 w-64 h-64 bg-green-500/10 rounded-full blur-3xl"></div>
